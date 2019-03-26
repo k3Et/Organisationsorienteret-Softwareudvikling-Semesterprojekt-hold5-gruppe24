@@ -12,15 +12,16 @@ import javafx.stage.Stage;
  * @author Gruppe 24
  */
 public class FXMain extends Application {
-
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("LoginFXML.fxml"));
-
+        
         Scene scene = new Scene(root);
-
+        
         stage.setScene(scene);
         stage.setTitle("NoTiBo - Noter til Dagbøger");
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -30,5 +31,5 @@ public class FXMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }

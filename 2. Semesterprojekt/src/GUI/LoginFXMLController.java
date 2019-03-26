@@ -33,7 +33,9 @@ public class LoginFXMLController implements Initializable {
     private Label userNameLabel;
     @FXML
     private Button loginButton;
-    
+    @FXML
+    private ImageView NoTiBoImage;
+
     Random r = new Random();
     Image[] loginImages;
 
@@ -42,15 +44,16 @@ public class LoginFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         //Initializing the fruit images through a for loop.
-        loginImages = new Image[2];
+        //Initializing the fruit images through a for loop.
+        loginImages = new Image[3];
         String pre = "loginPicture";
         String post = ".jpg";
         for (int i = 0; i < loginImages.length; i++) {
             loginImages[i] = new Image(new File(pre + i + post).toURI().toString());
         }
         //Using Random to set login image.
-        loginImageView.setImage(loginImages[r.nextInt(2)]);
+        loginImageView.setImage(loginImages[r.nextInt(3)]);
+        NoTiBoImage.setImage(new Image(new File("NoTiBoImage.png").toURI().toString()));
     }
 
     @FXML
