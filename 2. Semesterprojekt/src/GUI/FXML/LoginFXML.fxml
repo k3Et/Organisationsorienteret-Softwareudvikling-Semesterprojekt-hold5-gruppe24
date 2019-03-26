@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="GUI.LoginFXMLController">
+   <children>
+      <ImageView fx:id="loginImageView" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
+      <PasswordField fx:id="passWordField" layoutX="1670.0" layoutY="170.0" onAction="#handlePassWordFIeldAction" prefHeight="26.0" prefWidth="184.0" />
+      <Label fx:id="passWordLabel" layoutX="1670.0" layoutY="153.0" text="Password" />
+      <TextField fx:id="userNameField" layoutX="1670.0" layoutY="117.0" prefHeight="26.0" prefWidth="184.0" />
+      <Label fx:id="userNameLabel" layoutX="1670.0" layoutY="100.0" text="Brugernavn" />
+      <Button fx:id="loginButton" layoutX="1670.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Login" />
+   </children>
+</AnchorPane>
