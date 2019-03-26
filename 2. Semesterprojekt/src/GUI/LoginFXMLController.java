@@ -1,6 +1,5 @@
 package GUI;
 
-import java.io.File;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -46,14 +45,14 @@ public class LoginFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Initializing the fruit images through a for loop.
         loginImages = new Image[3];
-        String pre = "loginPicture";
+        String pre = "/Pictures/loginPicture";
         String post = ".jpg";
         for (int i = 0; i < loginImages.length; i++) {
-            loginImages[i] = new Image(new File(pre + i + post).toURI().toString());
+            loginImages[i] = new Image((pre + i + post));
         }
         //Using Random to set login image.
         loginImageView.setImage(loginImages[r.nextInt(3)]);
-        NoTiBoImage.setImage(new Image(new File("NoTiBoImage.png").toURI().toString()));
+        NoTiBoImage.setImage(new Image("/Pictures/NoTiBoImage.png"));
     }
 
     @FXML
