@@ -9,19 +9,19 @@ package Data;
  *
  * @author Patrick
  */
-public class Role {
+public abstract class Role {
     private String roleName;
     
     private StringBuilder permissions;
     
-    public Role(){
-        permissions = new StringBuilder();
-    }
-    
-//    public Role(String roleName){
-//        this.roleName = roleName;
+//    public Role(){
 //        permissions = new StringBuilder();
 //    }
+    
+    public Role(String roleName){
+        this.roleName = roleName;
+        permissions = new StringBuilder();
+    }
     
     public String getName(){
         return roleName;

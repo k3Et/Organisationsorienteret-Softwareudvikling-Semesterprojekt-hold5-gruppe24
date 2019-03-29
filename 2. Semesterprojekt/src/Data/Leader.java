@@ -10,5 +10,11 @@ package Data;
  * @author Patrick
  */
 public class Leader extends Role{
+    private String[] permissions = {"create relation"};
     
+    
+    public Leader() {
+        super("Leader");
+        super.addPermissions(permissions);
+    }
 }
