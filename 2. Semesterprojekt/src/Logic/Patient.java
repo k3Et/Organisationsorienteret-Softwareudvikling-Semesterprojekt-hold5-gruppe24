@@ -12,8 +12,8 @@ package Logic;
 public class Patient extends Role {
     String[] permissions = {};
     
-    public Patient(String roleName) {
-        super(roleName);
+    public Patient() {
+        super("Patient");
         super.addPermissions(permissions);
     }
     

@@ -10,11 +10,30 @@ package Logic;
  * @author Patrick
  */
 public class User {
-    public RoleList roles;
+    private String name;
+    private String password;
+    private String username;
+    private String CPR;
+    private String phoneNumber;
+    private String email;
+    private String address;
     
-    public User(Role r){
-        roles = new RoleList(new Employee());
+    public RoleList roles;
+
+    public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
+        this.name = name;
+        this.password = password;
+        this.username = username;
+        this.CPR = CPR;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        roles = new RoleList(r);
     }
+    
+//    public User(Role r){
+//        roles = new RoleList(r);
+//    }
     
     public void createNote(){
         if(roles.getPermissions().contains("create note")){
