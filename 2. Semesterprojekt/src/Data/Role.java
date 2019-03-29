@@ -27,6 +27,7 @@ public abstract class Role {
         return roleName;
     }
     
+    //Adds the permissions from the subroles to the list of permissions
     public void addPermissions(String[] permissions){
         for(String s : permissions)
         this.permissions.append(s + ":");

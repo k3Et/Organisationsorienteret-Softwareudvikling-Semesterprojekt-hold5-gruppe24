@@ -18,6 +18,7 @@ public class RoleList {
     public RoleList(){
         roles = new ArrayList<>();
     }
+    
     public RoleList(Role r){
         roles = new ArrayList<>();
         roles.add(r);
@@ -35,6 +36,7 @@ public class RoleList {
         }
     }
     
+    //Returns list where each index contains a string that is equal to a permission
     public List<String> getPermissions(){
         String permissions = "";
         for(Role r : roles){
