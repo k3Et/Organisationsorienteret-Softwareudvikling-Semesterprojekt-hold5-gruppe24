@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data;
+package Logic;
 
 /**
  *
  * @author Patrick
  */
-public class Leader extends Role{
-    private String[] permissions = {"create relation"};
-    
-    
-    public Leader() {
-        super("Leader");
-        super.addPermissions(permissions);
+public class Controller {
+    public static void main(String[] args) {
+        User u = new User(new Employee());
+        
+        u.createNote();
     }
 }

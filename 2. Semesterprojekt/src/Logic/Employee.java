@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data;
+package Logic;
 
 /**
  *
  * @author Patrick
  */
-public class Patient extends Role {
-    String[] permissions = {};
+public class Employee extends Role {
+    private static String[] permissions = {"create note","view note","view patient"};
     
-    public Patient(String roleName) {
-        super(roleName);
+    
+    public Employee() {
+        super("Employee");
         super.addPermissions(permissions);
     }
+    
+    
     
 }

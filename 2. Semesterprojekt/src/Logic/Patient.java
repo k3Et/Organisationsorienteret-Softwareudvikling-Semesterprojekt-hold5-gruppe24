@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data;
+package Logic;
 
 /**
  *
  * @author Patrick
  */
-public class Admin extends Role {
+public class Patient extends Role {
     String[] permissions = {};
     
-    public Admin() {
-        super("Admin");
+    public Patient(String roleName) {
+        super(roleName);
         super.addPermissions(permissions);
     }
     
