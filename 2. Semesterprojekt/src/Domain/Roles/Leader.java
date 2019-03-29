@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic;
+package Domain.Roles;
+
+import Domain.Role;
 
 /**
  *
  * @author Patrick
  */
-public class Admin extends Role {
-    String[] permissions = {};
+public class Leader extends Role{
+    private String[] permissions = {"create relation"};
     
-    public Admin() {
-        super("Admin");
+    
+    public Leader() {
+        super("Leader");
         super.addPermissions(permissions);
     }
-    
 }
