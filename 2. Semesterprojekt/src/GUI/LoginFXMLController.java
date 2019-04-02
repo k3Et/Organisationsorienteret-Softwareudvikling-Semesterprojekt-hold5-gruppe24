@@ -76,7 +76,7 @@ public class LoginFXMLController implements Initializable {
         if (verifyLogin(userNameField.getText(), passWordField.getText())) {
             resultLabel.setText("Logger ind...");
         } else {
-            resultLabel.setText("Brugernavn elle\nPassword forkert..");
+            resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
     }
 
