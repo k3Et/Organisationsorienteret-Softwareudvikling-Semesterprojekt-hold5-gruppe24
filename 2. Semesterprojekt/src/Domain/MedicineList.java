@@ -27,12 +27,11 @@ public class MedicineList {
         medicineFile = new File("medicineList.txt");
     }
     
-    
-    private void addMedicine(Medicine medicine){
+    public void addMedicine(Medicine medicine){
         medicineList.add(medicine);
     }
     
-    private void removeMedicine(Medicine medicine){
+    public void removeMedicine(Medicine medicine){
         medicineList.remove(medicine);
     }
     
@@ -57,5 +56,8 @@ public class MedicineList {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+        medicineList.removeAll(medicineList);
     }
+    
+    
 }

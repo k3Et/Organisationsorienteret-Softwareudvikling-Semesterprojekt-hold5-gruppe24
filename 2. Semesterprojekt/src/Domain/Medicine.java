@@ -17,5 +17,10 @@ public class Medicine {
     public double getDose() {
         return dose;
     }
+    
+    @Override
+    public String toString(){
+        return this.getName() + " " + this.getDose() + "\n";
+    }
 
 }
