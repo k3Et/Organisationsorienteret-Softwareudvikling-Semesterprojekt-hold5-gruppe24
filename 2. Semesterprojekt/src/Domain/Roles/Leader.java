@@ -12,7 +12,7 @@ import Domain.Role;
  * @author Patrick
  */
 public class Leader extends Role{
-    private String[] permissions = {"create relation"};
+    private String[] permissions = {"create user"};
     
     
     public Leader() {
