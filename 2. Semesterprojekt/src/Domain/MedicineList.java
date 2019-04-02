@@ -60,5 +60,16 @@ public class MedicineList {
         }
     }
     
+    public void RemoveFromMedicineList(Medicine medicine){
+        try (Scanner sc = new Scanner(medicineFile)){
+            while (sc.hasNext()) {
+                String temp = sc.next();
+                String[] tempArray = temp.split("[:]");
+                      
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
     
 }

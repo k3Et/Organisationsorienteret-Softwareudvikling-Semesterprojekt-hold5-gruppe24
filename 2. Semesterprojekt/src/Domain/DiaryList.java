@@ -12,11 +12,12 @@ public class DiaryList {
     private ArrayList<DiaryNote> diaryList;
     private File diaryFile;
     private DiaryNote diaryNote;
+    private String filename;
     
     
     public DiaryList(int size){
         diaryList = new ArrayList<>();
-        diaryFile = new File("diaryFile.txt");
+        diaryFile = new File(filename);
     }
     
     public void addDiaryNote(DiaryNote diaryNote){
