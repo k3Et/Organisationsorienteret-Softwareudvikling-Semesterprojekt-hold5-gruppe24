@@ -20,11 +20,8 @@ public class DiaryNote {
     private Date date;
     private Medicine medicine;
 
-    public DiaryNote(String note, String employee, String time, Date date) {
-        this.note = note;
-        this.employee = employee;
-        this.time = time;
-        this.date = date;
+    public DiaryNote(String note) {
+        this.note = note; 
     }
     
     public String getNote() {
@@ -51,8 +48,8 @@ public class DiaryNote {
         return medicine;
     }
 
-   
-    
-    
+    public void setNote(String note) {
+        this.note = note;
+    }    
     
 }

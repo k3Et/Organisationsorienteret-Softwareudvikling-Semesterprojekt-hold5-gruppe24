@@ -1,4 +1,1 @@
-Hovedpine:2.1
-Sovemedicin:20.0
-Numsemedicin:1.0
-Smertestillende:20.3
+Hovedpine:20.0

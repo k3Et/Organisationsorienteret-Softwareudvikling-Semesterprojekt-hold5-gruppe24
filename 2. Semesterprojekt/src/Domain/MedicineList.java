@@ -18,24 +18,16 @@ import java.util.Scanner;
  */
 public class MedicineList {
  
-    private ArrayList<Medicine> medicineList;
     private File medicineFile;
     private Medicine medicine;
+    private ArrayList<Medicine> medicineList;
     
     public MedicineList(){
-        medicineList = new ArrayList<>();
         medicineFile = new File("medicineList.txt");
     }
     
-    public void addMedicine(Medicine medicine){
-        medicineList.add(medicine);
-    }
-    
-    public void removeMedicine(Medicine medicine){
-        medicineList.remove(medicine);
-    }
-    
     public ArrayList getMedicineList(){
+        medicineList = new ArrayList<>();
         try(Scanner sc = new Scanner(medicineFile)){
             while (sc.hasNext()) {
                 String temp = sc.next();
@@ -48,15 +40,24 @@ public class MedicineList {
         return medicineList;
     }
     
-    public void saveMedicineList(){
-        try(FileWriter fw = new FileWriter(medicineFile)) {
-            for (Medicine medicine : medicineList){
-                fw.write(medicine.getName()+":"+medicine.getDose()+"\n");
+    public void addToMedicineList(Medicine medicine){
+        try (Scanner sc = new Scanner(medicineFile)){
+            while (sc.hasNext()) {
+                String temp = sc.next();
+                String[] tempArray = temp.split("[:]");
+                if (tempArray[0].equals(medicine.getName())) {
+                    System.out.println("Already exists");
+                    return;
+                }
             }
+        try(FileWriter fw = new FileWriter(medicineFile,true)) {
+                fw.write(medicine.getName()+":"+medicine.getDose()+"\n");
         } catch (IOException ex) {
             System.out.println(ex);
         }
-        medicineList.removeAll(medicineList);
+    } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        }
     }
     
     
