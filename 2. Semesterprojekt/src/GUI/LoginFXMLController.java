@@ -1,6 +1,5 @@
 package GUI;
 
-import Data.Database;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -32,15 +31,12 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private Label userNameLabel;
     @FXML
-    private Label resultLabel;
-    @FXML
     private Button loginButton;
     @FXML
     private ImageView NoTiBoImage;
 
     Random r = new Random();
     Image[] loginImages;
-    Database ds = new Database();
 
     /**
      * Initializes the controller class.
@@ -62,21 +58,11 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (ds.verifyLogin(userNameField.getText(), passWordField.getText())) {
-            System.out.println("DET HELE VIRKER GODT ARBEJDE");
-        } else {
-            resultLabel.setText("Loginfejl. Forkert Brugernavn eller Password.");
-        }
     }
 
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (ds.verifyLogin(userNameField.getText(), passWordField.getText())) {
-            System.out.println("Login Virker");
-        } else {
-            resultLabel.setText("Loginfejl. Forkert Brugernavn eller Password.");
-        }
     }
 
 }
