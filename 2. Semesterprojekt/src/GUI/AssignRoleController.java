@@ -68,7 +68,7 @@ public class AssignRoleController implements Initializable {
         roleList.addAll(c.getStockRoleList());
         //showUsers();
 
-    
+    }
 
     public void showUsers() {
         //  System.out.println(lou.users);
@@ -126,7 +126,7 @@ public class AssignRoleController implements Initializable {
     }
 
 
-}
+
 
     @FXML
     private void sletRolleBtnHandler(ActionEvent event) {
