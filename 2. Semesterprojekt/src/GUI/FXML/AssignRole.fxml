@@ -38,6 +38,5 @@
          </font>
       </Label>
       <Button layoutX="480.0" layoutY="433.0" mnemonicParsing="false" onAction="#sletRolleBtnHandler" text="Slet rolle" />
-      <Button fx:id="newUserBtn" layoutX="28.0" layoutY="498.0" mnemonicParsing="false" onAction="#newUserBtnHandler" prefHeight="26.0" prefWidth="134.0" text="Opret ny bruger" />
    </children>
 </AnchorPane>
