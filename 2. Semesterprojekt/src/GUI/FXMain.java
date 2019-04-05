@@ -17,7 +17,6 @@ import javafx.stage.Stage;
  */
 public class FXMain extends Application {
 
-    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/AssignRole.fxml"));
@@ -26,7 +25,7 @@ public class FXMain extends Application {
 
         stage.setScene(scene);
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-       // stage.setMaximized(true);
+        // stage.setMaximized(true);
         stage.show();
     }
 
@@ -34,12 +33,9 @@ public class FXMain extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AssignRoleController ac = new AssignRoleController();
 
-      
-      
         launch(args);
-       
+
     }
 
 }
