@@ -48,7 +48,6 @@ public class AssignRoleController implements Initializable {
 
     private Scanner s;
     private String stringHolder;
-    private String[] infoStringArray;
 
     private User selectedUser;
     private Role selectedRole;
@@ -78,13 +77,12 @@ public class AssignRoleController implements Initializable {
     public void showUsers() {
         //  System.out.println(lou.users);
         //userList.addAll(lou.users);
-
     }
 
     @FXML
     private void acceptBtnHandler(ActionEvent event) {
         selectedUser = chooseUserList.getSelectionModel().getSelectedItem(); //finds the selected item 
-        System.out.println(selectedUser + " " + selectedUser.getRole());
+        System.out.println(selectedUser + " " + selectedUser.getRoles());
 
         selectedRole = chooseRoleList.getSelectionModel().getSelectedItem();
         System.out.println(selectedRole);
@@ -102,8 +100,8 @@ public class AssignRoleController implements Initializable {
         s = new Scanner(selectedUser.toStringAll());
 
         stringHolder = s.nextLine();
-
-        infoStringArray = stringHolder.split(";");
+        
+        String[] infoStringArray = stringHolder.split(";");
 
         for (int i = 0; i < infoStringArray.length; i++) {
             userInfoList.add(infoStringArray[i]);
@@ -112,14 +110,14 @@ public class AssignRoleController implements Initializable {
     }
 
     public void addRoleToUser(User selectedUser, Role selectedRole) {
-        if (!selectedUser.roles.getRoleList().contains(selectedRole)) {
-            selectedUser.roles.addRole(selectedRole);
+        if (!selectedUser.getRoles().contains(selectedRole)) {
+            selectedUser.getRoleList().addRole(selectedRole);
         }
     }
 
     public void removeRoleFromUser(User selectedUser, Role selectedRole) {
-        if (selectedUser.roles.getRoleList().contains(selectedRole)) {
-            selectedUser.roles.removeRole(selectedRole);
+        if (selectedUser.getRoles().contains(selectedRole)) {
+            selectedUser.getRoleList().removeRole(selectedRole);
         }
     }
 
@@ -132,7 +130,8 @@ public class AssignRoleController implements Initializable {
 
     @FXML
     private void sletRolleBtnHandler(ActionEvent event) {
-
+        selectedUser = chooseUserList.getSelectionModel().getSelectedItem();
+        selectedRole = chooseRoleList.getSelectionModel().getSelectedItem();
         removeRoleFromUser(selectedUser, selectedRole);
         loadUserInfo(selectedUser);
     }

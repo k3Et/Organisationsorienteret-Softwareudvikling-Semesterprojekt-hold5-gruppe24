@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import java.util.List;
+
 /**
  *
  * @author Patrick
@@ -18,7 +20,7 @@ public class User {
     private String email;
     private String address;
     
-    public RoleList roles;
+    private RoleList roles;
 
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
         this.name = name;
@@ -43,7 +45,11 @@ public class User {
         }
     }
     
-    public RoleList getRole(){
+    public List getRoles(){
+        return roles.getRoleList();
+    }
+    
+    public RoleList getRoleList(){
         return roles;
     }
     

@@ -32,16 +32,15 @@ public class RoleList {
     }
 
     public void removeRole(Role r) {
-        for(int i = 0; i < roles.size(); i++){
-            if(roles.get(i).equals(r)){
+        for (int i = 0; i < roles.size(); i++) {
+            if (roles.get(i).equals(r)) {
                 roles.remove(i);
             }
         }
-
-//        roles.remove(r);
     }
 
-    //Returns list where each index contains a string that is equal to a permission
+
+//Returns list where each index contains a string that is equal to a permission
     public List getPermissions() {
         String permissions = "";
         for (Role r : roles) {
