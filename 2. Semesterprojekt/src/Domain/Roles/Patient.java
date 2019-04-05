@@ -19,4 +19,8 @@ public class Patient extends Role {
         super.addPermissions(permissions);
     }
     
+    public String toString(){
+        return "Patient";
+    }
+    
 }

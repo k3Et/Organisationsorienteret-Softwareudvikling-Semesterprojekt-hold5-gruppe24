@@ -19,4 +19,8 @@ public class Leader extends Role{
         super("Leader");
         super.addPermissions(permissions);
     }
+    
+    public String toString(){
+        return "Leader";
+    }
 }

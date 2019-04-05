@@ -18,5 +18,7 @@ public class Admin extends Role {
         super("Admin");
         super.addPermissions(permissions);
     }
-    
+    public String toString(){
+        return "Admin";
+    }
 }
