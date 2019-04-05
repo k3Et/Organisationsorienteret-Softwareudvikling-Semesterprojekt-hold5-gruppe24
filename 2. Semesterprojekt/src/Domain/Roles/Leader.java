@@ -6,6 +6,7 @@ import Domain.Role;
  *
  * @author Patrick
  */
+
 public class Leader extends Role {
 
     private String[] permissions = {"create user"};
@@ -14,4 +15,10 @@ public class Leader extends Role {
         super("Leader");
         super.addPermissions(permissions);
     }
+
+    
+    public String toString(){
+        return "Leader";
+    }
 }
+

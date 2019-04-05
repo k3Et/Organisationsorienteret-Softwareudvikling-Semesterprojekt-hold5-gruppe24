@@ -9,10 +9,19 @@ import Domain.Role;
 public class Patient extends Role {
 
     String[] permissions = {};
-
+    
     public Patient() {
         super("Patient");
         super.addPermissions(permissions);
     }
 
+
+
+
+    
+    public String toString(){
+        return "Patient";
+    }
+    
 }
+
