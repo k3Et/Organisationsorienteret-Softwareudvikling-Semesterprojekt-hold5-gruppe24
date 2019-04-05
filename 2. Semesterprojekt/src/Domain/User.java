@@ -29,7 +29,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        roles = new RoleList(r);
+        roles = new RoleList();
     }
 
 //    public User(Role r){
@@ -50,6 +50,7 @@ public class User {
             System.out.println("Do not have permission!");
         }
     }
+
 
     public String createUser(User u) {
         if (roles.getPermissions().contains("create user")) {
@@ -76,4 +77,20 @@ public class User {
         }
         return "Not permitted";
     }
+}
+
+    
+    public RoleList getRole(){
+        return roles;
+    }
+    
+    @Override
+   public String toString(){
+       return name;
+   }
+   
+     
+   public String toStringAll(){
+       return "Navn: "+ name+";"+"CPR: "+CPR+";"+"Mobil: "+phoneNumber+";"+"Email: "+email+";"+"Adresse: "+address+";"+"Rolle: "+roles+" ";
+   }
 }

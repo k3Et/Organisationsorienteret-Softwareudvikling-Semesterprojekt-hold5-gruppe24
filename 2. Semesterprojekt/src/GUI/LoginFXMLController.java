@@ -1,11 +1,17 @@
 package GUI;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,8 +43,10 @@ public class LoginFXMLController implements Initializable {
     private Button loginButton;
     @FXML
     private ImageView NoTiBoImage;
+
     @FXML
     private Label resultLabel;
+
 
     Random r = new Random();
     Image[] loginImages;
@@ -63,16 +71,19 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
+
         if (verifyLogin(userNameField.getText(), passWordField.getText())) {
             resultLabel.setText("Logger ind...");
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
+
     }
 
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         //Create verification with SQL database here:
+
         if (verifyLogin(userNameField.getText(), passWordField.getText())) {
             resultLabel.setText("Logger ind...");
         } else {
@@ -102,3 +113,8 @@ public class LoginFXMLController implements Initializable {
 
     }
 }
+
+    }
+
+}
+

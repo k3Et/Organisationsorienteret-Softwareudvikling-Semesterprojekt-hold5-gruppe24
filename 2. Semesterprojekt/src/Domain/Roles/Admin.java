@@ -15,4 +15,11 @@ public class Admin extends Role {
         super.addPermissions(permissions);
     }
 
+
 }
+
+    public String toString(){
+        return "Admin";
+    }
+}
+

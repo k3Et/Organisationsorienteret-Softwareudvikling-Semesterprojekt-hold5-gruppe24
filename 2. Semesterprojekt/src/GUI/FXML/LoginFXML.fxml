@@ -6,12 +6,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <?import javafx.scene.layout.Pane?>
+
+
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginFXMLController">
     <children>
         <ImageView fx:id="loginImageView" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
+
       <Pane layoutX="1640.0" layoutY="50.0" prefHeight="166.0" prefWidth="225.0" style="-fx-background-color: lightblue;">
          <children>
               <Label fx:id="userNameLabel" layoutX="7.0" layoutY="14.0" text="Brugernavn">
@@ -33,3 +37,21 @@
         <ImageView fx:id="NoTiBoImage" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>
+
+        <PasswordField fx:id="passWordField" layoutX="1670.0" layoutY="170.0" onAction="#handlePassWordFIeldAction" prefHeight="26.0" prefWidth="184.0" />
+        <Label fx:id="passWordLabel" layoutX="1670.0" layoutY="153.0" text="Password">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="userNameField" layoutX="1670.0" layoutY="117.0" prefHeight="26.0" prefWidth="184.0" />
+        <Label fx:id="userNameLabel" layoutX="1670.0" layoutY="100.0" text="Brugernavn">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Button fx:id="loginButton" layoutX="1670.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Login" />
+        <ImageView fx:id="NoTiBoImage" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>
+
