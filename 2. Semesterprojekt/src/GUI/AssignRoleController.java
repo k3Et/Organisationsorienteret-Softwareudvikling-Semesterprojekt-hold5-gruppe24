@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import Domain.Controller;
@@ -24,7 +19,7 @@ import javafx.scene.control.ListView;
 /**
  * FXML Controller class
  *
- * @author ramiy
+ * @author Rami
  */
 public class AssignRoleController implements Initializable {
 
@@ -57,6 +52,7 @@ public class AssignRoleController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         userList = FXCollections.observableArrayList();
         chooseUserList.setItems(userList);
 
@@ -72,11 +68,12 @@ public class AssignRoleController implements Initializable {
         roleList.addAll(c.getStockRoleList());
         //showUsers();
 
-    }
+    
 
     public void showUsers() {
         //  System.out.println(lou.users);
         //userList.addAll(lou.users);
+
     }
 
     @FXML
@@ -128,6 +125,9 @@ public class AssignRoleController implements Initializable {
         chooseUserList.getSelectionModel().clearSelection();
     }
 
+
+}
+
     @FXML
     private void sletRolleBtnHandler(ActionEvent event) {
         selectedUser = chooseUserList.getSelectionModel().getSelectedItem();
@@ -137,3 +137,4 @@ public class AssignRoleController implements Initializable {
     }
 
 }
+

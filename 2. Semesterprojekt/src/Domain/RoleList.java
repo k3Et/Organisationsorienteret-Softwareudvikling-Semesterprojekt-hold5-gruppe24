@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import java.util.ArrayList;
@@ -14,7 +9,9 @@ import java.util.List;
  */
 public class RoleList {
 
+
     // er rolle listen pr person! ikke systemet
+
     private List<Role> roles;
 
     public RoleList() {
@@ -23,7 +20,6 @@ public class RoleList {
 
     public RoleList(Role r) {
         roles = new ArrayList<>();
-
         roles.add(r);
     }
 
@@ -31,16 +27,16 @@ public class RoleList {
         roles.add(r);
     }
 
+
     public void removeRole(Role r) {
-        for (int i = 0; i < roles.size(); i++) {
-            if (roles.get(i).equals(r)) {
+      
                 roles.remove(i);
-            }
-        }
+            
+        
     }
 
-
 //Returns list where each index contains a string that is equal to a permission
+
     public List getPermissions() {
         String permissions = "";
         for (Role r : roles) {
@@ -54,6 +50,7 @@ public class RoleList {
         return list;
     }
 
+
     public List getRoleList() {
         return roles;
     }
@@ -62,3 +59,4 @@ public class RoleList {
         return String.valueOf(roles);
     }
 }
+
