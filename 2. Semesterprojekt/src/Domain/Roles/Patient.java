@@ -12,7 +12,7 @@ import Domain.Role;
  * @author Patrick
  */
 public class Patient extends Role {
-    String[] permissions = {};
+    private String[] permissions = {};
     
     public Patient() {
         super("Patient");
