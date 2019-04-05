@@ -31,12 +31,8 @@ public class RoleList {
         roles.add(r);
     }
 
-    public void removeRole(Role r) {
-        for (int i = 0; i < roles.size(); i++) {
-            if (roles.get(i).equals(r)) {
-                roles.remove(i);
-            }
-        }
+    public void removeRole(Role r) {        
+        roles.remove(r);
     }
 
 
