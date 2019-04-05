@@ -8,21 +8,11 @@ import Domain.Role;
  */
 public class Employee extends Role {
 
-    private static String[] permissions = {"create note","view note","view patient"};
-    
-    
+    private static String[] permissions = {"create note", "view note", "view patient"};
+
     public Employee() {
         super("Employee");
         super.addPermissions(permissions);
     }
 
-
-
-
-    
-    public String toString(){
-        return "Employee";
-    }
-    
 }
-

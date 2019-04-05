@@ -1,14 +1,9 @@
-
 package Domain;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
-package Domain;
-
-import java.util.List;
 
 /**
  *
@@ -24,9 +19,7 @@ public class User {
     private String email;
     private String address;
 
-
     public RoleList roles;
-
 
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
         this.name = name;
@@ -36,7 +29,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-
         roles = new RoleList(r);
     }
 
@@ -53,14 +45,11 @@ public class User {
 
     public void createNote() {
         if (roles.getPermissions().contains("create note")) {
-
-        roles = new RoleList();
+            System.out.println("created note!");
+        } else {
+            System.out.println("Do not have permission!");
+        }
     }
-    
-
-    
-   
-
 
     public String createUser(User u) {
         if (roles.getPermissions().contains("create user")) {
@@ -87,27 +76,5 @@ public class User {
         }
         return "Not permitted";
     }
-    
-    
-}
 
-    
-    public List getRoles(){
-        return roles.getRoleList();
-    }
-    
-    public RoleList getRoleList(){
-        return roles;
-    }
-    
-    @Override
-   public String toString(){
-       return name;
-   }
-   
-     
-   public String toStringAll(){
-       return "Navn: "+ name+";"+"CPR: "+CPR+";"+"Mobil: "+phoneNumber+";"+"Email: "+email+";"+"Adresse: "+address+";"+"Rolle: "+roles+" ";
-   }
 }
-

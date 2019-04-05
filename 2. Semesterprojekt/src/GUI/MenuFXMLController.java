@@ -46,4 +46,8 @@ public class MenuFXMLController implements Initializable {
     private void handlePatientTextClickAction(MouseEvent event) {
     }
 
+    @FXML
+    private void Dagbog(MouseEvent event) {
+    }
+
 }

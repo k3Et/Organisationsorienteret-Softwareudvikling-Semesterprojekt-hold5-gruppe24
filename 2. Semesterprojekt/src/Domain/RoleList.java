@@ -9,9 +9,6 @@ import java.util.List;
  */
 public class RoleList {
 
-
-    // er rolle listen pr person! ikke systemet
-
     private List<Role> roles;
 
     public RoleList() {
@@ -27,16 +24,15 @@ public class RoleList {
         roles.add(r);
     }
 
-
-    public void removeRole(Role r) {
-      
+    public void removeRole(String name) {
+        for (int i = 0; i < roles.size(); i++) {
+            if (roles.get(i).getName().equals(name)) {
                 roles.remove(i);
-            
-        
+            }
+        }
     }
 
-//Returns list where each index contains a string that is equal to a permission
-
+    //Returns list where each index contains a string that is equal to a permission
     public List getPermissions() {
         String permissions = "";
         for (Role r : roles) {
@@ -49,14 +45,4 @@ public class RoleList {
         }
         return list;
     }
-
-
-    public List getRoleList() {
-        return roles;
-    }
-
-    public String toString() {
-        return String.valueOf(roles);
-    }
 }
-
