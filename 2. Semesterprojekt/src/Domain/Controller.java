@@ -8,15 +8,13 @@ import java.util.List;
  *
  * @author Patrick
  */
-
-
 public class Controller {
 
     ListOfUsers users = new ListOfUsers();
     List<Role> listOfRoles = new ArrayList<>();
     ListOfPatients listOfPatients = new ListOfPatients();
     ListOfEmployees listOfEmployees = new ListOfEmployees();
-    
+
     Employee employee = new Employee();
     Admin admin = new Admin();
     Leader leader = new Leader();
@@ -63,4 +61,3 @@ public class Controller {
         return listOfEmployees;
     }
 }
-

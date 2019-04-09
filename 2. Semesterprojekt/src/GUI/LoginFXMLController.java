@@ -43,7 +43,7 @@ public class LoginFXMLController implements Initializable {
     private ImageView NoTiBoImage;
     @FXML
     private Label resultLabel;
-@FXML
+    @FXML
     private AnchorPane rootPane;
     Random r = new Random();
     Image[] loginImages;

@@ -6,7 +6,6 @@ package Domain;
  */
 public abstract class Role {
 
-
     private String roleName;
 
     private StringBuilder permissions;

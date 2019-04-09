@@ -16,29 +16,30 @@ import java.util.List;
  * @author Patrick
  */
 public class ListOfEmployees {
-        private List<User> list;
-    
-    public ListOfEmployees(){
+
+    private List<User> list;
+
+    public ListOfEmployees() {
         list = new ArrayList<>();
     }
-    
-    public void addEmployee(User u){
-        for(Object r : u.getRoles()){
-            if((Role)r instanceof Employee){
+
+    public void addEmployee(User u) {
+        for (Object r : u.getRoles()) {
+            if ((Role) r instanceof Employee) {
                 list.add(u);
                 return;
             }
         }
         Collections.sort(list);
     }
-    
-    public void removeEmployee(User u){
-        if(list.contains(u)){
+
+    public void removeEmployee(User u) {
+        if (list.contains(u)) {
             list.remove(u);
         }
     }
-    
-    public List<User> getEmployeesList(){
+
+    public List<User> getEmployeesList() {
         return list;
     }
 }

@@ -36,7 +36,7 @@ public class NewUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void saveBtnHandler(ActionEvent event) {
@@ -45,5 +45,5 @@ public class NewUserController implements Initializable {
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
     }
-    
+
 }

@@ -11,8 +11,8 @@ import java.util.List;
  *
  * @author Patrick
  */
-
 public class User implements Comparable<User> {
+
     private String name;
     private String password;
     private String username;
@@ -34,11 +34,11 @@ public class User implements Comparable<User> {
 
         roles = new RoleList(r);
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
+
 //    public User(Role r){
 //        roles = new RoleList(r);
 //    }
@@ -92,14 +92,13 @@ public class User implements Comparable<User> {
     }
 
     @Override
-   public String toString(){
-       return name;
-   }
-   
-     
-   public String toStringAll(){
-       return "Navn: "+ name+";"+"CPR: "+CPR+";"+"Mobil: "+phoneNumber+";"+"Email: "+email+";"+"Adresse: "+address+";"+"Rolle: "+roles+" ";
-   }
+    public String toString() {
+        return name;
+    }
+
+    public String toStringAll() {
+        return "Navn: " + name + ";" + "CPR: " + CPR + ";" + "Mobil: " + phoneNumber + ";" + "Email: " + email + ";" + "Adresse: " + address + ";" + "Rolle: " + roles + " ";
+    }
 
     @Override
     public int compareTo(User o) {

@@ -34,7 +34,6 @@ public class FXMain extends Application {
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/AssignRole.fxml");
-      
 
         // stage.setMaximized(true);
     }

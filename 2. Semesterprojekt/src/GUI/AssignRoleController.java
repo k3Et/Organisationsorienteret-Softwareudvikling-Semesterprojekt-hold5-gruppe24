@@ -120,9 +120,9 @@ public class AssignRoleController implements Initializable {
     public void addRoleToUser(User selectedUser, Role selectedRole) {
         if (!selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().addRole(selectedRole);
-            if(selectedRole instanceof Patient){
+            if (selectedRole instanceof Patient) {
                 c.getListOfPatients().addPatient(selectedUser);
-            } else if(selectedRole instanceof Employee){
+            } else if (selectedRole instanceof Employee) {
                 c.getListOfEmployees().addEmployee(selectedUser);
             }
         }
@@ -131,9 +131,9 @@ public class AssignRoleController implements Initializable {
     public void removeRoleFromUser(User selectedUser, Role selectedRole) {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
-            if(selectedRole instanceof Patient){
+            if (selectedRole instanceof Patient) {
                 c.getListOfPatients().removePatient(selectedUser);
-            } else if(selectedRole instanceof Employee){
+            } else if (selectedRole instanceof Employee) {
                 c.getListOfEmployees().removeEmployee(selectedUser);
             }
         }
@@ -156,7 +156,15 @@ public class AssignRoleController implements Initializable {
 
     @FXML
     private void addNewUserBtn(ActionEvent event) {
-        sh.setNewScene("/GUI/FXML/NewUser.fxml");
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/FXML/NewUser.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Tilføj bruger");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SceneHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

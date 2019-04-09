@@ -1,11 +1,9 @@
-
 package Domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
 
 /**
  *
@@ -14,7 +12,6 @@ import javafx.collections.ObservableList;
 public class ListOfUsers {
 
     private List<User> users;
-
 
     public ListOfUsers() {
         users = new ArrayList<>();
@@ -45,8 +42,3 @@ public class ListOfUsers {
         return null;
     }
 }
-
-    
-    
-
-

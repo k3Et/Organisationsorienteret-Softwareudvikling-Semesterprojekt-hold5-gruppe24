@@ -22,32 +22,29 @@ public class SceneHandler {
     public static Stage currentStage;
     public static Scene currentScene;
     private static String currentSceneString;
-    
+
     public SceneHandler() {
 
     }
 
-    public void setNewScene(String fxml)  {
+    public void setNewScene(String fxml) {
 
         try {
             System.out.println(fxml);
-            
+
             Parent parent = FXMLLoader.load(getClass().getResource(fxml));
 
             currentScene = new Scene(parent);
             currentStage.setScene(currentScene);
             currentStage.show();
-           
+
             //currentSceneString = fxml;
         } catch (IOException ex) {
             Logger.getLogger(SceneHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
 
-    
-    
     public void setCurrentStage(Stage stage) {
         this.currentStage = stage;
     }
