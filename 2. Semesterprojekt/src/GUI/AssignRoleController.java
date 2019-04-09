@@ -1,9 +1,11 @@
 package GUI;
 
 import Domain.Controller;
+import Domain.ListOfPatients;
 import Domain.ListOfUsers;
 import Domain.Role;
 import Domain.Roles.Employee;
+import Domain.Roles.Patient;
 import Domain.User;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -109,12 +111,22 @@ public class AssignRoleController implements Initializable {
     public void addRoleToUser(User selectedUser, Role selectedRole) {
         if (!selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().addRole(selectedRole);
+            if(selectedRole instanceof Patient){
+                c.getListOfPatients().addPatient(selectedUser);
+            } else if(selectedRole instanceof Employee){
+                c.getListOfEmployees().addEmployee(selectedUser);
+            }
         }
     }
 
     public void removeRoleFromUser(User selectedUser, Role selectedRole) {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
+            if(selectedRole instanceof Patient){
+                c.getListOfPatients().removePatient(selectedUser);
+            } else if(selectedRole instanceof Employee){
+                c.getListOfEmployees().removeEmployee(selectedUser);
+            }
         }
     }
 

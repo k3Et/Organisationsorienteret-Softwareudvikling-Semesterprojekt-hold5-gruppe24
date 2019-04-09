@@ -28,7 +28,6 @@ public class RoleList {
     public void removeRole(Role r) {
 
         roles.remove(r);
-
     }
 
 //Returns list where each index contains a string that is equal to a permission

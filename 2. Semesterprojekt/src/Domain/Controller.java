@@ -1,11 +1,6 @@
 package Domain;
 
 import Domain.Roles.*;
-
-import Domain.Roles.Admin;
-import Domain.Roles.Patient;
-import Domain.Roles.Employee;
-import Domain.Roles.Leader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +14,9 @@ public class Controller {
 
     ListOfUsers users = new ListOfUsers();
     List<Role> listOfRoles = new ArrayList<>();
+    ListOfPatients listOfPatients = new ListOfPatients();
+    ListOfEmployees listOfEmployees = new ListOfEmployees();
+    
     Employee employee = new Employee();
     Admin admin = new Admin();
     Leader leader = new Leader();
@@ -57,5 +55,12 @@ public class Controller {
         return listOfRoles;
     }
 
+    public ListOfPatients getListOfPatients() {
+        return listOfPatients;
+    }
+
+    public ListOfEmployees getListOfEmployees() {
+        return listOfEmployees;
+    }
 }
 
