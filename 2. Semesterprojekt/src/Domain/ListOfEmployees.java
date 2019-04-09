@@ -8,6 +8,7 @@ package Domain;
 import Domain.Roles.Employee;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class ListOfEmployees {
         list = new ArrayList<>();
     }
     
-    public void addPatient(User u){
+    public void addEmployee(User u){
         for(Object r : u.getRoles()){
             if((Role)r instanceof Employee){
                 list.add(u);
@@ -31,9 +32,13 @@ public class ListOfEmployees {
         Collections.sort(list);
     }
     
-    public void removePatient(User u){
+    public void removeEmployee(User u){
         if(list.contains(u)){
             list.remove(u);
         }
+    }
+    
+    public List<User> getEmployeesList(){
+        return list;
     }
 }

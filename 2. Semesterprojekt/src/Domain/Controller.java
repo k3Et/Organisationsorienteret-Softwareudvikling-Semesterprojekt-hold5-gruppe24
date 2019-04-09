@@ -20,6 +20,8 @@ public class Controller {
 
     ListOfUsers users = new ListOfUsers();
     List<Role> listOfRoles = new ArrayList<>();
+    ListOfPatients listOfPatients = new ListOfPatients();
+    ListOfEmployees listOfEmployees = new ListOfEmployees();
 
     Employee employee = new Employee();
     Admin admin = new Admin();
@@ -55,4 +57,11 @@ public class Controller {
         return listOfRoles;
     }
 
+    public ListOfPatients getListOfPatients() {
+        return listOfPatients;
+    }
+
+    public ListOfEmployees getListOfEmployees() {
+        return listOfEmployees;
+    }
 }

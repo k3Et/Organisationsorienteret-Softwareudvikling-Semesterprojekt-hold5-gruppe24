@@ -15,25 +15,30 @@ import java.util.List;
  * @author Patrick
  */
 public class ListOfPatients {
+
     private List<User> list;
-    
-    public ListOfPatients(){
+
+    public ListOfPatients() {
         list = new ArrayList<>();
     }
-    
-    public void addPatient(User u){
-        for(Object r : u.getRoles()){
-            if((Role)r instanceof Patient){
+
+    public void addPatient(User u) {
+        for (Object r : u.getRoles()) {
+            if ((Role) r instanceof Patient) {
                 list.add(u);
                 return;
             }
         }
         Collections.sort(list);
     }
-    
-    public void removePatient(User u){
-        if(list.contains(u)){
+
+    public void removePatient(User u) {
+        if (list.contains(u)) {
             list.remove(u);
         }
+    }
+
+    public List<User> getPatientList() {
+        return list;
     }
 }
