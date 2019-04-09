@@ -24,6 +24,7 @@ public class User implements Comparable<User> {
 
     public RoleList roles;
 
+    //Overvej at fjerne role i constructor, da brugere ikke bliver added til deres lister, hvis de allerede har en rolle.
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
         this.name = name;
         this.password = password;

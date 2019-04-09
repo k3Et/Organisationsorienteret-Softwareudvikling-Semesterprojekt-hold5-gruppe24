@@ -16,13 +16,12 @@ import java.util.List;
  */
 public class ListOfPatients {
 
-    private List<User> list;
+    private static List<User> list = new ArrayList<>();
 
     public ListOfPatients() {
-        list = new ArrayList<>();
     }
 
-    public void addPatient(User u) {
+    public static void addPatient(User u) {
         for (Role r : u.getRoles()) {
             if (r instanceof Patient) {
                 list.add(u);
@@ -32,13 +31,13 @@ public class ListOfPatients {
         Collections.sort(list);
     }
 
-    public void removePatient(User u) {
+    public static void removePatient(User u) {
         if (list.contains(u)) {
             list.remove(u);
         }
     }
 
-    public List<User> getPatientList() {
+    public static List<User> getPatientList() {
         return list;
     }
 }

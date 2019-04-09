@@ -17,13 +17,12 @@ import java.util.List;
  */
 public class ListOfEmployees {
 
-    private List<User> list;
+    private static List<User> list = new ArrayList<>();
 
     public ListOfEmployees() {
-        list = new ArrayList<>();
     }
 
-    public void addEmployee(User u) {
+    public static void addEmployee(User u) {
         for (Role r : u.getRoles()) {
             if (r instanceof Employee) {
                 list.add(u);
@@ -33,13 +32,13 @@ public class ListOfEmployees {
         Collections.sort(list);
     }
 
-    public void removeEmployee(User u) {
+    public static void removeEmployee(User u) {
         if (list.contains(u)) {
             list.remove(u);
         }
     }
 
-    public List<User> getEmployeesList() {
+    public static List<User> getEmployeesList() {
         return list;
     }
 }

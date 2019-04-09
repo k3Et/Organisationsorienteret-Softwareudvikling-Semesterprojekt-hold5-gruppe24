@@ -167,4 +167,9 @@ public class AssignRoleController implements Initializable {
         }
     }
 
+    @FXML
+    private void relationSletMigBtn(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+    }
+
 }

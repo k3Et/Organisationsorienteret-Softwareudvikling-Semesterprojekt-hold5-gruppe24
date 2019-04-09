@@ -43,5 +43,6 @@
             <Font name="Karla" size="12.0" />
          </font>
       </Button>
+      <Button layoutX="116.0" layoutY="499.0" mnemonicParsing="false" onAction="#relationSletMigBtn" text="Relation" />
    </children>
 </AnchorPane>
