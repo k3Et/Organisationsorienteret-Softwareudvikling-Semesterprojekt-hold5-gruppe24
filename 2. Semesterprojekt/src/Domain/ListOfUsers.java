@@ -19,7 +19,6 @@ public class ListOfUsers {
     
     public ListOfUsers() {
         users = new ArrayList<>();
-        
     }
 
     public void addUser(User u) {
