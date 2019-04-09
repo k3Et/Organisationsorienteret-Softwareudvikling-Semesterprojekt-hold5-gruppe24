@@ -1,5 +1,6 @@
 package Domain;
 
+import Domain.Roles.Employee;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -84,7 +85,7 @@ public class User implements Comparable<User> {
         return "Not permitted";
     }
 
-    public List getRoles() {
+    public List<Role> getRoles() {
         return roles.getRoleList();
     }
 
@@ -107,7 +108,16 @@ public class User implements Comparable<User> {
     }
     
     //Returns all permissions that the user has. Each permission is saved as a string in an index of the list.
-    public List getPermissions(){
+    public List<String> getPermissions(){
        return roles.getPermissions();
+    }
+    
+    public List<User> getRelations(){
+        for(Role r : getRoles()){
+            if(r instanceof Employee){
+                return ((Employee) r).getRelations();
+            }
+        }
+        return null;
     }
 }

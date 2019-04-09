@@ -24,8 +24,8 @@ public class ListOfEmployees {
     }
 
     public void addEmployee(User u) {
-        for (Object r : u.getRoles()) {
-            if ((Role) r instanceof Employee) {
+        for (Role r : u.getRoles()) {
+            if (r instanceof Employee) {
                 list.add(u);
                 return;
             }

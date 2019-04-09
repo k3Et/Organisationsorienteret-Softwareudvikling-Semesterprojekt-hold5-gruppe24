@@ -23,8 +23,8 @@ public class ListOfPatients {
     }
 
     public void addPatient(User u) {
-        for (Object r : u.getRoles()) {
-            if ((Role) r instanceof Patient) {
+        for (Role r : u.getRoles()) {
+            if (r instanceof Patient) {
                 list.add(u);
                 return;
             }
