@@ -38,5 +38,10 @@
          </font>
       </Label>
       <Button layoutX="480.0" layoutY="433.0" mnemonicParsing="false" onAction="#sletRolleBtnHandler" text="Slet rolle" />
+      <Button layoutX="36.0" layoutY="499.0" mnemonicParsing="false" onAction="#addNewUserBtn" text="Ny bruger">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
