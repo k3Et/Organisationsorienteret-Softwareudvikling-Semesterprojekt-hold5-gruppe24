@@ -51,14 +51,15 @@ public class User implements Comparable<User> {
     }
 
     public void createNote() {
-        if (roles.getPermissions().contains("create note")) {
+        if (getPermissions().contains("create note")) {
 
             roles = new RoleList();
         }
     }
-
+    
+    //Creates user to the login-system with username and password.
     public String createUser(User u) {
-        if (roles.getPermissions().contains("create user")) {
+        if (getPermissions().contains("create user")) {
             File file = new File("src/Data/LoginData.txt");
             try (Scanner scan = new Scanner(file); FileWriter fw = new FileWriter(file, true);) {
                 String uName = u.getUsername();
@@ -103,5 +104,10 @@ public class User implements Comparable<User> {
     @Override
     public int compareTo(User o) {
         return getName().compareTo(o.getName());
+    }
+    
+    //Returns all permissions that the user has. Each permission is saved as a string in an index of the list.
+    public List getPermissions(){
+       return roles.getPermissions();
     }
 }
