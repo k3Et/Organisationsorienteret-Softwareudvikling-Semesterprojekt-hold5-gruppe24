@@ -15,13 +15,13 @@ public class FXMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/Menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/Diary.fxml"));
 
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-        stage.setMaximized(true);
+        stage.setMaximized(false);
         stage.show();
     }
 

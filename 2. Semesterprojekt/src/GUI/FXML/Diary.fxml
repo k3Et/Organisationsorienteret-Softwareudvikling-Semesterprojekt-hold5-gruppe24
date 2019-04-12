@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
     <children>
         <SplitPane dividerPositions="0.29797979797979796" layoutY="-2.0" prefHeight="1080.0" prefWidth="1920.0">
             <items>
@@ -41,11 +41,11 @@
                         </Text>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="968.0" prefWidth="1182.0">
                     <children>
                         <TextArea fx:id="WriteDiaryNote" layoutX="84.0" layoutY="791.0" prefHeight="200.0" prefWidth="1200.0" />
-                        <Button fx:id="SaveNoteBtn" layoutX="1133.0" layoutY="1004.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Gem" />
-                        <ListView fx:id="ListOfDiaryNote" layoutX="84.0" layoutY="108.0" prefHeight="668.0" prefWidth="1200.0" />
+                        <Button fx:id="SaveNoteBtn" layoutX="1133.0" layoutY="1004.0" mnemonicParsing="false" onAction="#SaveNoteBtnHandler" prefHeight="60.0" prefWidth="150.0" text="Gem" />
+                        <ListView fx:id="ListOfDiaryNote" editable="false" layoutX="84.0" layoutY="108.0" prefHeight="668.0" prefWidth="1200.0" />
                     </children>
                 </AnchorPane>
             </items>

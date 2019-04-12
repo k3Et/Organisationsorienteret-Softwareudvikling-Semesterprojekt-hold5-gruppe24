@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Yourk
  */
 public class DiaryNote {
-    
+
     private String note;
     private String employee;
     private String time;
@@ -21,9 +21,10 @@ public class DiaryNote {
     private Medicine medicine;
 
     public DiaryNote(String note) {
-        this.note = note; 
+        this.note = note;
+
     }
-    
+
     public String getNote() {
         return note;
     }
@@ -50,6 +51,6 @@ public class DiaryNote {
 
     public void setNote(String note) {
         this.note = note;
-    }    
-    
+    }
+
 }

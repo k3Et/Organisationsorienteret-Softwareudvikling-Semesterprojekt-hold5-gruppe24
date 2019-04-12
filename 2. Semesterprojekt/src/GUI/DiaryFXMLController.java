@@ -5,8 +5,12 @@
  */
 package GUI;
 
+import Domain.DiaryList;
+import Domain.DiaryNote;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +26,7 @@ import javafx.scene.text.Text;
  * @author Sebas
  */
 public class DiaryFXMLController implements Initializable {
+
     @FXML
     private ListView<?> menuListView;
     @FXML
@@ -39,15 +44,23 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private Button SaveNoteBtn;
     @FXML
-    private ListView<?> ListOfDiaryNote;
+    private ListView<TextArea> ListOfDiaryNote;
+
+    ObservableList<TextArea> obList;
+
+    String writtenNote = "";
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        obList = FXCollections.observableArrayList();
+        ListOfDiaryNote.setItems(obList);
+
+        ListOfDiaryNote.setEditable(false);
+        //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
+    }
 
     @FXML
     private void handleBackButtonAction(ActionEvent event) {
@@ -68,5 +81,23 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private void handleAnsatteTextClickAction(MouseEvent event) {
     }
-    
+
+    DiaryList dl = new DiaryList();
+
+    @FXML
+    private void SaveNoteBtnHandler(ActionEvent event) {
+
+        writtenNote = WriteDiaryNote.getText();
+        TextArea note = new TextArea(writtenNote);
+        note.setEditable(false);
+        note.setStyle("-fx-background-color: lightblue;");
+
+        new DiaryList().saveDiaryNote(new DiaryNote(writtenNote));
+        System.out.println(dl.convertDate());
+        dl.convertDate();
+        obList.add(note);
+        WriteDiaryNote.setText(null);
+
+    }
+
 }

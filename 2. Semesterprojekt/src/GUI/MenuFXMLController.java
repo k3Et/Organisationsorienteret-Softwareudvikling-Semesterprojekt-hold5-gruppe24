@@ -31,8 +31,7 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private ListView<?> ListOfDiaryNote;
 
-    
-    ObservableList <TextArea> OListDairyNote;
+    ObservableList<TextArea> OListDairyNote;
     @FXML
     private Text DagbogBtn;
     @FXML
@@ -41,7 +40,7 @@ public class MenuFXMLController implements Initializable {
     private TextArea WriteDiaryNote;
     @FXML
     private Button SaveNoteBtn;
-    
+
     /**
      * Initializes the controller class.
      */
