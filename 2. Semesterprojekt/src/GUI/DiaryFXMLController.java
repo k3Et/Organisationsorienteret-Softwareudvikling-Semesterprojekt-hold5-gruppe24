@@ -5,7 +5,9 @@
  */
 package GUI;
 
-import Domain.DiaryList;
+import Domain.Controller;
+import Domain.Diary;
+
 import Domain.DiaryNote;
 import Domain.ListOfPatients;
 import Domain.User;
@@ -50,12 +52,16 @@ public class DiaryFXMLController implements Initializable {
     private ListView<User> patientListView;
 
     ObservableList<User> obPatients;
-
+    Controller c = new Controller();
+    private User selectedUser;
+        private Diary d;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        c.setStockUsers();
+        d = new Diary();
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
 
@@ -65,12 +71,11 @@ public class DiaryFXMLController implements Initializable {
 //              obPatients.add(ListOfPatients.list.get(i));
 //       }
 //     
-//        obPatients.addAll(ListOfPatients.getPatientList());
-
         System.out.println("ob" + obPatients);
-        //   obPatients =  FXCollections.observableArrayList();
-        // patientListView.setItems(obPatients);
+        obPatients = FXCollections.observableArrayList();
+        patientListView.setItems(obPatients);
 
+        obPatients.addAll(ListOfPatients.getPatientList());
         ListOfDiaryNote.setEditable(false);
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
     }
@@ -87,20 +92,29 @@ public class DiaryFXMLController implements Initializable {
     private void handleDagbogTextClickAction(MouseEvent event) {
     }
 
-    DiaryList dl = new DiaryList();
+
+
+    @FXML
+    private void onPatientClickedHandler(MouseEvent event) {
+        selectedUser = patientListView.getSelectionModel().getSelectedItem(); //finds the selected item  
+        System.out.println(selectedUser);
+
+        //loadUserNotes()
+    }
 
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
-
+        System.out.println(selectedUser + "---------");
         writtenNote = WriteDiaryNote.getText();
         TextArea note = new TextArea(writtenNote);
         note.setEditable(false);
         note.setStyle("-fx-background-color: lightblue;");
+        // d.setPatientName(selectedUser);
 
-        new DiaryList().saveDiaryNote(new DiaryNote(writtenNote));
-        System.out.println(dl.convertDate());
-        dl.convertDate();
+        d.saveDiaryNote(new DiaryNote(writtenNote));
+        d.convertDate();
         obList.add(note);
+
         WriteDiaryNote.setText(null);
 
     }

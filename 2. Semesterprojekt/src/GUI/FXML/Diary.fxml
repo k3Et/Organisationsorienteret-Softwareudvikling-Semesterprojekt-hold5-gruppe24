@@ -18,7 +18,7 @@
             <Pane prefHeight="1082.0" prefWidth="820.0">
                <children>
                         <Button fx:id="backButton" layoutX="268.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="35.0" prefWidth="87.0" text="Tilbage" />
-                        <ListView fx:id="patientListView" layoutY="108.0" prefHeight="901.0" prefWidth="546.0" />
+                        <ListView fx:id="patientListView" layoutY="108.0" onMouseClicked="#onPatientClickedHandler" prefHeight="901.0" prefWidth="546.0" />
                         <ImageView fitHeight="70.0" fitWidth="147.0" layoutX="18.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../Pictures/NoTiBoImage.png" />

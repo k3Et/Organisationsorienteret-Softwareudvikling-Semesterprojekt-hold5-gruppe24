@@ -28,12 +28,12 @@ public class FXMain extends Application {
 
     @Override
     public void start(Stage stage) {
-
+        
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/Diary.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-        stage.setMaximized(false);
+        stage.setMaximized(true);
        
 
     }

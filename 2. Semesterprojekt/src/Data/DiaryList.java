@@ -1,5 +1,12 @@
-package Domain;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Data;
 
+import Domain.DiaryNote;
+import Domain.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,13 +28,14 @@ public class DiaryList {
     private DiaryNote diaryNote;
     private String filename;
     private Date date;
+    private String patient;
     // private Employee currentEmployee;
     // private Patient currentPatient;
 
     public DiaryList() {
         diaryList = new ArrayList<>();
         //i stedet for notes skal der stå patientens navn så man kan finde notet tilhørende en person
-        filename = "notes/" + convertDate() +/*currentEmployee.getName()+*/ ".txt";
+        filename = "notes/"  +convertDate() +/*currentEmployee.getName()+*/ ".txt";
         diaryFile = new File(filename);
 
         try {
@@ -39,7 +47,7 @@ public class DiaryList {
     }
 
     public void saveDiaryNote(DiaryNote diaryNote) {
-
+        System.out.println("DATA " + diaryNote);
         try (FileWriter fw = new FileWriter(diaryFile, true)) {
             fw.write(diaryNote.getNote());
         } catch (IOException ex) {
@@ -61,6 +69,11 @@ public class DiaryList {
         DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
         String dateTime = dateFormat.format(date);
         return dateTime;
+    }
+
+    public void setPatientName(User patientName) {
+        patient = patientName.toString();
+
     }
 
     public String getNotes() {
