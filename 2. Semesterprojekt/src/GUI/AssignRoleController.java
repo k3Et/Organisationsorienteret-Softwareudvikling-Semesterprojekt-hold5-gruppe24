@@ -38,11 +38,11 @@ import javafx.stage.Stage;
 public class AssignRoleController implements Initializable {
 
     @FXML
-    private ListView<?> chooseUserList;
+    private ListView<User> chooseUserList;
     @FXML
     private Button acceptBtn;
     @FXML
-    private ListView<?> chooseRoleList;
+    private ListView<Role> chooseRoleList;
     @FXML
     private Button cancelBtn;
 
