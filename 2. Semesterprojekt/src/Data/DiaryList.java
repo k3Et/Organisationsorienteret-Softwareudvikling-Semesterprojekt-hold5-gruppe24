@@ -35,8 +35,13 @@ public class DiaryList {
 
     public DiaryList() {
         diaryList = new ArrayList<>();
+
+    }
+
+    public void saveDiaryNote(DiaryNote diaryNote) {
+        System.out.println("DATA " + diaryNote);
         //i stedet for notes skal der stå patientens navn så man kan finde notet tilhørende en person
-        filename = "notes/"  +convertDate() +/*currentEmployee.getName()+*/ ".txt";
+        filename = "notes/" + convertDate() +/*currentEmployee.getName()+*/ ".txt";
         diaryFile = new File(filename);
 
         try {
@@ -45,10 +50,7 @@ public class DiaryList {
             System.out.println(ex);
 
         }
-    }
 
-    public void saveDiaryNote(DiaryNote diaryNote) {
-        System.out.println("DATA " + diaryNote);
         try (FileWriter fw = new FileWriter(diaryFile, true)) {
             fw.write(diaryNote.getNote());
         } catch (IOException ex) {

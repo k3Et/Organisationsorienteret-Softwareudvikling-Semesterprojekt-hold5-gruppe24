@@ -54,7 +54,8 @@ public class DiaryFXMLController implements Initializable {
     ObservableList<User> obPatients;
     Controller c = new Controller();
     private User selectedUser;
-        private Diary d;
+    private Diary d;
+
     /**
      * Initializes the controller class.
      */
@@ -92,8 +93,6 @@ public class DiaryFXMLController implements Initializable {
     private void handleDagbogTextClickAction(MouseEvent event) {
     }
 
-
-
     @FXML
     private void onPatientClickedHandler(MouseEvent event) {
         selectedUser = patientListView.getSelectionModel().getSelectedItem(); //finds the selected item  
@@ -104,19 +103,21 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
-        System.out.println(selectedUser + "---------");
+        
         writtenNote = WriteDiaryNote.getText();
-        TextArea note = new TextArea(writtenNote);
-        note.setEditable(false);
-        note.setStyle("-fx-background-color: lightblue;");
+
         // d.setPatientName(selectedUser);
+        if (!writtenNote.equals("")) {
+            TextArea note = new TextArea(writtenNote);
+            note.setEditable(false);
+            note.setStyle("-fx-background-color: lightblue;");
+            System.out.println(writtenNote);
+            d.saveDiaryNote(new DiaryNote(writtenNote));
+            d.convertDate();
+            obList.add(note);
 
-        d.saveDiaryNote(new DiaryNote(writtenNote));
-        d.convertDate();
-        obList.add(note);
-
-        WriteDiaryNote.setText(null);
-
+            WriteDiaryNote.setText("");
+        }
     }
 
 }

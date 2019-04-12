@@ -1,6 +1,7 @@
 package Domain;
 
 import Data.DiaryList;
+import Domain.DiaryNote;
 
 /**
  *
@@ -8,15 +9,18 @@ import Data.DiaryList;
  */
 public class Diary {
 
+    DiaryNote diary;
     //Denne klasse er udelukkende til for at hente og skrive data til DiaryList.
     DiaryList dList;
 
-    public void saveDiaryNote(DiaryNote diaryNote) {
-       System.out.println("DOMAIN " + diaryNote);
-        dList.saveDiaryNote(diaryNote);
+    public void saveDiaryNote(DiaryNote diary) {
+        System.out.println("DOMAIN " + diary);
+        this.diary = diary;
+        dList.saveDiaryNote(this.diary);
     }
 
     public void removeDiaryNote(DiaryNote diary) {
+        this.diary = diary;
         dList.removeDiaryNote(diary);
     }
 
@@ -32,7 +36,7 @@ public class Diary {
         return dList.getNotes();
     }
 
-      public void setPatientName(User patientName){
-          dList.setPatientName(patientName);
-      }
+    public void setPatientName(User patientName) {
+        dList.setPatientName(patientName);
+    }
 }
