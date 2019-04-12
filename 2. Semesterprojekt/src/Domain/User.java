@@ -22,7 +22,8 @@ public class User implements Comparable<User> {
     private String email;
     private String address;
 
-    public RoleList roles;
+    private ListOfRoles roles;
+    private ListOfRelations relations;
 
     //Overvej at fjerne role i constructor, da brugere ikke bliver added til deres lister, hvis de allerede har en rolle.
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
@@ -34,7 +35,8 @@ public class User implements Comparable<User> {
         this.email = email;
         this.address = address;
 
-        roles = new RoleList(r);
+        roles = new ListOfRoles(r);
+        relations = new ListOfRelations();
     }
 
     public String getName() {
@@ -42,7 +44,7 @@ public class User implements Comparable<User> {
     }
 
 //    public User(Role r){
-//        roles = new RoleList(r);
+//        roles = new ListOfRoles(r);
 //    }
     public String getPassword() {
         return password;
@@ -55,7 +57,7 @@ public class User implements Comparable<User> {
     public void createNote() {
         if (getPermissions().contains("create note")) {
 
-            roles = new RoleList();
+            roles = new ListOfRoles();
         }
     }
 
@@ -90,7 +92,7 @@ public class User implements Comparable<User> {
         return roles.getRoleList();
     }
 
-    public RoleList getRoleList() {
+    public ListOfRoles getRoleList() {
         return roles;
     }
 
@@ -116,7 +118,16 @@ public class User implements Comparable<User> {
     public List<User> getRelations() {
         for (Role r : getRoles()) {
             if (r instanceof Employee) {
-                return ((Employee) r).getRelations();
+                return relations.getRelations();
+            }
+        }
+        return null;
+    }
+
+    public List<User> getUnrelated() {
+        for (Role r : getRoles()) {
+            if (r instanceof Employee) {
+                return relations.getUnrelated();
             }
         }
         return null;

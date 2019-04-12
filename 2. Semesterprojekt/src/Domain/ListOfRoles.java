@@ -7,16 +7,16 @@ import java.util.List;
  *
  * @author Patrick
  */
-public class RoleList {
+public class ListOfRoles {
 
     // er rolle listen pr person! ikke systemet
     private List<Role> roles;
 
-    public RoleList() {
+    public ListOfRoles() {
         roles = new ArrayList<>();
     }
 
-    public RoleList(Role r) {
+    public ListOfRoles(Role r) {
         roles = new ArrayList<>();
         roles.add(r);
     }

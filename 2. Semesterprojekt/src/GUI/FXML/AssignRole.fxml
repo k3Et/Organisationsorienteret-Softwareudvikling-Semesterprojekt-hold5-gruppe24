@@ -13,7 +13,7 @@
             <Font name="Karla" size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="chooseUserList" layoutX="28.0" layoutY="104.0" prefHeight="373.0" prefWidth="306.0" />
+      <ListView fx:id="chooseUserList" layoutX="28.0" layoutY="104.0" onMouseClicked="#handleUserChosen" prefHeight="373.0" prefWidth="306.0" />
       <Label layoutX="28.0" layoutY="86.0" text="Vælg bruger">
          <font>
             <Font name="Karla" size="12.0" />

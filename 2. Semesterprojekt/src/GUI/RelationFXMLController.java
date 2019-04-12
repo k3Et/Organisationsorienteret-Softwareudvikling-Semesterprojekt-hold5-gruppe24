@@ -37,6 +37,10 @@ public class RelationFXMLController implements Initializable {
     private ObservableList<User> obRelationList;
     private ObservableList<User> obPatientList;
 
+    private User selectedEmployee;
+    private User selectedPatient;
+    private User selectedRelation;
+
     /**
      * Initializes the controller class.
      */
@@ -56,17 +60,31 @@ public class RelationFXMLController implements Initializable {
 
     @FXML
     private void addRelationBtn(ActionEvent event) {
-
+        selectedPatient = patientListView.getSelectionModel().getSelectedItem();
+        selectedEmployee.getRelations().add(selectedPatient);
+        updateListViews();
     }
 
     @FXML
     private void removeRelationBtn(ActionEvent event) {
+        selectedRelation = relationListViews.getSelectionModel().getSelectedItem();
+        selectedEmployee.getRelations().remove(selectedRelation);
+        updateListViews();
     }
 
     @FXML
     private void handleMouseOnEmployee(MouseEvent event) {
-        User selectedUser = employeeListView.getSelectionModel().getSelectedItem();
-        obRelationList.addAll(selectedUser.getRelations());
+        obRelationList.clear();
+        obPatientList.clear();
+        selectedEmployee = employeeListView.getSelectionModel().getSelectedItem();
+        obRelationList.addAll(selectedEmployee.getRelations());
+        obPatientList.addAll(selectedEmployee.getUnrelated());
     }
 
+    private void updateListViews() {
+        obRelationList.clear();
+        obPatientList.clear();
+        obRelationList.addAll(selectedEmployee.getRelations());
+        obPatientList.addAll(selectedEmployee.getUnrelated());
+    }
 }
