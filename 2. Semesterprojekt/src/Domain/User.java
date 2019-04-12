@@ -1,15 +1,16 @@
 package Domain;
 
+import Domain.Roles.Employee;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
+import java.util.List;
 /**
  *
  * @author Patrick
  */
-public class User {
+public class User implements Comparable<User> {
 
     private String name;
     private String password;
@@ -18,9 +19,10 @@ public class User {
     private String phoneNumber;
     private String email;
     private String address;
+    private RoleList roles;
 
-    public RoleList roles;
 
+    //Overvej at fjerne role i constructor, da brugere ikke bliver added til deres lister, hvis de allerede har en rolle.
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
         this.name = name;
         this.password = password;
@@ -30,6 +32,10 @@ public class User {
         this.email = email;
         this.address = address;
         roles = new RoleList(r);
+    }
+
+    public String getName() {
+        return name;
     }
 
 //    public User(Role r){
@@ -51,8 +57,9 @@ public class User {
         }
     }
 
+    //Creates user to the login-system with username and password.
     public String createUser(User u) {
-        if (roles.getPermissions().contains("create user")) {
+        if (getPermissions().contains("create user")) {
             File file = new File("src/Data/LoginData.txt");
             try (Scanner scan = new Scanner(file); FileWriter fw = new FileWriter(file, true);) {
                 String uName = u.getUsername();
@@ -75,6 +82,42 @@ public class User {
             }
         }
         return "Not permitted";
+    }
+
+    public List<Role> getRoles() {
+        return roles.getRoleList();
+    }
+
+    public RoleList getRoleList() {
+        return roles;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public String toStringAll() {
+        return "Navn: " + name + ";" + "CPR: " + CPR + ";" + "Mobil: " + phoneNumber + ";" + "Email: " + email + ";" + "Adresse: " + address + ";" + "Rolle: " + roles + " ";
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return getName().compareTo(o.getName());
+    }
+
+    //Returns all permissions that the user has. Each permission is saved as a string in an index of the list.
+    public List<String> getPermissions() {
+        return roles.getPermissions();
+    }
+
+    public List<User> getRelations() {
+        for (Role r : getRoles()) {
+            if (r instanceof Employee) {
+                return ((Employee) r).getRelations();
+            }
+        }
+        return null;
     }
 
 }

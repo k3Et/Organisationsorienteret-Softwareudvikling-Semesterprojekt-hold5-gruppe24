@@ -1,5 +1,12 @@
 package GUI;
 
+import Domain.ListOfUsers;
+import Domain.Role;
+import Domain.Roles.Employee;
+import Domain.User;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -13,16 +20,26 @@ import javafx.stage.Stage;
  */
 public class FXMain extends Application {
 
+    private SceneHandler sh = new SceneHandler();
+
+    public FXMain() {
+
+    }
+
+    private Stage primaryStage;
+
+
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/Diary.fxml"));
+    public void start(Stage stage) {
 
-        Scene scene = new Scene(root);
-
+        primaryStage = stage;
+        sh.setCurrentStage(primaryStage);
+        sh.setNewScene("/GUI/FXML/AssignRole.fxml");
         stage.setScene(scene);
         stage.setTitle("NoTiBo - Noter til Dagbøger");
         stage.setMaximized(false);
         stage.show();
+
     }
 
     /**

@@ -7,29 +7,42 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AssignRoleController">
-    <children>
-        <Label layoutX="28.0" layoutY="26.0" prefHeight="19.0" prefWidth="255.0" text="Tilføj en bruger en rolle">
-            <font>
-                <Font name="Karla" size="18.0" />
-            </font>
-        </Label>
-        <ListView fx:id="chooseUserList" layoutX="28.0" layoutY="104.0" prefHeight="373.0" prefWidth="306.0" />
-        <Label layoutX="28.0" layoutY="86.0" text="Vælg bruger">
-            <font>
-                <Font name="Karla" size="12.0" />
-            </font>
-        </Label>
-        <Label layoutX="401.0" layoutY="87.0" text="Vælg rolle">
-            <font>
-                <Font name="Karla" size="12.0" />
-            </font>
-        </Label>
-        <Button fx:id="acceptBtn" contentDisplay="TOP" layoutX="397.0" layoutY="489.0" mnemonicParsing="false" onAction="#acceptBtnHandler" text="Accepter" />
-        <Button fx:id="cancelBtn" layoutX="479.0" layoutY="489.0" mnemonicParsing="false" onAction="#cancelBtnHandler" prefHeight="26.0" prefWidth="67.0" text="Annullér">
-            <font>
-                <Font name="Karla" size="12.0" />
-            </font>
-        </Button>
-        <ListView fx:id="chooseRoleList" layoutX="397.0" layoutY="104.0" prefHeight="373.0" prefWidth="306.0" />
-    </children>
+   <children>
+      <Label layoutX="28.0" layoutY="26.0" prefHeight="19.0" prefWidth="255.0" text="Tilføj en bruger en rolle">
+         <font>
+            <Font name="Karla" size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="chooseUserList" layoutX="28.0" layoutY="104.0" prefHeight="373.0" prefWidth="306.0" />
+      <Label layoutX="28.0" layoutY="86.0" text="Vælg bruger">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font></Label>
+      <Label layoutX="401.0" layoutY="87.0" text="Vælg rolle">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font></Label>
+      <Button fx:id="acceptBtn" contentDisplay="TOP" layoutX="397.0" layoutY="489.0" mnemonicParsing="false" onAction="#acceptBtnHandler" text="Accepter">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font></Button>
+      <Button fx:id="cancelBtn" layoutX="479.0" layoutY="489.0" mnemonicParsing="false" onAction="#cancelBtnHandler" prefHeight="0.0" prefWidth="67.0" text="Annullér">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font></Button>
+      <ListView fx:id="chooseRoleList" layoutX="397.0" layoutY="104.0" prefHeight="140.0" prefWidth="306.0" />
+      <ListView fx:id="userInfoListView" layoutX="401.0" layoutY="286.0" prefHeight="140.0" prefWidth="306.0" />
+      <Label layoutX="401.0" layoutY="256.0" prefHeight="26.0" prefWidth="122.0" text="Den valgte bruger">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="480.0" layoutY="433.0" mnemonicParsing="false" onAction="#sletRolleBtnHandler" text="Slet rolle" />
+      <Button layoutX="36.0" layoutY="499.0" mnemonicParsing="false" onAction="#addNewUserBtn" text="Ny bruger">
+         <font>
+            <Font name="Karla" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="116.0" layoutY="499.0" mnemonicParsing="false" onAction="#relationSletMigBtn" text="Relation" />
+   </children>
 </AnchorPane>
