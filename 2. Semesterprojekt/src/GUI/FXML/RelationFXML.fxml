@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RelationFXMLController">
    <children>
-      <ListView fx:id="employeeListView" layoutX="25.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
+      <ListView fx:id="employeeListView" layoutX="25.0" layoutY="94.0" onMouseClicked="#handleMouseOnEmployee" prefHeight="760.0" prefWidth="445.0" />
       <ListView fx:id="relationListViews" layoutX="564.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
       <ListView fx:id="patientListView" layoutX="1091.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
       <Button layoutX="1023.0" layoutY="421.0" mnemonicParsing="false" onAction="#addRelationBtn" text="&lt;---" />

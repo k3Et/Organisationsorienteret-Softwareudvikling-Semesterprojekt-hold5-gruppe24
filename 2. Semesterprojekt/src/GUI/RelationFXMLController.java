@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -35,7 +36,7 @@ public class RelationFXMLController implements Initializable {
     private ObservableList<User> obEmployeeList;
     private ObservableList<User> obRelationList;
     private ObservableList<User> obPatientList;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -43,23 +44,29 @@ public class RelationFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         obEmployeeList = FXCollections.observableArrayList();
         employeeListView.setItems(obEmployeeList);
-        
+
         obRelationList = FXCollections.observableArrayList();
         relationListViews.setItems(obRelationList);
-        
+
         obPatientList = FXCollections.observableArrayList();
         patientListView.setItems(obPatientList);
-        
+
         obEmployeeList.addAll(ListOfEmployees.getEmployeesList());
-    }    
+    }
 
     @FXML
     private void addRelationBtn(ActionEvent event) {
-        
+
     }
 
     @FXML
     private void removeRelationBtn(ActionEvent event) {
     }
-    
+
+    @FXML
+    private void handleMouseOnEmployee(MouseEvent event) {
+        User selectedUser = employeeListView.getSelectionModel().getSelectedItem();
+        obRelationList.addAll(selectedUser.getRelations());
+    }
+
 }

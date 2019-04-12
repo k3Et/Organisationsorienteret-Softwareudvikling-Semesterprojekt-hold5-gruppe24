@@ -58,7 +58,7 @@ public class User implements Comparable<User> {
             roles = new RoleList();
         }
     }
-    
+
     //Creates user to the login-system with username and password.
     public String createUser(User u) {
         if (getPermissions().contains("create user")) {
@@ -107,15 +107,15 @@ public class User implements Comparable<User> {
     public int compareTo(User o) {
         return getName().compareTo(o.getName());
     }
-    
+
     //Returns all permissions that the user has. Each permission is saved as a string in an index of the list.
-    public List<String> getPermissions(){
-       return roles.getPermissions();
+    public List<String> getPermissions() {
+        return roles.getPermissions();
     }
-    
-    public List<User> getRelations(){
-        for(Role r : getRoles()){
-            if(r instanceof Employee){
+
+    public List<User> getRelations() {
+        for (Role r : getRoles()) {
+            if (r instanceof Employee) {
                 return ((Employee) r).getRelations();
             }
         }

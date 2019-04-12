@@ -22,22 +22,22 @@ public class Employee extends Role {
     public String toString() {
         return "Employee";
     }
-    
-    public void addRelation(User u){
-        for(Role r : u.getRoles()){
-            if(r instanceof Patient && !relations.contains(u)){
+
+    public void addRelation(User u) {
+        for (Role r : u.getRoles()) {
+            if (r instanceof Patient && !relations.contains(u)) {
                 relations.add(u);
             }
         }
     }
-    
-    public void removeRelation(User u){
-        if(relations.contains(u)){
+
+    public void removeRelation(User u) {
+        if (relations.contains(u)) {
             relations.remove(u);
         }
     }
 
-    public List<User> getRelations(){
+    public List<User> getRelations() {
         return relations;
     }
 }
