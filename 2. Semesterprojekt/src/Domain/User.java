@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import java.util.List;
-
 /**
  *
  * @author Patrick
@@ -21,6 +19,8 @@ public class User implements Comparable<User> {
     private String phoneNumber;
     private String email;
     private String address;
+
+
 
     private ListOfRoles roles;
     private ListOfRelations relations;
@@ -37,6 +37,7 @@ public class User implements Comparable<User> {
 
         roles = new ListOfRoles(r);
         relations = new ListOfRelations();
+
     }
 
     public String getName() {
@@ -55,9 +56,10 @@ public class User implements Comparable<User> {
     }
 
     public void createNote() {
-        if (getPermissions().contains("create note")) {
-
-            roles = new ListOfRoles();
+        if (roles.getPermissions().contains("create note")) {
+            System.out.println("created note!");
+        } else {
+            System.out.println("Do not have permission!");
         }
     }
 
@@ -132,4 +134,5 @@ public class User implements Comparable<User> {
         }
         return null;
     }
+
 }

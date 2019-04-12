@@ -4,6 +4,7 @@ import Domain.Roles.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
  * @author Patrick
@@ -29,7 +30,6 @@ public class Controller {
         users.addUser(u2);
         users.addUser(u3);
         users.addUser(u4);
-
         users.addUser(test);
         u.createUser(u2);
         u.createUser(test);
@@ -50,4 +50,5 @@ public class Controller {
     public List getStockRoleList() {
         return listOfRoles;
     }
+
 }

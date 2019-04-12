@@ -25,6 +25,7 @@ public class ListOfRoles {
         roles.add(r);
     }
 
+
     public void removeRole(Role r) {
 
         roles.remove(r);
@@ -32,6 +33,7 @@ public class ListOfRoles {
 
 //Returns list where each index contains a string that is equal to a permission
     public List<String> getPermissions() {
+
         String permissions = "";
         for (Role r : roles) {
             permissions += r.getPermissions();
@@ -51,4 +53,5 @@ public class ListOfRoles {
     public String toString() {
         return String.valueOf(roles);
     }
+
 }

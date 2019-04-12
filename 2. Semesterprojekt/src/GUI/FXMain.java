@@ -18,14 +18,18 @@ public class FXMain extends Application {
 
     private Stage primaryStage;
 
+
     @Override
     public void start(Stage stage) {
 
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/AssignRole.fxml");
+        stage.setScene(scene);
+        stage.setTitle("NoTiBo - Noter til Dagbøger");
+        stage.setMaximized(false);
+        stage.show();
 
-        // stage.setMaximized(true);
     }
 
     /**
@@ -33,7 +37,6 @@ public class FXMain extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-
     }
 
 }
