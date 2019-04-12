@@ -47,14 +47,14 @@ public class DiaryFXMLController implements Initializable {
 
     ObservableList<TextArea> obList;
 
-    String writtenNote = "";
+   // private String writtenNote = "";
     @FXML
     private ListView<User> patientListView;
 
     ObservableList<User> obPatients;
     Controller c = new Controller();
     private User selectedUser;
-    private Diary d;
+    private Diary diary;
 
     /**
      * Initializes the controller class.
@@ -62,7 +62,7 @@ public class DiaryFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         c.setStockUsers();
-        d = new Diary();
+        diary = new Diary();
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
 
@@ -104,16 +104,16 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
         
-        writtenNote = WriteDiaryNote.getText();
+      String writtenNote = WriteDiaryNote.getText();
 
         // d.setPatientName(selectedUser);
         if (!writtenNote.equals("")) {
             TextArea note = new TextArea(writtenNote);
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
-            System.out.println(writtenNote);
-            d.saveDiaryNote(new DiaryNote(writtenNote));
-            d.convertDate();
+            System.out.println("CONTROLLER " +writtenNote);
+            diary.saveDiaryNote(new DiaryNote(writtenNote));
+            diary.convertDate();
             obList.add(note);
 
             WriteDiaryNote.setText("");

@@ -11,12 +11,12 @@ public class Diary {
 
     DiaryNote diary;
     //Denne klasse er udelukkende til for at hente og skrive data til DiaryList.
-    DiaryList dList;
+    DiaryList dList = new DiaryList();
 
     public void saveDiaryNote(DiaryNote diary) {
         System.out.println("DOMAIN " + diary);
-        this.diary = diary;
-        dList.saveDiaryNote(this.diary);
+        
+        dList.saveDiaryNote(diary);
     }
 
     public void removeDiaryNote(DiaryNote diary) {

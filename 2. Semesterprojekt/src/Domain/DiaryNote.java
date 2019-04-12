@@ -22,7 +22,7 @@ public class DiaryNote {
 
     public DiaryNote(String note) {
         this.note = note;
-
+           System.out.println("DNOTE " + note);
     }
 
     public String getNote() {

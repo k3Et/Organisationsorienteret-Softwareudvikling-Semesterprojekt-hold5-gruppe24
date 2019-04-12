@@ -41,7 +41,7 @@ public class DiaryList {
     public void saveDiaryNote(DiaryNote diaryNote) {
         System.out.println("DATA " + diaryNote);
         //i stedet for notes skal der stå patientens navn så man kan finde notet tilhørende en person
-        filename = "notes/" + convertDate() +/*currentEmployee.getName()+*/ ".txt";
+        filename = "notes/" +"hjælp"+/* convertDate()*/ /*currentEmployee.getName()+*/ ".txt";
         diaryFile = new File(filename);
 
         try {
