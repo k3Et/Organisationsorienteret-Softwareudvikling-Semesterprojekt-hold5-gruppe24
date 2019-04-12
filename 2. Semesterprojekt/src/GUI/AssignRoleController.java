@@ -1,6 +1,9 @@
 package GUI;
 
 import Domain.Controller;
+
+import Domain.ListOfEmployees;
+
 import Domain.ListOfPatients;
 import Domain.ListOfUsers;
 import Domain.Role;
@@ -26,6 +29,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+
+import javafx.scene.input.MouseEvent;
+
 import javafx.stage.Stage;
 
 /**
@@ -101,8 +107,7 @@ public class AssignRoleController implements Initializable {
         if (selectedRole != null) {
             addRoleToUser(selectedUser, selectedRole);
         }
-        loadUserInfo(selectedUser);
-
+        updateListViews();
     }
 
     public void loadUserInfo(User selectedUser) {
@@ -125,7 +130,9 @@ public class AssignRoleController implements Initializable {
             if (selectedRole instanceof Patient) {
                 ListOfPatients.addPatient(selectedUser);
             } else if (selectedRole instanceof Employee) {
-                c.getListOfEmployees().addEmployee(selectedUser);
+
+                ListOfEmployees.addEmployee(selectedUser);
+
             }
         }
     }
@@ -134,9 +141,11 @@ public class AssignRoleController implements Initializable {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
             if (selectedRole instanceof Patient) {
-              ListOfPatients.removePatient(selectedUser);
+
+                ListOfPatients.removePatient(selectedUser);
             } else if (selectedRole instanceof Employee) {
-                c.getListOfEmployees().removeEmployee(selectedUser);
+                ListOfEmployees.removeEmployee(selectedUser);
+
             }
         }
     }
@@ -153,7 +162,9 @@ public class AssignRoleController implements Initializable {
         selectedUser = chooseUserList.getSelectionModel().getSelectedItem();
         selectedRole = chooseRoleList.getSelectionModel().getSelectedItem();
         removeRoleFromUser(selectedUser, selectedRole);
-        loadUserInfo(selectedUser);
+
+        updateListViews();
+
     }
 
     @FXML
@@ -172,6 +183,19 @@ public class AssignRoleController implements Initializable {
     @FXML
     private void relationSletMigBtn(ActionEvent event) {
         sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+
+    }
+
+    @FXML
+    private void handleUserChosen(MouseEvent event) {
+        selectedUser = chooseUserList.getSelectionModel().getSelectedItem();
+        updateListViews();
+    }
+
+    private void updateListViews() {
+        userInfoList.clear();
+        loadUserInfo(selectedUser);
+
     }
 
 }

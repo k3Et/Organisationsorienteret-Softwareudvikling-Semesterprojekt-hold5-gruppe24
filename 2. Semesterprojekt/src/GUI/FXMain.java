@@ -10,9 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -22,7 +19,6 @@ import javafx.stage.Stage;
 public class FXMain extends Application {
 
     private SceneHandler sh = new SceneHandler();
-    Controller c = new Controller();
 
     public FXMain() {
 
@@ -30,17 +26,15 @@ public class FXMain extends Application {
 
     private Stage primaryStage;
 
-
     @Override
     public void start(Stage stage) {
-        c.setStockUsers();
+
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/Diary.fxml");
-     
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-        stage.setMaximized(true);
-     
+        stage.setMaximized(false);
+       
 
     }
 

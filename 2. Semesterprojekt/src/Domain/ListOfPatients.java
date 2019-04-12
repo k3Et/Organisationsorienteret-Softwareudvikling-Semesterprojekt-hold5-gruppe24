@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ListOfPatients {
 
-    public static List<User> list = new ArrayList<>();
+    private static List<User> list = new ArrayList<>();
 
     public ListOfPatients() {
     }
