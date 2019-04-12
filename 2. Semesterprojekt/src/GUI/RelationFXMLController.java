@@ -40,6 +40,8 @@ public class RelationFXMLController implements Initializable {
     private User selectedEmployee;
     private User selectedPatient;
     private User selectedRelation;
+    
+    private SceneHandler sh = new SceneHandler();
 
     /**
      * Initializes the controller class.
@@ -94,5 +96,11 @@ public class RelationFXMLController implements Initializable {
         obRelationList.addAll(selectedEmployee.getRelations());
         obPatientList.addAll(selectedEmployee.getUnrelated());
     }
+
+    @FXML
+    private void handlerBtnBack(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Menu.fxml");
+    }
+    
 
 }

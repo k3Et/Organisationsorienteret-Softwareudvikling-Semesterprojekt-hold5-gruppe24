@@ -51,6 +51,8 @@ public class DiaryFXMLController implements Initializable {
 
     ObservableList<User> obPatients;
 
+    SceneHandler sh = new SceneHandler();
+        
     /**
      * Initializes the controller class.
      */
@@ -77,6 +79,7 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void handleBackButtonAction(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Menu.fxml");
     }
 
     @FXML

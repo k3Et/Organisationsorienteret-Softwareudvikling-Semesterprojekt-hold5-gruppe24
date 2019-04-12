@@ -18,20 +18,22 @@ import javafx.stage.Stage;
  */
 public class FXMain extends Application {
 
-    private SceneHandler sh = new SceneHandler();
+    SceneHandler sh = new SceneHandler();
 
     public FXMain() {
 
     }
 
     private Stage primaryStage;
-
+    protected static Controller c = new Controller();
     @Override
     public void start(Stage stage) {
 
+        Controller.setStockUsers();
+        Controller.setStockRoleList();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
-        sh.setNewScene("/GUI/FXML/AssignRole.fxml");
+        sh.setNewScene("/GUI/FXML/Menu.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
         stage.setMaximized(false);
        
