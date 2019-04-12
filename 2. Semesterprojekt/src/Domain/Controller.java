@@ -4,7 +4,6 @@ import Domain.Roles.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author Patrick
@@ -13,7 +12,7 @@ public class Controller {
 
     ListOfUsers users = new ListOfUsers();
     List<Role> listOfRoles = new ArrayList<>();
-    ListOfPatients listOfPatients = new ListOfPatients();
+
     ListOfEmployees listOfEmployees = new ListOfEmployees();
 
     Employee employee = new Employee();
@@ -27,6 +26,7 @@ public class Controller {
         User u3 = new User("Ib", "password", "username", "0258741369", "46137943", "ib@ib.dk", "Pinsevænget 80", admin);
         User u4 = new User("Leder John", "password", "username", "0258741369", "46137943", "ib@ib.dk", "Pinsevænget 80", leader);
         User test = new User("Victor", "test", "test", "452559 - 2451", "45878963", "email@gmail.com", "Addressevej 97", employee);
+        User u5 = new User("Leder John", "password", "username", "0258741369", "46137943", "ib@ib.dk", "Pinsevænget 80", patient);
 
         users.addUser(u);
         users.addUser(u2);
@@ -35,6 +35,12 @@ public class Controller {
         users.addUser(test);
         u.createUser(u2);
         u.createUser(test);
+
+        ListOfPatients.addPatient(u);
+        ListOfPatients.addPatient(u2);
+        ListOfPatients.addPatient(u3);
+        ListOfPatients.addPatient(u4);
+        ListOfPatients.addPatient(u5);
     }
 
     public List getStockUsers() {
@@ -53,9 +59,7 @@ public class Controller {
         return listOfRoles;
     }
 
-    public ListOfPatients getListOfPatients() {
-        return listOfPatients;
-    }
+    
 
     public ListOfEmployees getListOfEmployees() {
         return listOfEmployees;

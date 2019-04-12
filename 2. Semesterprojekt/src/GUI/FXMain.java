@@ -1,5 +1,6 @@
 package GUI;
 
+import Domain.Controller;
 import Domain.ListOfUsers;
 import Domain.Role;
 import Domain.Roles.Employee;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 public class FXMain extends Application {
 
     private SceneHandler sh = new SceneHandler();
+    Controller c = new Controller();
 
     public FXMain() {
 
@@ -31,7 +33,7 @@ public class FXMain extends Application {
 
     @Override
     public void start(Stage stage) {
-
+        c.setStockUsers();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/Diary.fxml");

@@ -7,7 +7,10 @@ package GUI;
 
 import Domain.DiaryList;
 import Domain.DiaryNote;
+import Domain.ListOfPatients;
+import Domain.User;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,18 +30,13 @@ import javafx.scene.text.Text;
  */
 public class DiaryFXMLController implements Initializable {
 
-    @FXML
-    private ListView<?> menuListView;
+    
     @FXML
     private Button backButton;
     @FXML
     private Button logOutButton;
     @FXML
-    private Text patientTextBtn;
-    @FXML
     private Text DagbogBtn;
-    @FXML
-    private Text AnsatteBtn;
     @FXML
     private TextArea WriteDiaryNote;
     @FXML
@@ -49,7 +47,11 @@ public class DiaryFXMLController implements Initializable {
     ObservableList<TextArea> obList;
 
     String writtenNote = "";
+    @FXML
+    private ListView<User> patientListView;
 
+    
+    ObservableList<User> obPatients; 
     /**
      * Initializes the controller class.
      */
@@ -57,6 +59,18 @@ public class DiaryFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
+        
+        System.out.println(ListOfPatients.getPatientList());
+       
+//        for(int i = 0; i < ListOfPatients.list.size(); i++){  //addAll virkede ikke!
+//              obPatients.add(ListOfPatients.list.get(i));
+//       }
+//     
+        obPatients.addAll(ListOfPatients.getPatientList());
+        
+        System.out.println("ob" +  obPatients);
+     //   obPatients =  FXCollections.observableArrayList();
+       // patientListView.setItems(obPatients);
 
         ListOfDiaryNote.setEditable(false);
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
@@ -70,17 +84,11 @@ public class DiaryFXMLController implements Initializable {
     private void handleLogOutButtonAction(ActionEvent event) {
     }
 
-    @FXML
-    private void handlePatientTextClickAction(MouseEvent event) {
-    }
 
     @FXML
     private void handleDagbogTextClickAction(MouseEvent event) {
     }
 
-    @FXML
-    private void handleAnsatteTextClickAction(MouseEvent event) {
-    }
 
     DiaryList dl = new DiaryList();
 

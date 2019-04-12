@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
     <children>
         <SplitPane dividerPositions="0.28326403326403327" layoutY="-2.0" prefHeight="1084.0" prefWidth="1926.0">
             <items>
             <Pane prefHeight="1082.0" prefWidth="820.0">
                <children>
                         <Button fx:id="backButton" layoutX="268.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="35.0" prefWidth="87.0" text="Tilbage" />
-                        <ListView fx:id="menuListView" layoutY="108.0" prefHeight="901.0" prefWidth="546.0" />
+                        <ListView fx:id="patientListView" layoutY="108.0" prefHeight="901.0" prefWidth="546.0" />
                         <ImageView fitHeight="70.0" fitWidth="147.0" layoutX="18.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../Pictures/NoTiBoImage.png" />

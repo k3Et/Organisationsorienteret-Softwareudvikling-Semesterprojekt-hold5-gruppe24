@@ -123,7 +123,7 @@ public class AssignRoleController implements Initializable {
         if (!selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().addRole(selectedRole);
             if (selectedRole instanceof Patient) {
-                c.getListOfPatients().addPatient(selectedUser);
+                ListOfPatients.addPatient(selectedUser);
             } else if (selectedRole instanceof Employee) {
                 c.getListOfEmployees().addEmployee(selectedUser);
             }
@@ -134,7 +134,7 @@ public class AssignRoleController implements Initializable {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
             if (selectedRole instanceof Patient) {
-                c.getListOfPatients().removePatient(selectedUser);
+              ListOfPatients.removePatient(selectedUser);
             } else if (selectedRole instanceof Employee) {
                 c.getListOfEmployees().removeEmployee(selectedUser);
             }
