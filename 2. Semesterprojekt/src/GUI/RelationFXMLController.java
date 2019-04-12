@@ -62,8 +62,10 @@ public class RelationFXMLController implements Initializable {
     private void addRelationBtn(ActionEvent event) {
 
         selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-        selectedEmployee.getRelations().add(selectedPatient);
-        updateListViews();
+        if (selectedPatient != null) {
+            selectedEmployee.getRelations().add(selectedPatient);
+            updateListViews();
+        }
 
     }
 
