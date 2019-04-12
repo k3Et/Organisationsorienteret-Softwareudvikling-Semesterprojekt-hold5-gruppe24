@@ -34,11 +34,11 @@ public class FXMain extends Application {
 
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
-        sh.setNewScene("/GUI/FXML/AssignRole.fxml");
-        stage.setScene(scene);
+        sh.setNewScene("/GUI/FXML/Diary.fxml");
+     
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-        stage.setMaximized(false);
-        stage.show();
+        stage.setMaximized(true);
+     
 
     }
 

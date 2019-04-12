@@ -7,47 +7,38 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
     <children>
-        <SplitPane dividerPositions="0.29797979797979796" layoutY="-2.0" prefHeight="1080.0" prefWidth="1920.0">
+        <SplitPane dividerPositions="0.28326403326403327" layoutY="-2.0" prefHeight="1084.0" prefWidth="1926.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <ImageView fitHeight="70.0" fitWidth="147.0" layoutX="-12.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <Pane prefHeight="1082.0" prefWidth="820.0">
+               <children>
+                        <Button fx:id="backButton" layoutX="268.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="35.0" prefWidth="87.0" text="Tilbage" />
+                        <ListView fx:id="menuListView" layoutY="108.0" prefHeight="901.0" prefWidth="546.0" />
+                        <ImageView fitHeight="70.0" fitWidth="147.0" layoutX="18.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../Pictures/NoTiBoImage.png" />
                             </image>
                         </ImageView>
-                        <ListView fx:id="menuListView" layoutX="2.0" layoutY="81.0" prefHeight="1009.0" prefWidth="570.0" AnchorPane.bottomAnchor="-12.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="81.0" />
-                        <Button fx:id="backButton" layoutX="94.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="35.0" prefWidth="87.0" text="Tilbage" />
-                        <Button fx:id="logOutButton" layoutX="207.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="35.0" prefWidth="87.0" text="Log ud" />
-                        <Text fx:id="patientTextBtn" layoutX="-5.0" layoutY="138.0" onMouseClicked="#handlePatientTextClickAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Patienter" textAlignment="CENTER" wrappingWidth="591.7366371154785">
+                        <Button fx:id="logOutButton" layoutX="392.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="35.0" prefWidth="87.0" text="Log ud" />
+               </children>
+            </Pane>
+            <Pane prefHeight="1082.0" prefWidth="1132.0">
+               <children>
+                        <ListView fx:id="ListOfDiaryNote" editable="false" layoutX="82.0" layoutY="155.0" prefHeight="606.0" prefWidth="1244.0" />
+                        <TextArea fx:id="WriteDiaryNote" layoutX="80.0" layoutY="780.0" prefHeight="156.0" prefWidth="1250.0" />
+                        <Button fx:id="SaveNoteBtn" layoutX="1144.0" layoutY="975.0" mnemonicParsing="false" onAction="#SaveNoteBtnHandler" prefHeight="39.0" prefWidth="130.0" text="Gem" />
+                        <Text fx:id="DagbogBtn" layoutX="419.0" layoutY="67.0" onMouseClicked="#handleDagbogTextClickAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagbog" textAlignment="CENTER" wrappingWidth="565.9999632835388">
                             <font>
-                                <Font name="Bodoni MT" size="65.0" />
+                                <Font name="Bodoni MT" size="25.0" />
                             </font>
                         </Text>
-                        <Text fx:id="DagbogBtn" layoutX="5.0" layoutY="231.0" onMouseClicked="#handleDagbogTextClickAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Dagbog" textAlignment="CENTER" wrappingWidth="565.9999632835388">
-                            <font>
-                                <Font name="Bodoni MT" size="65.0" />
-                            </font>
-                        </Text>
-                        <Text fx:id="AnsatteBtn" layoutX="7.0" layoutY="327.0" onMouseClicked="#handleAnsatteTextClickAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Ansatte" textAlignment="CENTER" wrappingWidth="566.6668586730957">
-                            <font>
-                                <Font name="Bodoni MT" size="65.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="968.0" prefWidth="1182.0">
-                    <children>
-                        <TextArea fx:id="WriteDiaryNote" layoutX="84.0" layoutY="791.0" prefHeight="200.0" prefWidth="1200.0" />
-                        <Button fx:id="SaveNoteBtn" layoutX="1133.0" layoutY="1004.0" mnemonicParsing="false" onAction="#SaveNoteBtnHandler" prefHeight="60.0" prefWidth="150.0" text="Gem" />
-                        <ListView fx:id="ListOfDiaryNote" editable="false" layoutX="84.0" layoutY="108.0" prefHeight="668.0" prefWidth="1200.0" />
-                    </children>
-                </AnchorPane>
+               </children>
+            </Pane>
             </items>
         </SplitPane>
     </children>
