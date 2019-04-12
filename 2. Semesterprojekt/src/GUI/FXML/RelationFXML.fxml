@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RelationFXMLController">
-   <children>
-      <ListView fx:id="employeeListView" layoutX="25.0" layoutY="94.0" onMouseClicked="#handleMouseOnEmployee" prefHeight="760.0" prefWidth="445.0" />
-      <ListView fx:id="relationListViews" layoutX="564.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
-      <ListView fx:id="patientListView" layoutX="1091.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
-      <Button layoutX="1023.0" layoutY="421.0" mnemonicParsing="false" onAction="#addRelationBtn" text="&lt;---" />
-      <Button layoutX="1023.0" layoutY="495.0" mnemonicParsing="false" onAction="#removeRelationBtn" text="---&gt;" />
-      <Label layoutX="30.0" layoutY="64.0" text="Ansatte:" />
-      <Label layoutX="1096.0" layoutY="64.0" text="Beboere:" />
-      <Label layoutX="569.0" layoutY="64.0" text="Tilknyttede beboere" />
-   </children>
+    <children>
+        <ListView fx:id="employeeListView" layoutX="25.0" layoutY="94.0" onMouseClicked="#handleMouseOnEmployee" prefHeight="760.0" prefWidth="445.0" />
+        <ListView fx:id="relationListViews" layoutX="564.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
+        <ListView fx:id="patientListView" layoutX="1091.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
+        <Button layoutX="1023.0" layoutY="421.0" mnemonicParsing="false" onAction="#addRelationBtn" text="&lt;---" />
+        <Button layoutX="1023.0" layoutY="495.0" mnemonicParsing="false" onAction="#removeRelationBtn" text="---&gt;" />
+        <Label layoutX="30.0" layoutY="64.0" text="Ansatte:" />
+        <Label layoutX="1096.0" layoutY="64.0" text="Beboere:" />
+        <Label layoutX="569.0" layoutY="64.0" text="Tilknyttede beboere" />
+    </children>
 </AnchorPane>

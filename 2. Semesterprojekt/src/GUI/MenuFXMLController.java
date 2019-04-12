@@ -68,5 +68,5 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private void handleAnsatteTextClickAction(MouseEvent event) {
     }
-  
+
 }

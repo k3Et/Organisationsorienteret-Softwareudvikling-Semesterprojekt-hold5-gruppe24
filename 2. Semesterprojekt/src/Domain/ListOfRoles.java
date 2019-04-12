@@ -25,7 +25,6 @@ public class ListOfRoles {
         roles.add(r);
     }
 
-
     public void removeRole(Role r) {
 
         roles.remove(r);

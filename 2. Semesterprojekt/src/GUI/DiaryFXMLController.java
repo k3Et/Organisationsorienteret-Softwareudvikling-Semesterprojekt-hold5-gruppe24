@@ -30,7 +30,6 @@ import javafx.scene.text.Text;
  */
 public class DiaryFXMLController implements Initializable {
 
-    
     @FXML
     private Button backButton;
     @FXML
@@ -50,8 +49,8 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private ListView<User> patientListView;
 
-    
-    ObservableList<User> obPatients; 
+    ObservableList<User> obPatients;
+
     /**
      * Initializes the controller class.
      */
@@ -59,18 +58,18 @@ public class DiaryFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
-        
+
         System.out.println(ListOfPatients.getPatientList());
-       
+
 //        for(int i = 0; i < ListOfPatients.list.size(); i++){  //addAll virkede ikke!
 //              obPatients.add(ListOfPatients.list.get(i));
 //       }
 //     
-        obPatients.addAll(ListOfPatients.getPatientList());
-        
-        System.out.println("ob" +  obPatients);
-     //   obPatients =  FXCollections.observableArrayList();
-       // patientListView.setItems(obPatients);
+//        obPatients.addAll(ListOfPatients.getPatientList());
+
+        System.out.println("ob" + obPatients);
+        //   obPatients =  FXCollections.observableArrayList();
+        // patientListView.setItems(obPatients);
 
         ListOfDiaryNote.setEditable(false);
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
@@ -84,11 +83,9 @@ public class DiaryFXMLController implements Initializable {
     private void handleLogOutButtonAction(ActionEvent event) {
     }
 
-
     @FXML
     private void handleDagbogTextClickAction(MouseEvent event) {
     }
-
 
     DiaryList dl = new DiaryList();
 

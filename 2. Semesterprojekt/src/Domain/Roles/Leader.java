@@ -18,5 +18,5 @@ public class Leader extends Role {
     public String toString() {
         return "Leader";
     }
-  
+
 }
