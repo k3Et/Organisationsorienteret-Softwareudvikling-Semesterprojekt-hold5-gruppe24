@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,11 +36,11 @@ import javafx.stage.Stage;
 public class AssignRoleController implements Initializable {
 
     @FXML
-    private ListView<User> chooseUserList;
+    private ListView<?> chooseUserList;
     @FXML
     private Button acceptBtn;
     @FXML
-    private ListView<Role> chooseRoleList;
+    private ListView<?> chooseRoleList;
     @FXML
     private Button cancelBtn;
 

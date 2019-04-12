@@ -18,4 +18,5 @@ public class Patient extends Role {
     public String toString() {
         return "Patient";
     }
+
 }

@@ -14,6 +14,7 @@ public class Employee extends Role {
     private static String[] permissions = {"create note", "view note", "view patient"};
     private List<User> relations = new ArrayList<>();
 
+
     public Employee() {
         super("Employee");
         super.addPermissions(permissions);
@@ -40,4 +41,5 @@ public class Employee extends Role {
     public List<User> getRelations() {
         return relations;
     }
+
 }
