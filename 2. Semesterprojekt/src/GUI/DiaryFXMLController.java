@@ -97,7 +97,11 @@ public class DiaryFXMLController implements Initializable {
     private void onPatientClickedHandler(MouseEvent event) {
         selectedUser = patientListView.getSelectionModel().getSelectedItem(); //finds the selected item  
         System.out.println(selectedUser);
-
+        diary.setPatientName(selectedUser);
+        
+        System.out.println(diary.getFiles());
+        //tag en string, PATIENT NAME og brug den i en metode i diarys argument
+        
         //loadUserNotes()
     }
 
