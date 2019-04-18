@@ -40,6 +40,10 @@ public class DiaryList {
     private File[] fileArray;
     // private Employee currentEmployee;
     // private Patient currentPatient;
+    private List<String> fileNameList;
+    private Scanner s;
+    private Scanner n;
+    private File[] filesArray;
 
     public DiaryList() {
         diaryList = new ArrayList<>();
@@ -94,12 +98,10 @@ public class DiaryList {
 
         aFolderName = "notes/" + patient + "/";
         diaryFolder = new File(aFolderName);
-
         List fileString;
         fileString = new ArrayList<>();
-        File[] filesArray = diaryFolder.listFiles();
+        filesArray = diaryFolder.listFiles();
         List<String> sList = new ArrayList<>();
-        Scanner s;
         for (int i = 0; i < filesArray.length; i++) {
             if (filesArray[i].isFile()) {
                 try {
@@ -109,12 +111,27 @@ public class DiaryList {
                     }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(DiaryList.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    s.close();
                 }
-
             }
         }
-
         return sList;
     }
 
+    public List getFileName() {
+        
+        fileNameList = new ArrayList<>();
+        for (int i = 0; i < filesArray.length; i++) {
+            fileNameList.add(filesArray[i].getName());
+
+//            n = new Scanner(filesArray[i].getName());
+//            while (n.hasNext()) {
+//
+//                fileNameList.add(n.next());
+//            }
+        }
+        return fileNameList;
+
+    }
 }

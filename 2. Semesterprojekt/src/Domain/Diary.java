@@ -17,7 +17,7 @@ public class Diary {
 
     public void saveDiaryNote(DiaryNote diary) {
         System.out.println("DOMAIN " + diary);
-        
+
         dList.saveDiaryNote(diary);
     }
 
@@ -41,10 +41,13 @@ public class Diary {
     public void setPatientName(User patientName) {
         dList.setPatientName(patientName);
     }
-    
-     public List getFiles(){
-         
-         
+
+    public List getFiles() {
+
         return dList.getFiles();
-     }
+    }
+
+    public List getFileName() {
+        return dList.getFileName();
+    }
 }

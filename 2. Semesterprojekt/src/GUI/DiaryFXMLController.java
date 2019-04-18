@@ -125,8 +125,7 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private void openBtnHandler(ActionEvent event) {
         for (int i = 0; i < diary.getFiles().size(); i++) {
-
-            TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)));
+            TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName());
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
             obList.add(note);
