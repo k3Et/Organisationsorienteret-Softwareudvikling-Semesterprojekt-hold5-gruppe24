@@ -32,11 +32,12 @@ public class DiaryList {
     private File diaryFolder;
     private DiaryNote diaryNote;
     private String filename;
-    private String folderName;
+    private String aFolderName;
+    private String standardPath;
     private Date date;
     private String patient;
-    private List <File> fileList;
-    private File [] fileArray ;
+    private List<File> fileList;
+    private File[] fileArray;
     // private Employee currentEmployee;
     // private Patient currentPatient;
 
@@ -46,30 +47,23 @@ public class DiaryList {
     }
 
     public void saveDiaryNote(DiaryNote diaryNote) {
-        System.out.println("DATA " + diaryNote);
         //i stedet for notes skal der stå patientens navn så man kan finde notet tilhørende en person
-        folderName = "notes/" + patient + "/";  
-        diaryFolder = new File(folderName);
+        aFolderName = "notes/" + patient + "/";
+        diaryFolder = new File(aFolderName);
         diaryFolder.mkdirs();  //dette laver en ny folder.
         //har delt de to op for ellers ville diaryFile lave folder hele vejen igennem path'en og ingen filer. Det vil sige at diaryFolder står kun for at lave folders.
-        filename = "notes/" + patient + "/"+convertDate() + /*currentEmployee.getName()+*/ ".txt";
+        filename = "notes/" + patient + "/" + convertDate() + /*currentEmployee.getName()+*/ ".txt";
         diaryFile = new File(filename);
-
-  
-
         try {
             diaryFile.createNewFile();
         } catch (IOException ex) {
             System.out.println(ex);
-
         }
-
         try (FileWriter fw = new FileWriter(diaryFile, true)) {
             fw.write(diaryNote.getNote());
         } catch (IOException ex) {
             System.out.println(ex);
         }
-
     }
 
     public void removeDiaryNote(DiaryNote diary) {
@@ -95,16 +89,32 @@ public class DiaryList {
     public String getNotes() {
         return diaryNote.getNote();
     }
-    
-    public File[] getFiles(){
-        fileList = new ArrayList<>();
-        
-         fileArray = new File(folderName).listFiles();
-         String str = "";
-         System.out.println("eee"+fileArray);
-        
-     
-        return fileArray;
+
+    public List getFiles() {
+
+        aFolderName = "notes/" + patient + "/";
+        diaryFolder = new File(aFolderName);
+
+        List fileString;
+        fileString = new ArrayList<>();
+        File[] filesArray = diaryFolder.listFiles();
+        List<String> sList = new ArrayList<>();
+        Scanner s;
+        for (int i = 0; i < filesArray.length; i++) {
+            if (filesArray[i].isFile()) {
+                try {
+                    s = new Scanner(filesArray[i]);
+                    while (s.hasNext()) {
+                        sList.add(s.next());
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(DiaryList.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
+
+        return sList;
     }
 
 }

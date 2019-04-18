@@ -11,6 +11,7 @@ import Domain.Diary;
 import Domain.DiaryNote;
 import Domain.ListOfPatients;
 import Domain.User;
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -47,7 +48,7 @@ public class DiaryFXMLController implements Initializable {
 
     ObservableList<TextArea> obList;
 
-   // private String writtenNote = "";
+    // private String writtenNote = "";
     @FXML
     private ListView<User> patientListView;
 
@@ -66,19 +67,17 @@ public class DiaryFXMLController implements Initializable {
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
 
-        System.out.println(ListOfPatients.getPatientList());
-
 //        for(int i = 0; i < ListOfPatients.list.size(); i++){  //addAll virkede ikke!
 //              obPatients.add(ListOfPatients.list.get(i));
 //       }
 //     
-        System.out.println("ob" + obPatients);
         obPatients = FXCollections.observableArrayList();
         patientListView.setItems(obPatients);
 
         obPatients.addAll(ListOfPatients.getPatientList());
         ListOfDiaryNote.setEditable(false);
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
+
     }
 
     @FXML
@@ -96,31 +95,41 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private void onPatientClickedHandler(MouseEvent event) {
         selectedUser = patientListView.getSelectionModel().getSelectedItem(); //finds the selected item  
-        System.out.println(selectedUser);
+
         diary.setPatientName(selectedUser);
-        
-        System.out.println(diary.getFiles());
+
         //tag en string, PATIENT NAME og brug den i en metode i diarys argument
-        
         //loadUserNotes()
     }
 
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
-        
-      String writtenNote = WriteDiaryNote.getText();
+
+        String writtenNote = WriteDiaryNote.getText();
 
         // d.setPatientName(selectedUser);
         if (!writtenNote.equals("")) {
             TextArea note = new TextArea(writtenNote);
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
-            System.out.println("CONTROLLER " +writtenNote);
+            obList.add(note);
+            System.out.println("CONTROLLER " + writtenNote);
             diary.saveDiaryNote(new DiaryNote(writtenNote));
             diary.convertDate();
-            obList.add(note);
 
             WriteDiaryNote.setText("");
+
+        }
+    }
+
+    @FXML
+    private void openBtnHandler(ActionEvent event) {
+        for (int i = 0; i < diary.getFiles().size(); i++) {
+
+            TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)));
+            note.setEditable(false);
+            note.setStyle("-fx-background-color: lightblue;");
+            obList.add(note);
         }
     }
 

@@ -3,6 +3,7 @@ package Domain;
 import Data.DiaryList;
 import Domain.DiaryNote;
 import java.io.File;
+import java.util.List;
 
 /**
  *
@@ -41,9 +42,9 @@ public class Diary {
         dList.setPatientName(patientName);
     }
     
-     public File[]  getFiles(){
+     public List getFiles(){
          
-          System.out.println("aaa");
+         
         return dList.getFiles();
      }
 }

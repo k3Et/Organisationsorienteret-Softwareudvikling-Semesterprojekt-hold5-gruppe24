@@ -37,6 +37,11 @@
                                 <Font name="Bodoni MT" size="25.0" />
                             </font>
                         </Text>
+                  <Button layoutX="103.0" layoutY="950.0" mnemonicParsing="false" onAction="#openBtnHandler" prefHeight="25.0" prefWidth="109.0" text="Åben">
+                     <font>
+                        <Font name="Karla" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             </items>
