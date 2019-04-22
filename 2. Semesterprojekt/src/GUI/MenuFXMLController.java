@@ -3,6 +3,7 @@ package GUI;
 import java.net.URL;
 import java.util.Observer;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,25 +22,16 @@ import javafx.scene.text.Text;
 public class MenuFXMLController implements Initializable {
 
     @FXML
-    private ListView<?> menuListView;
+    private ListView<String> menuListView;
     @FXML
     private Button backButton;
     @FXML
     private Button logOutButton;
-    @FXML
-    private Text patientTextBtn;
-    @FXML
-    private ListView<?> ListOfDiaryNote;
 
-    ObservableList<TextArea> OListDairyNote;
-    @FXML
-    private Text DagbogBtn;
-    @FXML
-    private Text AnsatteBtn;
-    @FXML
-    private TextArea WriteDiaryNote;
-    @FXML
-    private Button SaveNoteBtn;
+    private String selectedMenu;
+    ObservableList<String> OListDairyNote;
+    
+    SceneHandler sh = new SceneHandler();
 
     /**
      * Initializes the controller class.
@@ -47,6 +39,12 @@ public class MenuFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        OListDairyNote = FXCollections.observableArrayList();
+        menuListView.setItems(OListDairyNote);
+        
+        OListDairyNote.add("dagbog");
+        OListDairyNote.add("roller");
+        OListDairyNote.add("relationer");
     }
 
     @FXML
@@ -58,15 +56,16 @@ public class MenuFXMLController implements Initializable {
     }
 
     @FXML
-    private void handlePatientTextClickAction(MouseEvent event) {
+    private void handlerOpenMenu(MouseEvent event) {
+        selectedMenu = menuListView.getSelectionModel().getSelectedItem();
+        if (selectedMenu.equals("dagbog")) {
+            sh.setNewScene("/GUI/FXML/Diary.fxml");
+        } else if (selectedMenu.equals("roller")) {
+            sh.setNewScene("/GUI/FXML/AssignRole.fxml");
+        } else if (selectedMenu.equals("relationer")) {
+            sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+        }
     }
 
-    @FXML
-    private void handleDagbogTextClickAction(MouseEvent event) {
-    }
-
-    @FXML
-    private void handleAnsatteTextClickAction(MouseEvent event) {
-    }
 
 }

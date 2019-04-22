@@ -10,18 +10,19 @@ import java.util.List;
  */
 public class Controller {
 
-    ListOfUsers users = new ListOfUsers();
-    List<Role> listOfRoles = new ArrayList<>();
+    static ListOfUsers users = new ListOfUsers();
+    static List<Role> listOfRoles = new ArrayList<>();
 
-    Employee employee = new Employee();
-    Admin admin = new Admin();
-    Leader leader = new Leader();
-    Patient patient = new Patient();
+    static Employee employee = new Employee();
+    static Admin admin = new Admin();
+    static Leader leader = new Leader();
+    static Patient patient = new Patient();
 
-    public void setStockUsers() {
-        User u = new User("Erik Nielsen", "KnudErGud123", "Erik90", "1234567890", "12345678", "bla@bla.dk", "Amalienborg 1", employee);
+
+    public static void setStockUsers() {
+        User u = new User("Erik", "KnudErGud123", "Erik90", "1234567890", "12345678", "bla@bla.dk", "Amalienborg 1", employee);
         User u2 = new User("Birthe Madsen", "dfg", "LadyB", "0987654321", "88888888", "noget@bla.dk", "Tuberkulosevej 7", patient);
-        User u3 = new User("Ib Ibsen", "password", "username", "0258741369", "46137943", "ib@ib.dk", "Pinsevænget 80", admin);
+        User u3 = new User("Ib", "password", "username", "0258741369", "46137943", "ib@ib.dk", "Pinsevænget 80", admin);
         User u4 = new User("Leder John", "password", "username", "0258741369", "46137943", "ib@ib.dk", "Pinsevænget 80", leader);
         User u5 = new User("Patrick Pilsby", "dfg", "LadyB", "0987654321", "88888888", "noget@bla.dk", "Tuberkulosevej 7", patient);
         User test = new User("Victor Elmkvist", "test", "test", "452559 - 2451", "45878963", "email@gmail.com", "Addressevej 97", patient);
@@ -45,19 +46,19 @@ public class Controller {
         
     }
 
-    public List getStockUsers() {
+    public static List<User> getStockUsers() {
 
         return users.getList();
     }
 
-    public void setStockRoleList() {
+    public static void setStockRoleList() {
         listOfRoles.add(employee);
         listOfRoles.add(patient);
         listOfRoles.add(leader);
         listOfRoles.add(admin);
     }
 
-    public List getStockRoleList() {
+    public static List getStockRoleList() {
         return listOfRoles;
     }
 

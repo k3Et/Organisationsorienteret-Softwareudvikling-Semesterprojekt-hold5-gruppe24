@@ -55,7 +55,7 @@ public class AssignRoleController implements Initializable {
 
     private ObservableList<String> userInfoList;
     //ListOfUsers lou ;
-    Controller c = new Controller();
+    
     @FXML
     private ListView<String> userInfoListView;
 
@@ -65,8 +65,8 @@ public class AssignRoleController implements Initializable {
     private User selectedUser;
     private Role selectedRole;
 
-    private SceneHandler sh = new SceneHandler();
-
+    SceneHandler sh = new SceneHandler();
+    
     /**
      * Initializes the controller class.
      */
@@ -82,10 +82,8 @@ public class AssignRoleController implements Initializable {
         userInfoList = FXCollections.observableArrayList();
         userInfoListView.setItems(userInfoList);
 
-        c.setStockUsers();
-        c.setStockRoleList();
-        userList.addAll(c.getStockUsers());
-        roleList.addAll(c.getStockRoleList());
+        userList.addAll(Controller.getStockUsers());
+        roleList.addAll(Controller.getStockRoleList());
         //showUsers();
 
     }
@@ -196,6 +194,11 @@ public class AssignRoleController implements Initializable {
         userInfoList.clear();
         loadUserInfo(selectedUser);
 
+    }
+
+    @FXML
+    private void handlerBtnBack(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Menu.fxml");
     }
 
 }
