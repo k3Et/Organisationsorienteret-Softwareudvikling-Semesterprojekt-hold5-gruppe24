@@ -64,7 +64,7 @@ public class DiaryFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        c.setStockUsers();
+     //   c.setStockUsers();
         diary = new Diary();
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
@@ -127,6 +127,8 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void openBtnHandler(ActionEvent event) {
+        obList.clear();
+        
         for (int i = 0; i < diary.getFiles().size(); i++) {
             TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName());
             note.setEditable(false);
