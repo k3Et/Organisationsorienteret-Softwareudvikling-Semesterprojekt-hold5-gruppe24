@@ -58,13 +58,13 @@ public class DiaryFXMLController implements Initializable {
     private Diary diary;
 
     SceneHandler sh = new SceneHandler();
-        
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     //   c.setStockUsers();
+        //   c.setStockUsers();
         diary = new Diary();
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
@@ -78,8 +78,8 @@ public class DiaryFXMLController implements Initializable {
 
         obPatients.addAll(ListOfPatients.getPatientList());
         ListOfDiaryNote.setEditable(false);
-        //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
 
+        //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
     }
 
     @FXML
@@ -89,6 +89,7 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void handleLogOutButtonAction(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
     }
 
     @FXML
@@ -100,7 +101,10 @@ public class DiaryFXMLController implements Initializable {
         selectedUser = patientListView.getSelectionModel().getSelectedItem(); //finds the selected item  
 
         diary.setPatientName(selectedUser);
-
+        if (selectedUser != null) {
+            ListOfDiaryNote.scrollTo(obList.size());
+            readFiles();
+        }
         //tag en string, PATIENT NAME og brug den i en metode i diarys argument
         //loadUserNotes()
     }
@@ -109,31 +113,40 @@ public class DiaryFXMLController implements Initializable {
     private void SaveNoteBtnHandler(ActionEvent event) {
 
         String writtenNote = WriteDiaryNote.getText();
-
+        String user = LoginFXMLController.currentUserLoggedIn;
+        String combines = writtenNote + "\n" + "skrevet af: " + user;
         // d.setPatientName(selectedUser);
         if (!writtenNote.equals("")) {
-            TextArea note = new TextArea(writtenNote);
-            note.setEditable(false);
-            note.setStyle("-fx-background-color: lightblue;");
-            obList.add(note);
-            System.out.println("CONTROLLER " + writtenNote);
-            diary.saveDiaryNote(new DiaryNote(writtenNote));
-            diary.convertDate();
+            if (selectedUser == null) {
+                TextArea warning = new TextArea("Vælg venligst en beboer");
+                warning.setStyle("-fx-background-color: red;");
+                warning.setStyle("-fx-font-style: Bold");
+                obList.add(warning);
+            } else {
 
-            WriteDiaryNote.setText("");
+                diary.saveDiaryNote(new DiaryNote(combines));
+                diary.convertDate();
 
+                WriteDiaryNote.setText("");
+                readFiles();
+            }
         }
+
     }
 
-    @FXML
-    private void openBtnHandler(ActionEvent event) {
+    private void readFiles() {
         obList.clear();
-        
-        for (int i = 0; i < diary.getFiles().size(); i++) {
-            TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName());
-            note.setEditable(false);
-            note.setStyle("-fx-background-color: lightblue;");
+        if (diary.getFiles().isEmpty()) {
+            TextArea note = new TextArea("Indeholder ingen noter");
             obList.add(note);
+        } else {
+
+            for (int i = 0; i < diary.getFiles().size(); i++) {
+                TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName().get(i));
+                note.setEditable(false);
+                note.setStyle("-fx-background-color: lightblue;");
+                obList.add(note);
+            }
         }
     }
 

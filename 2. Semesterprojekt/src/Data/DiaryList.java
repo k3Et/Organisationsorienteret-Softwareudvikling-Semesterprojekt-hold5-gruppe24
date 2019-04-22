@@ -80,7 +80,7 @@ public class DiaryList {
 
     public String convertDate() {
         date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
         String dateTime = dateFormat.format(date);
         return dateTime;
     }
@@ -98,17 +98,17 @@ public class DiaryList {
 
         aFolderName = "notes/" + patient + "/";
         diaryFolder = new File(aFolderName);
-        List fileString;
-        fileString = new ArrayList<>();
         filesArray = diaryFolder.listFiles();
         List<String> sList = new ArrayList<>();
-        for (int i = 0; i < filesArray.length; i++) {
-            if (filesArray[i].isFile()) {
+        for (File file : filesArray) {
+            if (file.isFile()) {
                 try {
-                    s = new Scanner(filesArray[i]);
+                    s = new Scanner(file);
+                    String tot = "";
                     while (s.hasNext()) {
-                        sList.add(s.next());
+                        tot += s.nextLine() + "\n";
                     }
+                    sList.add(tot);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(DiaryList.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
@@ -120,16 +120,21 @@ public class DiaryList {
     }
 
     public List getFileName() {
-        
         fileNameList = new ArrayList<>();
+        String stringHolder;
+        String fileNameFormatted;
+        String date;
+        String time;
         for (int i = 0; i < filesArray.length; i++) {
-            fileNameList.add(filesArray[i].getName());
 
-//            n = new Scanner(filesArray[i].getName());
-//            while (n.hasNext()) {
-//
-//                fileNameList.add(n.next());
-//            }
+            stringHolder = filesArray[i].getName().replace(".txt", "").replace("_", " ");
+            date = stringHolder.substring(0, 10).replace(" ", "/");
+            time = stringHolder.substring(11, stringHolder.length()).replace(" ", ":");
+
+            fileNameFormatted = date + " " + time;
+
+            fileNameList.add(fileNameFormatted);
+
         }
         return fileNameList;
 

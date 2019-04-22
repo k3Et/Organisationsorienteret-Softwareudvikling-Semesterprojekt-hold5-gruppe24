@@ -30,7 +30,7 @@ public class MenuFXMLController implements Initializable {
 
     private String selectedMenu;
     ObservableList<String> OListDairyNote;
-    
+
     SceneHandler sh = new SceneHandler();
 
     /**
@@ -41,7 +41,7 @@ public class MenuFXMLController implements Initializable {
         // TODO
         OListDairyNote = FXCollections.observableArrayList();
         menuListView.setItems(OListDairyNote);
-        
+
         OListDairyNote.add("dagbog");
         OListDairyNote.add("roller");
         OListDairyNote.add("relationer");
@@ -53,6 +53,7 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void handleLogOutButtonAction(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
     }
 
     @FXML
@@ -66,6 +67,5 @@ public class MenuFXMLController implements Initializable {
             sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
         }
     }
-
 
 }

@@ -1,16 +1,15 @@
 package GUI;
 
+import Data.Database;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,8 +44,14 @@ public class LoginFXMLController implements Initializable {
     private Label resultLabel;
     @FXML
     private AnchorPane rootPane;
+
     Random r = new Random();
     Image[] loginImages;
+
+    SceneHandler sh = new SceneHandler();
+
+    Database ds = new Database();
+    public static String currentUserLoggedIn;
 
     /**
      * Initializes the controller class.
@@ -69,7 +74,9 @@ public class LoginFXMLController implements Initializable {
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
         if (verifyLogin(userNameField.getText(), passWordField.getText())) {
+            currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
+            sh.setNewScene("/GUI/FXML/Menu.fxml");
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
@@ -79,14 +86,15 @@ public class LoginFXMLController implements Initializable {
     private void handleLoginButtonAction(ActionEvent event) throws IOException {
         //Create verification with SQL database here:
         if (verifyLogin(userNameField.getText(), passWordField.getText())) {
+            currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
-            rootPane = FXMLLoader.load(getClass().getResource("/GUI/FXML/Menu.fxml"));
-            rootPane.getChildren().setAll();
+            sh.setNewScene("/GUI/FXML/Menu.fxml");
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
     }
 
+    //Verify from file
     public boolean verifyLogin(String username, String password) {
 
         File file = new File("src/Data/LoginData.txt");
