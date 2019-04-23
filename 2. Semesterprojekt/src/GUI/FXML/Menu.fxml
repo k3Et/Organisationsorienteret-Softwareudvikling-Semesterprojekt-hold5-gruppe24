@@ -8,18 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="307.0" prefWidth="632.0" style="-fx-background-color: linear-gradient(to bottom right, lightblue, gray);" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuFXMLController">
+<AnchorPane id="AnchorPane" centerShape="false" prefHeight="307.0" prefWidth="632.0" style="-fx-background-color: linear-gradient(to bottom right, lightblue, gray);" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuFXMLController">
     <children>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-            <children>
-                <ImageView fitHeight="70.0" fitWidth="147.0" layoutX="-4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../Pictures/NoTiBoImage.png" />
-                    </image>
-                </ImageView>
-                <Button fx:id="homeButton" layoutX="-1.0" mnemonicParsing="false" opacity="0.0" prefHeight="70.0" prefWidth="87.0" />
-            </children>
-        </AnchorPane>
       <HBox layoutX="50.0" layoutY="135.0" prefHeight="50.0" prefWidth="552.0" style="-fx-background-color: linear-gradient(to right, #91bbc9,#828080 );">
          <children>
             <Button mnemonicParsing="false" onAction="#diaryBtnHandler" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-family: Karla; -fx-font-size: 17px;" text="Dagbog">
@@ -27,7 +17,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#relationBtnHandler" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-family: Karla; -fx-font-size: 17px;" text="Relationer til borgere">
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#relationBtnHandler" prefHeight="35.0" prefWidth="208.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-family: Karla; -fx-font-size: 17px;" text="Relationer til borgere">
                <HBox.margin>
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
@@ -51,6 +41,12 @@
                 </Button>
          </children>
       </HBox>
+          <ImageView fitHeight="70.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../../Pictures/NoTiBoImage.png" />
+              </image>
+          </ImageView>
+          <Button fx:id="homeButton" mnemonicParsing="false" opacity="0.0" prefHeight="70.0" prefWidth="87.0" />
     </children>
     
 

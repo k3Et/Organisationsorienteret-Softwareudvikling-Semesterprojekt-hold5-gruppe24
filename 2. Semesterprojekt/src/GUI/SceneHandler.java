@@ -41,7 +41,8 @@ public class SceneHandler {
             currentStage.show();
             
             currentStage.centerOnScreen();
-            currentStage.setMaximized(true);
+            currentStage.setFullScreen(true);
+
             matchCSSWithFXML(fxml);
             //currentSceneString = fxml;
         } catch (IOException ex) {
