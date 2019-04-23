@@ -36,18 +36,25 @@ public class SceneHandler {
 
             currentScene = new Scene(parent);
             currentStage.setScene(currentScene);
+
             
-        
+            currentStage.show();
             
             currentStage.centerOnScreen();
             currentStage.setMaximized(true);
-            currentStage.show();
-
+            matchCSSWithFXML(fxml);
             //currentSceneString = fxml;
         } catch (IOException ex) {
             Logger.getLogger(SceneHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void matchCSSWithFXML(String fxml) {
+        if (fxml.equals("/GUI/FXML/Menu.fxml")) {
+            String css = MenuFXMLController.class.getResource("Menu.css").toExternalForm();
+            currentScene.getStylesheets().add(css);
+        }
     }
 
     public void setCurrentStage(Stage stage) {

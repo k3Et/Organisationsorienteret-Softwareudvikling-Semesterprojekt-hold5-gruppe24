@@ -18,10 +18,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class MenuFXMLController implements Initializable {
 
-    @FXML
     private ListView<String> menuListView;
-    @FXML
-    private Button backButton;
     @FXML
     private Button logOutButton;
 
@@ -44,34 +41,34 @@ public class MenuFXMLController implements Initializable {
         // TODO
         
        
-        
-        OListDairyNote = FXCollections.observableArrayList();
-        menuListView.setItems(OListDairyNote);
+     
 
-        OListDairyNote.add("dagbog");
-        OListDairyNote.add("roller");
-        OListDairyNote.add("relationer");
+       
     }
 
-    @FXML
-    private void handleBackButtonAction(ActionEvent event) {
-    }
 
     @FXML
     private void handleLogOutButtonAction(ActionEvent event) {
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
     }
 
-    @FXML
     private void handlerOpenMenu(MouseEvent event) {
-        selectedMenu = menuListView.getSelectionModel().getSelectedItem();
-        if (selectedMenu.equals("dagbog")) {
-            sh.setNewScene("/GUI/FXML/Diary.fxml");
-        } else if (selectedMenu.equals("roller")) {
-            sh.setNewScene("/GUI/FXML/AssignRole.fxml");
-        } else if (selectedMenu.equals("relationer")) {
-            sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
-        }
+
+    }
+
+    @FXML
+    private void diaryBtnHandler(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Diary.fxml");
+    }
+
+    @FXML
+    private void relationBtnHandler(ActionEvent event) {
+         sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+    }
+
+    @FXML
+    private void employeeRoleBtnHandler(ActionEvent event) {
+         sh.setNewScene("/GUI/FXML/AssignRole.fxml");
     }
 
 }
