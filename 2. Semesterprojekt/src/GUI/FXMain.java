@@ -18,7 +18,6 @@ public class FXMain extends Application {
     }
 
     private Stage primaryStage;
-    protected static Controller c = new Controller();
     @Override
     public void start(Stage stage) {
 
