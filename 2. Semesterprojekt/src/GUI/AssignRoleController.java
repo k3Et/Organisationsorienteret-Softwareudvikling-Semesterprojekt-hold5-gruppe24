@@ -2,12 +2,7 @@ package GUI;
 
 import Domain.Controller;
 
-import Domain.ListOfEmployees;
-
-import Domain.ListOfResidents;
 import Domain.Role;
-import Domain.Roles.Employee;
-import Domain.Roles.Resident;
 import Domain.User;
 import java.io.IOException;
 import java.util.Scanner;

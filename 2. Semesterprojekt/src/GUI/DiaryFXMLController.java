@@ -5,15 +5,12 @@
  */
 package GUI;
 
-import Domain.Controller;
 import Domain.Diary;
 
 import Domain.DiaryNote;
 import Domain.ListOfResidents;
 import Domain.User;
-import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,7 +50,6 @@ public class DiaryFXMLController implements Initializable {
     private ListView<User> residentListView;
 
     ObservableList<User> obResidents;
-    Controller c = new Controller();
     private User selectedUser;
     private Diary diary;
 

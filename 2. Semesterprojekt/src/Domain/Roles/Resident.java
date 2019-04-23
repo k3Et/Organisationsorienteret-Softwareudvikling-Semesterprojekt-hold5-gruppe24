@@ -11,7 +11,7 @@ public class Resident extends Role {
     private String[] permissions = {};
 
     public Resident() {
-        super("Patient");
+        super("Resident");
         super.addPermissions(permissions);
     }
 

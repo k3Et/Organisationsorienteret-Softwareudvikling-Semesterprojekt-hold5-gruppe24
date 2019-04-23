@@ -2,7 +2,6 @@ package Domain;
 
 import Data.DiaryList;
 import Domain.DiaryNote;
-import java.io.File;
 import java.util.List;
 
 /**
