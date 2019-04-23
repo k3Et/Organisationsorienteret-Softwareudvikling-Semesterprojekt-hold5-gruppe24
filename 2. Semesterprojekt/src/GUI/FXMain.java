@@ -18,9 +18,9 @@ public class FXMain extends Application {
     }
 
     private Stage primaryStage;
+
     @Override
     public void start(Stage stage) {
-
 
         Controller.setStockUsers();
         Controller.setStockRoleList();
@@ -29,7 +29,6 @@ public class FXMain extends Application {
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
         stage.setMaximized(true);
-       
 
     }
 

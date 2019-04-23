@@ -1,17 +1,14 @@
 package GUI;
 
-import Data.Database;
+import Domain.DatabaseHandler;
+import Domain.FileHandler;
 import static GUI.SceneHandler.currentScene;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,13 +45,15 @@ public class LoginFXMLController implements Initializable {
     private AnchorPane rootPane;
 
     private Random r = new Random();
-    
+
     private Image[] loginImages;
 
     private SceneHandler sh = new SceneHandler();
 
-    private Database ds = new Database();
-    
+    private DatabaseHandler dh = new DatabaseHandler();
+
+    private FileHandler fh = new FileHandler();
+
     public static String currentUserLoggedIn;
 
     /**
@@ -77,7 +76,7 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (fh.verifyLogin(userNameField.getText(), passWordField.getText())) {
             currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
@@ -92,7 +91,7 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handleLoginButtonAction(ActionEvent event) throws IOException {
         //Create verification with SQL database here:
-        if (ds.verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (dh.verifyLogin(userNameField.getText(), passWordField.getText())) {
             currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
@@ -106,26 +105,4 @@ public class LoginFXMLController implements Initializable {
         }
     }
 
-    //Verify from file
-    public boolean verifyLogin(String username, String password) {
-
-        File file = new File("src/Data/LoginData.txt");
-        try (Scanner scan = new Scanner(file);) {
-            String tot = "";
-            while (scan.hasNext()) {
-                tot += scan.nextLine();
-            }
-            String[] data = tot.split(";");
-            for (int i = 0; i < data.length; i += 2) {
-                if (data[i].equals(username) && data[i + 1].equals(password)) {
-                    return true;
-                }
-            }
-
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex);
-        }
-        return false;
-
-    }
 }

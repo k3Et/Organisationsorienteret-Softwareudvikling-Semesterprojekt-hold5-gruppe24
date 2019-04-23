@@ -14,15 +14,13 @@ import java.sql.SQLException;
  */
 public class Database {
 
-
     private Connection con = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    private String url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid";
-    private String Username = "qtbrqkid";
-    private String Password = "ju1tuAMRQjWkEU-_Pe-5gHMzyNQfm7qa";
-
+    private final String url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid";
+    private final String Username = "qtbrqkid";
+    private final String Password = "ju1tuAMRQjWkEU-_Pe-5gHMzyNQfm7qa";
 
     //This method is meant to verify the users given logininformation.
     public boolean verifyLogin(String username, String password) {
