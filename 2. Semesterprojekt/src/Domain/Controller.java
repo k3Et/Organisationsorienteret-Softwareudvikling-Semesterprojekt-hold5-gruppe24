@@ -18,7 +18,6 @@ public class Controller {
     static Leader leader = new Leader();
     static Resident resident = new Resident();
 
-
     public static void setStockUsers() {
         User u = new User("Erik", "KnudErGud123", "Erik90", "1234567890", "12345678", "bla@bla.dk", "Amalienborg 1", employee);
         User u2 = new User("Birthe Madsen", "dfg", "LadyB", "0987654321", "88888888", "noget@bla.dk", "Tuberkulosevej 7", resident);
@@ -41,9 +40,8 @@ public class Controller {
         ListOfResidents.addResident(u3);
         ListOfResidents.addResident(u4);
         ListOfResidents.addResident(u5);
-         ListOfResidents.addResident(test);
+        ListOfResidents.addResident(test);
 
-        
     }
 
     public static List<User> getStockUsers() {
@@ -60,6 +58,32 @@ public class Controller {
 
     public static List getStockRoleList() {
         return listOfRoles;
+    }
+
+    public static void addRoleToUser(User selectedUser, Role selectedRole) {
+        if (!selectedUser.getRoles().contains(selectedRole)) {
+            selectedUser.getRoleList().addRole(selectedRole);
+            if (selectedRole instanceof Resident) {
+                ListOfResidents.addResident(selectedUser);
+            } else if (selectedRole instanceof Employee) {
+
+                ListOfEmployees.addEmployee(selectedUser);
+
+            }
+        }
+    }
+    
+    public static void removeRoleFromUser(User selectedUser, Role selectedRole) {
+        if (selectedUser.getRoles().contains(selectedRole)) {
+            selectedUser.getRoleList().removeRole(selectedRole);
+            if (selectedRole instanceof Resident) {
+
+                ListOfResidents.removeResident(selectedUser);
+            } else if (selectedRole instanceof Employee) {
+                ListOfEmployees.removeEmployee(selectedUser);
+
+            }
+        }
     }
 
 }

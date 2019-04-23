@@ -1,7 +1,6 @@
 package GUI;
 
 import java.net.URL;
-import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,9 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -29,11 +26,15 @@ public class MenuFXMLController implements Initializable {
     private Button logOutButton;
 
     private String selectedMenu;
-    ObservableList<String> OListDairyNote;
+    
+    private ObservableList<String> OListDairyNote;
 
-    SceneHandler sh = new SceneHandler();
+
     @FXML
     private Button homeButton;
+
+    private SceneHandler sh = new SceneHandler();
+
 
     /**
      * Initializes the controller class.

@@ -31,28 +31,30 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private ImageView loginImageView;
     @FXML
+    private ImageView NoTiBoImage;
+    @FXML
     private PasswordField passWordField;
     @FXML
     private Label passWordLabel;
     @FXML
-    private TextField userNameField;
-    @FXML
     private Label userNameLabel;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private ImageView NoTiBoImage;
     @FXML
     private Label resultLabel;
     @FXML
+    private TextField userNameField;
+    @FXML
+    private Button loginButton;
+    @FXML
     private AnchorPane rootPane;
 
-    Random r = new Random();
-    Image[] loginImages;
+    private Random r = new Random();
+    
+    private Image[] loginImages;
 
-    SceneHandler sh = new SceneHandler();
+    private SceneHandler sh = new SceneHandler();
 
-    Database ds = new Database();
+    private Database ds = new Database();
+    
     public static String currentUserLoggedIn;
 
     /**

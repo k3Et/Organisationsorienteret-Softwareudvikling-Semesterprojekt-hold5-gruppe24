@@ -5,15 +5,12 @@
  */
 package GUI;
 
-import Domain.Controller;
 import Domain.Diary;
 
 import Domain.DiaryNote;
 import Domain.ListOfResidents;
 import Domain.User;
-import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,27 +36,26 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private Button logOutButton;
     @FXML
+    private Button SaveNoteBtn;
+    @FXML
     private Text DagbogBtn;
     @FXML
     private TextArea WriteDiaryNote;
     @FXML
-    private Button SaveNoteBtn;
-    @FXML
     private ListView<TextArea> ListOfDiaryNote;
-
-    ObservableList<TextArea> obList;
-
-    // private String writtenNote = "";
     @FXML
     private ListView<User> residentListView;
 
-    ObservableList<User> obResidents;
-    Controller c = new Controller();
+    private ObservableList<TextArea> obList;
+    private ObservableList<User> obResidents;
+
     private User selectedUser;
+
     private Diary diary;
 
-    SceneHandler sh = new SceneHandler();
+    private SceneHandler sh = new SceneHandler();
 
+    // private String writtenNote = "";
     /**
      * Initializes the controller class.
      */
