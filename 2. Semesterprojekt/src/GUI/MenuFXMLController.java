@@ -26,9 +26,10 @@ public class MenuFXMLController implements Initializable {
     private Button logOutButton;
 
     private String selectedMenu;
-    ObservableList<String> OListDairyNote;
+    
+    private ObservableList<String> OListDairyNote;
 
-    SceneHandler sh = new SceneHandler();
+    private SceneHandler sh = new SceneHandler();
 
     /**
      * Initializes the controller class.

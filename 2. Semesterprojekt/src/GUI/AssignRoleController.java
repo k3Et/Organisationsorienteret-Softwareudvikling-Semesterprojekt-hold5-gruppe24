@@ -35,25 +35,25 @@ public class AssignRoleController implements Initializable {
     @FXML
     private ListView<User> chooseUserList;
     @FXML
-    private Button acceptBtn;
-    @FXML
     private ListView<Role> chooseRoleList;
+    @FXML
+    private ListView<String> userInfoListView;
+    @FXML
+    private Button acceptBtn;
     @FXML
     private Button cancelBtn;
 
     private ObservableList<User> userList;
     private ObservableList<Role> roleList;
-
     private ObservableList<String> userInfoList;
     //ListOfUsers lou ;
-    
-    @FXML
-    private ListView<String> userInfoListView;
 
     private Scanner s;
+    
     private String stringHolder;
 
     private User selectedUser;
+
     private Role selectedRole;
 
     SceneHandler sh = new SceneHandler();

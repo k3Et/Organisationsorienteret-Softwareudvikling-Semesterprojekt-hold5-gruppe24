@@ -35,26 +35,26 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private Button logOutButton;
     @FXML
+    private Button SaveNoteBtn;
+    @FXML
     private Text DagbogBtn;
     @FXML
     private TextArea WriteDiaryNote;
     @FXML
-    private Button SaveNoteBtn;
-    @FXML
     private ListView<TextArea> ListOfDiaryNote;
-
-    ObservableList<TextArea> obList;
-
-    // private String writtenNote = "";
     @FXML
     private ListView<User> residentListView;
 
-    ObservableList<User> obResidents;
+    private ObservableList<TextArea> obList;
+    private ObservableList<User> obResidents;
+
     private User selectedUser;
+
     private Diary diary;
 
-    SceneHandler sh = new SceneHandler();
+    private SceneHandler sh = new SceneHandler();
 
+    // private String writtenNote = "";
     /**
      * Initializes the controller class.
      */
