@@ -12,13 +12,13 @@ import java.sql.SQLException;
  */
 public class Database {
 
-    Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+    private Connection con = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
 
-    String url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid";
-    String Username = "qtbrqkid";
-    String Password = "ju1tuAMRQjWkEU-_Pe-5gHMzyNQfm7qa";
+    private String url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid";
+    private String Username = "qtbrqkid";
+    private String Password = "ju1tuAMRQjWkEU-_Pe-5gHMzyNQfm7qa";
 
     public boolean verifyLogin(String username, String password) {
 
