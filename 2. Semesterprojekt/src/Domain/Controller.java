@@ -72,7 +72,7 @@ public class Controller {
             }
         }
     }
-    
+
     public static void removeRoleFromUser(User selectedUser, Role selectedRole) {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
