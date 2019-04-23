@@ -39,6 +39,22 @@ public class User implements Comparable<User> {
 
     }
 
+    public String getCPR() {
+        return CPR;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public String getName() {
         return name;
     }

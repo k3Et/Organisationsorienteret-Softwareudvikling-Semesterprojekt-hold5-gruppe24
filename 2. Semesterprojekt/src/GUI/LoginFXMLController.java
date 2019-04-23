@@ -1,6 +1,7 @@
 package GUI;
 
 import Data.Database;
+import static GUI.SceneHandler.currentScene;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -77,6 +79,9 @@ public class LoginFXMLController implements Initializable {
             currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
+//            String css = MenuFXMLController.class.getResource("Menu.css").toExternalForm();
+//            currentScene.getStylesheets().add(css);
+//            System.out.println("css");
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
@@ -85,10 +90,15 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handleLoginButtonAction(ActionEvent event) throws IOException {
         //Create verification with SQL database here:
-        if (verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (ds.verifyLogin(userNameField.getText(), passWordField.getText())) {
             currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
+
+            String css = MenuFXMLController.class.getResource("Menu.css").toExternalForm();
+            currentScene.getStylesheets().add(css);
+            System.out.println("css");
+
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }

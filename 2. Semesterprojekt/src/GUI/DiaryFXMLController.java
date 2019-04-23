@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -77,6 +78,7 @@ public class DiaryFXMLController implements Initializable {
         residentListView.setItems(obResidents);
 
         obResidents.addAll(ListOfResidents.getResidentList());
+        
         ListOfDiaryNote.setEditable(false);
 
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
@@ -148,6 +150,11 @@ public class DiaryFXMLController implements Initializable {
         }
         //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
         //loadUserNotes()
+    }
+
+    @FXML
+    private void HomeBtnHandler(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Menu.fxml");
     }
 
 }

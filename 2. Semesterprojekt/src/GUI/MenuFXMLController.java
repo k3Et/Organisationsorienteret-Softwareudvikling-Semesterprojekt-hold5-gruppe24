@@ -32,6 +32,8 @@ public class MenuFXMLController implements Initializable {
     ObservableList<String> OListDairyNote;
 
     SceneHandler sh = new SceneHandler();
+    @FXML
+    private Button homeButton;
 
     /**
      * Initializes the controller class.
@@ -39,6 +41,9 @@ public class MenuFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+       
+        
         OListDairyNote = FXCollections.observableArrayList();
         menuListView.setItems(OListDairyNote);
 
