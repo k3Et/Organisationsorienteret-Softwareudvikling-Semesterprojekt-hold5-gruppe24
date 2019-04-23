@@ -36,6 +36,8 @@ public class SceneHandler {
 
             currentScene = new Scene(parent);
             currentStage.setScene(currentScene);
+            currentStage.centerOnScreen();
+            currentStage.setMaximized(true);
             currentStage.show();
 
             //currentSceneString = fxml;

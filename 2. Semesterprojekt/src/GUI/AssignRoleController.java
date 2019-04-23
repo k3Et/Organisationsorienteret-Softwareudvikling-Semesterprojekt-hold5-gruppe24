@@ -4,15 +4,12 @@ import Domain.Controller;
 
 import Domain.ListOfEmployees;
 
-import Domain.ListOfPatients;
-import Domain.ListOfUsers;
+import Domain.ListOfResidents;
 import Domain.Role;
 import Domain.Roles.Employee;
-import Domain.Roles.Patient;
+import Domain.Roles.Resident;
 import Domain.User;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +21,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -125,8 +121,8 @@ public class AssignRoleController implements Initializable {
     public void addRoleToUser(User selectedUser, Role selectedRole) {
         if (!selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().addRole(selectedRole);
-            if (selectedRole instanceof Patient) {
-                ListOfPatients.addPatient(selectedUser);
+            if (selectedRole instanceof Resident) {
+                ListOfResidents.addResident(selectedUser);
             } else if (selectedRole instanceof Employee) {
 
                 ListOfEmployees.addEmployee(selectedUser);
@@ -138,9 +134,9 @@ public class AssignRoleController implements Initializable {
     public void removeRoleFromUser(User selectedUser, Role selectedRole) {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
-            if (selectedRole instanceof Patient) {
+            if (selectedRole instanceof Resident) {
 
-                ListOfPatients.removePatient(selectedUser);
+                ListOfResidents.removeResident(selectedUser);
             } else if (selectedRole instanceof Employee) {
                 ListOfEmployees.removeEmployee(selectedUser);
 

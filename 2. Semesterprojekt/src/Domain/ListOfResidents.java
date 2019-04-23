@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import Domain.Roles.Patient;
+import Domain.Roles.Resident;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,16 +14,16 @@ import java.util.List;
  *
  * @author Patrick
  */
-public class ListOfPatients {
+public class ListOfResidents {
 
     private static List<User> list = new ArrayList<>();
 
-    public ListOfPatients() {
+    public ListOfResidents() {
     }
 
-    public static void addPatient(User u) {
+    public static void addResident(User u) {
         for (Role r : u.getRoles()) {
-            if (r instanceof Patient) {
+            if (r instanceof Resident) {
                 list.add(u);
                 return;
             }
@@ -31,13 +31,13 @@ public class ListOfPatients {
         Collections.sort(list);
     }
 
-    public static void removePatient(User u) {
+    public static void removeResident(User u) {
         if (list.contains(u)) {
             list.remove(u);
         }
     }
 
-    public static List<User> getPatientList() {
+    public static List<User> getResidentList() {
         return list;
     }
 }

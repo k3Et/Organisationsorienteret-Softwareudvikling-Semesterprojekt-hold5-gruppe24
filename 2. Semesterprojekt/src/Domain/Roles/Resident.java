@@ -6,17 +6,17 @@ import Domain.Role;
  *
  * @author Patrick
  */
-public class Patient extends Role {
+public class Resident extends Role {
 
     private String[] permissions = {};
 
-    public Patient() {
+    public Resident() {
         super("Patient");
         super.addPermissions(permissions);
     }
 
     public String toString() {
-        return "Patient";
+        return "Borger";
     }
 
 }

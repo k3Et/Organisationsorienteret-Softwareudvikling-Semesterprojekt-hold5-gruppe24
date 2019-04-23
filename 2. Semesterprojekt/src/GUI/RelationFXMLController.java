@@ -6,7 +6,7 @@
 package GUI;
 
 import Domain.ListOfEmployees;
-import Domain.ListOfPatients;
+import Domain.ListOfResidents;
 import Domain.User;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,14 +31,14 @@ public class RelationFXMLController implements Initializable {
     @FXML
     private ListView<User> relationListViews;
     @FXML
-    private ListView<User> patientListView;
+    private ListView<User> residentListView;
 
     private ObservableList<User> obEmployeeList;
     private ObservableList<User> obRelationList;
-    private ObservableList<User> obPatientList;
+    private ObservableList<User> obResidentList;
 
     private User selectedEmployee;
-    private User selectedPatient;
+    private User selectedResident;
     private User selectedRelation;
     
     private SceneHandler sh = new SceneHandler();
@@ -54,8 +54,8 @@ public class RelationFXMLController implements Initializable {
         obRelationList = FXCollections.observableArrayList();
         relationListViews.setItems(obRelationList);
 
-        obPatientList = FXCollections.observableArrayList();
-        patientListView.setItems(obPatientList);
+        obResidentList = FXCollections.observableArrayList();
+        residentListView.setItems(obResidentList);
 
         obEmployeeList.addAll(ListOfEmployees.getEmployeesList());
     }
@@ -63,9 +63,9 @@ public class RelationFXMLController implements Initializable {
     @FXML
     private void addRelationBtn(ActionEvent event) {
 
-        selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-        if (selectedPatient != null) {
-            selectedEmployee.getRelations().add(selectedPatient);
+        selectedResident = residentListView.getSelectionModel().getSelectedItem();
+        if (selectedResident != null) {
+            selectedEmployee.getRelations().add(selectedResident);
             updateListViews();
         }
 
@@ -84,17 +84,17 @@ public class RelationFXMLController implements Initializable {
     private void handleMouseOnEmployee(MouseEvent event) {
 
         obRelationList.clear();
-        obPatientList.clear();
+        obResidentList.clear();
         selectedEmployee = employeeListView.getSelectionModel().getSelectedItem();
         obRelationList.addAll(selectedEmployee.getRelations());
-        obPatientList.addAll(selectedEmployee.getUnrelated());
+        obResidentList.addAll(selectedEmployee.getUnrelated());
     }
 
     private void updateListViews() {
         obRelationList.clear();
-        obPatientList.clear();
+        obResidentList.clear();
         obRelationList.addAll(selectedEmployee.getRelations());
-        obPatientList.addAll(selectedEmployee.getUnrelated());
+        obResidentList.addAll(selectedEmployee.getUnrelated());
     }
 
     @FXML

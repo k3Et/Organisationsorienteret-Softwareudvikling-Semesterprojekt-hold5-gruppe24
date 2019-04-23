@@ -9,7 +9,7 @@ import Domain.Controller;
 import Domain.Diary;
 
 import Domain.DiaryNote;
-import Domain.ListOfPatients;
+import Domain.ListOfResidents;
 import Domain.User;
 import java.io.File;
 import java.net.URL;
@@ -50,9 +50,9 @@ public class DiaryFXMLController implements Initializable {
 
     // private String writtenNote = "";
     @FXML
-    private ListView<User> patientListView;
+    private ListView<User> residentListView;
 
-    ObservableList<User> obPatients;
+    ObservableList<User> obResidents;
     Controller c = new Controller();
     private User selectedUser;
     private Diary diary;
@@ -69,14 +69,14 @@ public class DiaryFXMLController implements Initializable {
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
 
-//        for(int i = 0; i < ListOfPatients.list.size(); i++){  //addAll virkede ikke!
-//              obPatients.add(ListOfPatients.list.get(i));
+//        for(int i = 0; i < ListOfResidents.list.size(); i++){  //addAll virkede ikke!
+//              obResidents.add(ListOfResidents.list.get(i));
 //       }
 //     
-        obPatients = FXCollections.observableArrayList();
-        patientListView.setItems(obPatients);
+        obResidents = FXCollections.observableArrayList();
+        residentListView.setItems(obResidents);
 
-        obPatients.addAll(ListOfPatients.getPatientList());
+        obResidents.addAll(ListOfResidents.getResidentList());
         ListOfDiaryNote.setEditable(false);
 
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
@@ -97,25 +97,12 @@ public class DiaryFXMLController implements Initializable {
     }
 
     @FXML
-    private void onPatientClickedHandler(MouseEvent event) {
-        selectedUser = patientListView.getSelectionModel().getSelectedItem(); //finds the selected item  
-
-        diary.setPatientName(selectedUser);
-        if (selectedUser != null) {
-            ListOfDiaryNote.scrollTo(obList.size());
-            readFiles();
-        }
-        //tag en string, PATIENT NAME og brug den i en metode i diarys argument
-        //loadUserNotes()
-    }
-
-    @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
 
         String writtenNote = WriteDiaryNote.getText();
         String user = LoginFXMLController.currentUserLoggedIn;
         String combines = writtenNote + "\n" + "skrevet af: " + user;
-        // d.setPatientName(selectedUser);
+        // d.setResidentName(selectedUser);
         if (!writtenNote.equals("")) {
             if (selectedUser == null) {
                 TextArea warning = new TextArea("Vælg venligst en beboer");
@@ -148,6 +135,19 @@ public class DiaryFXMLController implements Initializable {
                 obList.add(note);
             }
         }
+    }
+
+    @FXML
+    private void onResidentClickedHandler(MouseEvent event) {
+        selectedUser = residentListView.getSelectionModel().getSelectedItem(); //finds the selected item  
+
+        diary.setResidentName(selectedUser);
+        if (selectedUser != null) {
+            ListOfDiaryNote.scrollTo(obList.size());
+            readFiles();
+        }
+        //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
+        //loadUserNotes()
     }
 
 }

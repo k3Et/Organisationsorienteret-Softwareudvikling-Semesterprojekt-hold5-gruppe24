@@ -38,8 +38,8 @@ public class Diary {
         return dList.getNotes();
     }
 
-    public void setPatientName(User patientName) {
-        dList.setPatientName(patientName);
+    public void setResidentName(User residentName) {
+        dList.setResidentName(residentName);
     }
 
     public List getFiles() {

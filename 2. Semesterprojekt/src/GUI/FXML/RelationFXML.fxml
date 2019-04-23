@@ -9,7 +9,7 @@
     <children>
         <ListView fx:id="employeeListView" layoutX="25.0" layoutY="94.0" onMouseClicked="#handleMouseOnEmployee" prefHeight="760.0" prefWidth="445.0" />
         <ListView fx:id="relationListViews" layoutX="564.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
-        <ListView fx:id="patientListView" layoutX="1091.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
+        <ListView fx:id="residentListView" layoutX="1091.0" layoutY="94.0" prefHeight="760.0" prefWidth="445.0" />
         <Button layoutX="1023.0" layoutY="370.0" mnemonicParsing="false" onAction="#addRelationBtn" text="&lt;---" />
         <Button layoutX="1023.0" layoutY="495.0" mnemonicParsing="false" onAction="#removeRelationBtn" text="---&gt;" />
         <Label layoutX="30.0" layoutY="64.0" text="Ansatte:" />

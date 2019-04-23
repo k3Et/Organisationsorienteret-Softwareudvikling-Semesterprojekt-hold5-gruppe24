@@ -1,6 +1,6 @@
 package Domain.Roles;
 
-import Domain.ListOfPatients;
+import Domain.ListOfResidents;
 import Domain.Role;
 import Domain.User;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Employee extends Role {
     }
 
     public String toString() {
-        return "Employee";
+        return "Ansat";
     }
 
 }

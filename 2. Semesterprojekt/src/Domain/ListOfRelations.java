@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import Domain.Roles.Patient;
+import Domain.Roles.Resident;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ListOfRelations {
 
     public void addRelation(User u) {
         for (Role r : u.getRoles()) {
-            if (r instanceof Patient && !relations.contains(u)) {
+            if (r instanceof Resident && !relations.contains(u)) {
                 relations.add(u);
             }
         }
@@ -35,7 +35,7 @@ public class ListOfRelations {
 
     public List<User> getUnrelated() {
         List<User> allPatients = new ArrayList<>();
-        allPatients.addAll(ListOfPatients.getPatientList());
+        allPatients.addAll(ListOfResidents.getResidentList());
         for (User u : getRelations()) {
             allPatients.remove(u);
         }

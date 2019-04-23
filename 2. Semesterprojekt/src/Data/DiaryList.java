@@ -35,7 +35,7 @@ public class DiaryList {
     private String aFolderName;
     private String standardPath;
     private Date date;
-    private String patient;
+    private String resident;
     private List<File> fileList;
     private File[] fileArray;
     // private Employee currentEmployee;
@@ -51,12 +51,12 @@ public class DiaryList {
     }
 
     public void saveDiaryNote(DiaryNote diaryNote) {
-        //i stedet for notes skal der stå patientens navn så man kan finde notet tilhørende en person
-        aFolderName = "notes/" + patient + "/";
+        //i stedet for notes skal der stå residentens navn så man kan finde notet tilhørende en person
+        aFolderName = "notes/" + resident + "/";
         diaryFolder = new File(aFolderName);
         diaryFolder.mkdirs();  //dette laver en ny folder.
         //har delt de to op for ellers ville diaryFile lave folder hele vejen igennem path'en og ingen filer. Det vil sige at diaryFolder står kun for at lave folders.
-        filename = "notes/" + patient + "/" + convertDate() + /*currentEmployee.getName()+*/ ".txt";
+        filename = "notes/" + resident + "/" + convertDate() + /*currentEmployee.getName()+*/ ".txt";
         diaryFile = new File(filename);
         try {
             diaryFile.createNewFile();
@@ -85,8 +85,8 @@ public class DiaryList {
         return dateTime;
     }
 
-    public void setPatientName(User patientName) {
-        patient = patientName.toString();
+    public void setResidentName(User residentName) {
+        resident = residentName.toString();
 
     }
 
@@ -96,7 +96,7 @@ public class DiaryList {
 
     public List getFiles() {
 
-        aFolderName = "notes/" + patient + "/";
+        aFolderName = "notes/" + resident + "/";
         diaryFolder = new File(aFolderName);
         filesArray = diaryFolder.listFiles();
         List<String> sList = new ArrayList<>();
