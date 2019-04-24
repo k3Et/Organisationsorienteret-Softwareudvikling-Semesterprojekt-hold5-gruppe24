@@ -38,8 +38,6 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private Button SaveNoteBtn;
     @FXML
-    private Text DagbogBtn;
-    @FXML
     private TextArea WriteDiaryNote;
     @FXML
     private ListView<TextArea> ListOfDiaryNote;
@@ -54,6 +52,8 @@ public class DiaryFXMLController implements Initializable {
     private Diary diary;
 
     private SceneHandler sh = new SceneHandler();
+    @FXML
+    private Button homeBtn;
 
     // private String writtenNote = "";
     /**
@@ -90,9 +90,6 @@ public class DiaryFXMLController implements Initializable {
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
     }
 
-    @FXML
-    private void handleDagbogTextClickAction(MouseEvent event) {
-    }
 
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {

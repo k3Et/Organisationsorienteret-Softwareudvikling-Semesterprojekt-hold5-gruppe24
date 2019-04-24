@@ -37,11 +37,7 @@ public class SceneHandler {
             currentScene = new Scene(parent);
             currentStage.setScene(currentScene);
 
-            
             currentStage.show();
-            
-            currentStage.centerOnScreen();
-            currentStage.setFullScreen(true);
 
             matchCSSWithFXML(fxml);
             //currentSceneString = fxml;

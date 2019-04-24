@@ -28,7 +28,7 @@ public class FXMain extends Application {
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-        stage.setMaximized(true);
+       
 
     }
 

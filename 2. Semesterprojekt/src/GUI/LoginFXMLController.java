@@ -25,7 +25,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class LoginFXMLController implements Initializable {
 
-    @FXML
     private ImageView loginImageView;
     @FXML
     private ImageView NoTiBoImage;
@@ -41,8 +40,6 @@ public class LoginFXMLController implements Initializable {
     private TextField userNameField;
     @FXML
     private Button loginButton;
-    @FXML
-    private AnchorPane rootPane;
 
     private Random r = new Random();
 
@@ -69,7 +66,7 @@ public class LoginFXMLController implements Initializable {
             loginImages[i] = new Image((pre + i + post));
         }
         //Using Random to set login image.
-        loginImageView.setImage(loginImages[r.nextInt(3)]);
+        
         NoTiBoImage.setImage(new Image("/Pictures/NoTiBoImage.png"));
     }
 

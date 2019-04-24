@@ -40,8 +40,6 @@ public class AssignRoleController implements Initializable {
     private ListView<String> userInfoListView;
     @FXML
     private Button acceptBtn;
-    @FXML
-    private Button cancelBtn;
 
     private ObservableList<User> userList;
     private ObservableList<Role> roleList;
@@ -114,7 +112,6 @@ public class AssignRoleController implements Initializable {
     }
 
 
-    @FXML
     private void cancelBtnHandler(ActionEvent event) {
         userInfoList.clear();
         chooseRoleList.getSelectionModel().clearSelection();
@@ -144,7 +141,6 @@ public class AssignRoleController implements Initializable {
         }
     }
 
-    @FXML
     private void relationSletMigBtn(ActionEvent event) {
         sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
 

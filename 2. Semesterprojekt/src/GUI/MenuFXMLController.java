@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -31,6 +32,8 @@ public class MenuFXMLController implements Initializable {
     private Button homeButton;
 
     private SceneHandler sh = new SceneHandler();
+    @FXML
+    private ImageView NoTiBoImage;
 
 
     /**
