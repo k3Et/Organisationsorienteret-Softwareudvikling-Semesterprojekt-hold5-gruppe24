@@ -15,28 +15,28 @@ import java.util.List;
  */
 public class ListOfRelations {
 
-    private List<User> relations = new ArrayList<>();
+    private List<User> list = new ArrayList<>();
 
     public void addRelation(User u) {
         for (Role r : u.getRoles()) {
-            if (r instanceof Resident && !relations.contains(u)) {
-                relations.add(u);
+            if (r instanceof Resident && !list.contains(u)) {
+                list.add(u);
             }
         }
     }
 
     public void removeRelation(User u) {
-        relations.remove(u);
+        list.remove(u);
     }
 
-    public List<User> getRelations() {
-        return relations;
+    public List<User> getList() {
+        return list;
     }
 
     public List<User> getUnrelated() {
         List<User> allPatients = new ArrayList<>();
         allPatients.addAll(ListOfResidents.getResidentList());
-        for (User u : getRelations()) {
+        for (User u : getList()) {
             allPatients.remove(u);
         }
         return allPatients;

@@ -8,16 +8,16 @@ import Data.Database;
  */
 public class DatabaseHandler {
 
-    private Database ds = new Database();
+    private Database database = new Database();
 
     public boolean verifyLogin(String username, String password) {
-        if (ds.verifyLogin(username, password)) {
+        if (database.verifyLogin(username, password)) {
             return true;
         }
         return false;
     }
 
     public void createUser(User u) {
-        ds.createUser(u);
+        database.createUser(u);
     }
 }
