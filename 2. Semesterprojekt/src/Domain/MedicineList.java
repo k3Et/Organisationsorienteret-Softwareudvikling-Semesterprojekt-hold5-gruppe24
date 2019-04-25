@@ -20,24 +20,24 @@ public class MedicineList {
 
     private File medicineFile;
     private Medicine medicine;
-    private ArrayList<Medicine> medicineList;
+    private ArrayList<Medicine> lMedicine;
 
     public MedicineList() {
         medicineFile = new File("medicineList.txt");
     }
 
     public ArrayList getMedicineList() {
-        medicineList = new ArrayList<>();
+        lMedicine = new ArrayList<>();
         try (Scanner sc = new Scanner(medicineFile)) {
             while (sc.hasNext()) {
                 String temp = sc.next();
                 String[] tempArray = temp.split("[:]");
-                medicineList.add(new Medicine(tempArray[0], Double.parseDouble(tempArray[1])));
+                lMedicine.add(new Medicine(tempArray[0], Double.parseDouble(tempArray[1])));
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         }
-        return medicineList;
+        return lMedicine;
     }
 
     public void addToMedicineList(Medicine medicine) {
