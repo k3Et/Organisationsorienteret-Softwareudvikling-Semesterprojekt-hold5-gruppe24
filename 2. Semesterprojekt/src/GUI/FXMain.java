@@ -22,8 +22,8 @@ public class FXMain extends Application {
     @Override
     public void start(Stage stage) {
 
-        Controller.setStockUsers();
         Controller.setStockRoleList();
+        Controller.setStockUsers();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
