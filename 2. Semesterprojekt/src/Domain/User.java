@@ -137,7 +137,7 @@ public class User implements Comparable<User> {
         for (Role r : getRoles()) {
             if (r instanceof Employee) {
 
-                return relations.getList();
+                return relations.getlRelations();
             }
         }
         return null;

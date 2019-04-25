@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ListOfResidents {
 
-    private static List<User> list = new ArrayList<>();
+    private static List<User> lResidents = new ArrayList<>();
 
     public ListOfResidents() {
     }
@@ -24,20 +24,20 @@ public class ListOfResidents {
     public static void addResident(User u) {
         for (Role r : u.getRoles()) {
             if (r instanceof Resident) {
-                list.add(u);
+                lResidents.add(u);
                 return;
             }
         }
-        Collections.sort(list);
+        Collections.sort(lResidents);
     }
 
     public static void removeResident(User u) {
-        if (list.contains(u)) {
-            list.remove(u);
+        if (lResidents.contains(u)) {
+            lResidents.remove(u);
         }
     }
 
     public static List<User> getResidentList() {
-        return list;
+        return lResidents;
     }
 }

@@ -10,31 +10,31 @@ import java.util.List;
 public class ListOfRoles {
 
     // er rolle listen pr person! ikke systemet
-    private List<Role> roles;
+    private List<Role> lRoles;
 
     public ListOfRoles() {
-        roles = new ArrayList<>();
+        lRoles = new ArrayList<>();
     }
 
     public ListOfRoles(Role r) {
-        roles = new ArrayList<>();
-        roles.add(r);
+        lRoles = new ArrayList<>();
+        lRoles.add(r);
     }
 
     public void addRole(Role r) {
-        roles.add(r);
+        lRoles.add(r);
     }
 
     public void removeRole(Role r) {
 
-        roles.remove(r);
+        lRoles.remove(r);
     }
 
 //Returns list where each index contains a string that is equal to a permission
     public List<String> getPermissions() {
 
         String permissions = "";
-        for (Role r : roles) {
+        for (Role r : lRoles) {
             permissions += r.getPermissions();
         }
         String[] permissionsArray = permissions.split(":");
@@ -46,11 +46,11 @@ public class ListOfRoles {
     }
 
     public List<Role> getRoleList() {
-        return roles;
+        return lRoles;
     }
 
     public String toString() {
-        return String.valueOf(roles);
+        return String.valueOf(lRoles);
     }
 
 }
