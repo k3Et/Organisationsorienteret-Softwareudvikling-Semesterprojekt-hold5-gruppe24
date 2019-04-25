@@ -98,11 +98,8 @@ public class AssignRoleController implements Initializable {
     }
 
     public void loadUserInfo(User selectedUser) {
-
-        s = new Scanner(selectedUser.toStringAll());
-
-        stringHolder = s.nextLine();
-
+        stringHolder = selectedUser.toStringAll();
+        
         String[] infoStringArray = stringHolder.split(";");
 
         for (int i = 0; i < infoStringArray.length; i++) {
@@ -139,11 +136,6 @@ public class AssignRoleController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(SceneHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    private void relationSletMigBtn(ActionEvent event) {
-        sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
-
     }
 
     @FXML
