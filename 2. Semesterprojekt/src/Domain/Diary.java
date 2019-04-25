@@ -9,8 +9,6 @@ import java.util.List;
  * @author Victor & Sebber
  */
 public class Diary {
-
-    DiaryNote diary;
     //Denne klasse er udelukkende til for at hente og skrive data til DiaryList.
     DiaryList dList = new DiaryList();
 
@@ -21,7 +19,6 @@ public class Diary {
     }
 
     public void removeDiaryNote(DiaryNote diary) {
-        this.diary = diary;
         dList.removeDiaryNote(diary);
     }
 
