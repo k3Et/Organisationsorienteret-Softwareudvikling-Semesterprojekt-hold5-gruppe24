@@ -14,7 +14,6 @@ public class FXMain extends Application {
     SceneHandler sh = new SceneHandler();
 
     public FXMain() {
-
     }
 
     private Stage primaryStage;
@@ -28,7 +27,6 @@ public class FXMain extends Application {
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-       
 
     }
 

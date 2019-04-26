@@ -2,7 +2,6 @@ package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,22 +18,20 @@ import javafx.scene.input.MouseEvent;
  */
 public class MenuFXMLController implements Initializable {
 
-    private ListView<String> menuListView;
     @FXML
     private Button logOutButton;
-
-    private String selectedMenu;
-    
-    private ObservableList<String> OListDairyNote;
-
-
+    @FXML
+    private ImageView NoTiBoImage;
     @FXML
     private Button homeButton;
 
-    private SceneHandler sh = new SceneHandler();
-    @FXML
-    private ImageView NoTiBoImage;
+    private String selectedMenu;
 
+    private ObservableList<String> OListDairyNote;
+
+    private ListView<String> menuListView;
+
+    private SceneHandler sh = new SceneHandler();
 
     /**
      * Initializes the controller class.
@@ -42,13 +39,7 @@ public class MenuFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-       
-     
-
-       
     }
-
 
     @FXML
     private void handleLogOutButtonAction(ActionEvent event) {
@@ -66,12 +57,12 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void relationBtnHandler(ActionEvent event) {
-         sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+        sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
     }
 
     @FXML
     private void employeeRoleBtnHandler(ActionEvent event) {
-         sh.setNewScene("/GUI/FXML/AssignRole.fxml");
+        sh.setNewScene("/GUI/FXML/AssignRole.fxml");
     }
 
 }

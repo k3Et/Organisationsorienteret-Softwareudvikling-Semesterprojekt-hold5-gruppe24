@@ -9,6 +9,7 @@ import java.util.List;
  * @author Victor & Sebber
  */
 public class Diary {
+
     //Denne klasse er udelukkende til for at hente og skrive data til DiaryList.
     DiaryList dList = new DiaryList();
 

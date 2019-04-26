@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import Domain.ListOfEmployees;
@@ -38,7 +33,7 @@ public class RelationFXMLController implements Initializable {
     private User selectedEmployee;
     private User selectedResident;
     private User selectedRelation;
-    
+
     private SceneHandler sh = new SceneHandler();
 
     /**
@@ -99,6 +94,5 @@ public class RelationFXMLController implements Initializable {
     private void handlerBtnBack(ActionEvent event) {
         sh.setNewScene("/GUI/FXML/Menu.fxml");
     }
-    
 
 }

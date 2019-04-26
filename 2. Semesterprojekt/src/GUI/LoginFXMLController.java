@@ -16,7 +16,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -66,7 +65,7 @@ public class LoginFXMLController implements Initializable {
             loginImages[i] = new Image((pre + i + post));
         }
         //Using Random to set login image.
-        
+
         NoTiBoImage.setImage(new Image("/Pictures/NoTiBoImage.png"));
     }
 

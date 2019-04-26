@@ -47,7 +47,7 @@ public class AssignRoleController implements Initializable {
     //ListOfUsers lou ;
 
     private Scanner s;
-    
+
     private String stringHolder;
 
     private User selectedUser;
@@ -55,7 +55,7 @@ public class AssignRoleController implements Initializable {
     private Role selectedRole;
 
     SceneHandler sh = new SceneHandler();
-    
+
     /**
      * Initializes the controller class.
      */
@@ -99,7 +99,7 @@ public class AssignRoleController implements Initializable {
 
     public void loadUserInfo(User selectedUser) {
         stringHolder = selectedUser.toStringAll();
-        
+
         String[] infoStringArray = stringHolder.split(";");
 
         for (int i = 0; i < infoStringArray.length; i++) {
@@ -107,7 +107,6 @@ public class AssignRoleController implements Initializable {
         }
 
     }
-
 
     private void cancelBtnHandler(ActionEvent event) {
         userInfoList.clear();

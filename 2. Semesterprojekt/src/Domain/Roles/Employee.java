@@ -1,10 +1,6 @@
 package Domain.Roles;
 
-import Domain.ListOfResidents;
 import Domain.Role;
-import Domain.User;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *

@@ -17,7 +17,6 @@ public class Controller {
 //    static Admin admin = new Admin();
 //    static Leader leader = new Leader();
 //    static Resident resident = new Resident();
-
     public static void setStockUsers() {
         User u = new User("Erik", "KnudErGud123", "Erik90", "1234567890", "12345678", "bla@bla.dk", "Amalienborg 1", listOfRoles.get(0));
         User u2 = new User("Birthe Madsen", "dfg", "LadyB", "0987654321", "88888888", "noget@bla.dk", "Tuberkulosevej 7", listOfRoles.get(1));
@@ -36,7 +35,7 @@ public class Controller {
         u.createUser(test);
 
         ListOfEmployees.addEmployee(u);
-        
+
         ListOfResidents.addResident(u2);
         ListOfResidents.addResident(u5);
         ListOfResidents.addResident(test);

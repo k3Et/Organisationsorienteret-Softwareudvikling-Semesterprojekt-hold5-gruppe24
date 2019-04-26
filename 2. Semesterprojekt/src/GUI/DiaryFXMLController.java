@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import Domain.Diary;
@@ -17,17 +12,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
- * @author Sebas
+ * @author Sebastian
  */
 public class DiaryFXMLController implements Initializable {
 
@@ -74,7 +67,7 @@ public class DiaryFXMLController implements Initializable {
         residentListView.setItems(obResidents);
 
         obResidents.addAll(ListOfResidents.getResidentList());
-        
+
         ListOfDiaryNote.setEditable(false);
 
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
@@ -89,7 +82,6 @@ public class DiaryFXMLController implements Initializable {
     private void handleLogOutButtonAction(ActionEvent event) {
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
     }
-
 
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
