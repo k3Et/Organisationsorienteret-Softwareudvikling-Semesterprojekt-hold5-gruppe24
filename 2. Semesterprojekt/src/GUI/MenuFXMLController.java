@@ -2,13 +2,14 @@ package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -18,13 +19,19 @@ import javafx.scene.text.Text;
 public class MenuFXMLController implements Initializable {
 
     @FXML
-    private ListView<?> menuListView;
-    @FXML
-    private Button backButton;
-    @FXML
     private Button logOutButton;
     @FXML
-    private Text patientTextBtn;
+    private ImageView NoTiBoImage;
+    @FXML
+    private Button homeButton;
+
+    private String selectedMenu;
+
+    private ObservableList<String> OListDairyNote;
+
+    private ListView<String> menuListView;
+
+    private SceneHandler sh = new SceneHandler();
 
     /**
      * Initializes the controller class.
@@ -35,19 +42,27 @@ public class MenuFXMLController implements Initializable {
     }
 
     @FXML
-    private void handleBackButtonAction(ActionEvent event) {
-    }
-
-    @FXML
     private void handleLogOutButtonAction(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
+    }
+
+    private void handlerOpenMenu(MouseEvent event) {
+
     }
 
     @FXML
-    private void handlePatientTextClickAction(MouseEvent event) {
+    private void diaryBtnHandler(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Diary.fxml");
     }
 
     @FXML
-    private void Dagbog(MouseEvent event) {
+    private void relationBtnHandler(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+    }
+
+    @FXML
+    private void employeeRoleBtnHandler(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/AssignRole.fxml");
     }
 
 }

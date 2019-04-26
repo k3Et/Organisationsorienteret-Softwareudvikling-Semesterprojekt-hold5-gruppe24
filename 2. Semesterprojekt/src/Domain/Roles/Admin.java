@@ -8,11 +8,15 @@ import Domain.Role;
  */
 public class Admin extends Role {
 
-    String[] permissions = {};
+    private String[] permissions = {};
 
     public Admin() {
         super("Admin");
         super.addPermissions(permissions);
+    }
+
+    public String toString() {
+        return "Admin";
     }
 
 }

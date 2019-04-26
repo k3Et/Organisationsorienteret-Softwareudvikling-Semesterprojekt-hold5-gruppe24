@@ -1,10 +1,9 @@
 package GUI;
 
+import Domain.Controller;
+import Domain.DatabaseHandler;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -13,16 +12,24 @@ import javafx.stage.Stage;
  */
 public class FXMain extends Application {
 
+    SceneHandler sh = new SceneHandler();
+
+    public FXMain() {
+    }
+
+    private Stage primaryStage;
+
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML/Menu.fxml"));
+    public void start(Stage stage) {
 
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
+        Controller.setStockRoleList();
+        Controller.setStockUsers();
+        DatabaseHandler.loadAllUsers();
+        primaryStage = stage;
+        sh.setCurrentStage(primaryStage);
+        sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
-        stage.setMaximized(true);
-        stage.show();
+
     }
 
     /**

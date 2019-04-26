@@ -15,4 +15,8 @@ public class Employee extends Role {
         super.addPermissions(permissions);
     }
 
+    public String toString() {
+        return "Ansat";
+    }
+
 }

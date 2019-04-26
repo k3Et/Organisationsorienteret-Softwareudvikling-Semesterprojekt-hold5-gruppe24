@@ -1,15 +1,17 @@
 package Domain;
 
+import Domain.Roles.Employee;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.List;
 
 /**
  *
  * @author Patrick
  */
-public class User {
+public class User implements Comparable<User> {
 
     private String name;
     private String password;
@@ -18,9 +20,11 @@ public class User {
     private String phoneNumber;
     private String email;
     private String address;
+    private ListOfRoles roles;
 
-    public RoleList roles;
+    private ListOfRelations relations;
 
+    //Overvej at fjerne role i constructor, da brugere ikke bliver added til deres lister, hvis de allerede har en rolle.
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
         this.name = name;
         this.password = password;
@@ -29,11 +33,46 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        roles = new RoleList(r);
+
+        roles = new ListOfRoles(r);
+        relations = new ListOfRelations();
+    }
+
+    public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
+        this.name = name;
+        this.password = password;
+        this.username = username;
+        this.CPR = CPR;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        roles = new ListOfRoles();
+        relations = new ListOfRelations();
+    }
+
+    
+    public String getCPR() {
+        return CPR;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getName() {
+        return name;
     }
 
 //    public User(Role r){
-//        roles = new RoleList(r);
+//        roles = new ListOfRoles(r);
 //    }
     public String getPassword() {
         return password;
@@ -51,8 +90,9 @@ public class User {
         }
     }
 
+    //Creates user to the login-system with username and password. Includes some proof of concept ATM.
     public String createUser(User u) {
-        if (roles.getPermissions().contains("create user")) {
+        if (getPermissions().contains("create user")) {
             File file = new File("src/Data/LoginData.txt");
             try (Scanner scan = new Scanner(file); FileWriter fw = new FileWriter(file, true);) {
                 String uName = u.getUsername();
@@ -75,6 +115,54 @@ public class User {
             }
         }
         return "Not permitted";
+    }
+
+    public List<Role> getRoles() {
+        return roles.getRoleList();
+    }
+
+    public ListOfRoles getRoleList() {
+
+        return roles;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public String toStringAll() {
+        return "Navn: " + name + ";" + "CPR: " + CPR + ";" + "Mobil: " + phoneNumber + ";" + "Email: " + email + ";" + "Adresse: " + address + ";" + "Rolle: " + roles + " ";
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return getName().compareTo(o.getName());
+    }
+
+    //Returns all permissions that the user has. Each permission is saved as a string in an index of the list.
+    public List<String> getPermissions() {
+        return roles.getPermissions();
+    }
+
+    public List<User> getRelations() {
+        for (Role r : getRoles()) {
+            if (r instanceof Employee) {
+
+                return relations.getlRelations();
+            }
+        }
+        return null;
+    }
+
+    public List<User> getUnrelated() {
+        for (Role r : getRoles()) {
+            if (r instanceof Employee) {
+                return relations.getUnrelated();
+
+            }
+        }
+        return null;
     }
 
 }
