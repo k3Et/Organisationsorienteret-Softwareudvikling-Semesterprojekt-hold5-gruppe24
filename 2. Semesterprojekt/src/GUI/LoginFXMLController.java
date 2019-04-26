@@ -1,7 +1,6 @@
 package GUI;
 
 import Domain.DatabaseHandler;
-import Domain.FileHandler;
 import static GUI.SceneHandler.currentScene;
 import java.io.IOException;
 import java.net.URL;
@@ -46,10 +45,6 @@ public class LoginFXMLController implements Initializable {
 
     private SceneHandler sh = new SceneHandler();
 
-//    private DatabaseHandler dh = new DatabaseHandler();
-
-    private FileHandler fh = new FileHandler();
-
     public static String currentUserLoggedIn;
 
     /**
@@ -72,7 +67,7 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (fh.verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText())) {
             currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");

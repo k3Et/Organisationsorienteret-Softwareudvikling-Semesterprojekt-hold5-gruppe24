@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -114,6 +113,45 @@ public class Database {
 
     }
 
+    public void deleteUser(String username) {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            con = DriverManager.getConnection(url, Username, Password);
+
+            ps = con.prepareStatement("SELECT * FROM Users WHERE username = ?");
+
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                ps = con.prepareStatement("DELETE FROM Users WHERE username = ?");
+
+                ps.setString(1, username);
+
+                ps.execute();
+
+                System.out.println("User deleted.");
+            } else {
+                System.out.println("User doesn't exist, and can't be deleted.");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+
     //This is meant to add a user and a role to the table Role.
     public void addRole(User u, Role r) {
 
@@ -206,15 +244,14 @@ public class Database {
 
         try {
             con = DriverManager.getConnection(url, Username, Password);
-            
+
             ps = con.prepareStatement("SELECT * FROM Users");
-            
+
             rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Controller.createNewUser(rs.getString("name"), rs.getString("password"), rs.getString("username"), rs.getString("cpr"), rs.getString("phonenumber"), rs.getString("email"), rs.getString("address"));
             }
-//            rs.getArray(0);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
