@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 
 /**
@@ -44,10 +45,12 @@ public class NewUserController implements Initializable {
 //        Controller.createNewUser(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
 
         Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
 }
