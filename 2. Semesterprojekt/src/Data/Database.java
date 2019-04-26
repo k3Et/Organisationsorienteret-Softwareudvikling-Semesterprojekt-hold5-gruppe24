@@ -76,10 +76,9 @@ public class Database {
         try {
             con = DriverManager.getConnection(url, Username, Password);
 
-            ps = con.prepareStatement("SELECT * FROM Users WHERE username = ? and password = ?");
+            ps = con.prepareStatement("SELECT * FROM Users WHERE username = ?");
 
             ps.setString(1, u.getUsername());
-            ps.setString(2, u.getPassword());
 
             rs = ps.executeQuery();
 

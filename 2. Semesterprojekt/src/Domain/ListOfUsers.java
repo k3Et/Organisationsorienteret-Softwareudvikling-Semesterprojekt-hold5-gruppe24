@@ -16,9 +16,12 @@ public class ListOfUsers {
     }
 
     public static void addUser(User u) {
-        if (!lUsers.contains(u)) {
-            lUsers.add(u);
+        for(User us : lUsers){
+            if(us.getUsername().equals(u.getUsername()) || us.getUsername() == null){
+                return;
+            }
         }
+        lUsers.add(u);
     }
 
     public static void removeUser(User u) {
