@@ -16,8 +16,8 @@ public class ListOfUsers {
     }
 
     public static void addUser(User u) {
-        for(User us : lUsers){
-            if(us.getUsername().equals(u.getUsername()) || us.getUsername() == null){
+        for (User us : lUsers) {
+            if (us.getUsername().equals(u.getUsername()) || us.getUsername() == null) {
                 return;
             }
         }
