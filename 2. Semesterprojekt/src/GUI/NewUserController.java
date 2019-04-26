@@ -1,5 +1,7 @@
 package GUI;
 
+import Domain.Controller;
+import Domain.DatabaseHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,6 +26,10 @@ public class NewUserController implements Initializable {
     private TextField adresseTextField;
     @FXML
     private TextField cprTextField;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private TextField passwordTextField;
 
     /**
      * Initializes the controller class.
@@ -35,6 +41,9 @@ public class NewUserController implements Initializable {
 
     @FXML
     private void saveBtnHandler(ActionEvent event) {
+//        Controller.createNewUser(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
+
+        Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
     }
 
     @FXML

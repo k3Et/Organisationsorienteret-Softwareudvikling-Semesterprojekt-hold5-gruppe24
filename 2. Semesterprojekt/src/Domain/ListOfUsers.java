@@ -9,29 +9,29 @@ import java.util.List;
  */
 public class ListOfUsers {
 
-    private List<User> lUsers;
+    private static List<User> lUsers;
 
     public ListOfUsers() {
         lUsers = new ArrayList<>();
     }
 
-    public void addUser(User u) {
+    public static void addUser(User u) {
         if (!lUsers.contains(u)) {
             lUsers.add(u);
         }
     }
 
-    public void removeUser(User u) {
+    public static void removeUser(User u) {
         if (lUsers.contains(u)) {
             lUsers.remove(u);
         }
     }
 
-    public List getList() {
+    public static List getList() {
         return lUsers;
     }
 
-    public User getUser(String username, String password) {
+    public static User getUser(String username, String password) {
         for (int i = 0; i < lUsers.size(); i++) {
             if (lUsers.get(i).getUsername().equals(username) && lUsers.get(i).getPassword().equals(password)) {
                 return lUsers.get(i);

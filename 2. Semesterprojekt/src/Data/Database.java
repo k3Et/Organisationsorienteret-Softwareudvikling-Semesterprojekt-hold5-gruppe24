@@ -1,5 +1,6 @@
 package Data;
 
+import Domain.Controller;
 import Domain.Role;
 import Domain.User;
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -184,6 +186,35 @@ public class Database {
             } else {
                 System.out.println("The user doesn't have that role.");
             }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    public void fillUserList() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            con = DriverManager.getConnection(url, Username, Password);
+            
+            ps = con.prepareStatement("SELECT * FROM Users");
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Controller.createNewUser(rs.getString("name"), rs.getString("password"), rs.getString("username"), rs.getString("cpr"), rs.getString("phonenumber"), rs.getString("email"), rs.getString("address"));
+            }
+//            rs.getArray(0);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {

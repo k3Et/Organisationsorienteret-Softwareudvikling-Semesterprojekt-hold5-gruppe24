@@ -1,6 +1,7 @@
 package GUI;
 
 import Domain.Controller;
+import Domain.DatabaseHandler;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ public class FXMain extends Application {
 
         Controller.setStockRoleList();
         Controller.setStockUsers();
+        DatabaseHandler.loadAllUsers();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");

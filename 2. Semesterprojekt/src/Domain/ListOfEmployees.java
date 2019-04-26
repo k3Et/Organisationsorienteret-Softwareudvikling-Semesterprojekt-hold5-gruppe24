@@ -20,7 +20,7 @@ public class ListOfEmployees {
         for (Role r : u.getRoles()) {
             if (r instanceof Employee) {
                 lEmployees.add(u);
-                return;
+                break;
             }
         }
         Collections.sort(lEmployees);

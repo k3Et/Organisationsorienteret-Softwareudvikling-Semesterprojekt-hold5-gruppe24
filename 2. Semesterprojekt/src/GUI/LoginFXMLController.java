@@ -46,7 +46,7 @@ public class LoginFXMLController implements Initializable {
 
     private SceneHandler sh = new SceneHandler();
 
-    private DatabaseHandler dh = new DatabaseHandler();
+//    private DatabaseHandler dh = new DatabaseHandler();
 
     private FileHandler fh = new FileHandler();
 
@@ -87,7 +87,7 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handleLoginButtonAction(ActionEvent event) throws IOException {
         //Create verification with SQL database here:
-        if (dh.verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText())) {
             currentUserLoggedIn = userNameField.getText();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");

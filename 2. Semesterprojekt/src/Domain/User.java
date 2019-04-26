@@ -36,9 +36,21 @@ public class User implements Comparable<User> {
 
         roles = new ListOfRoles(r);
         relations = new ListOfRelations();
-
     }
 
+    public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
+        this.name = name;
+        this.password = password;
+        this.username = username;
+        this.CPR = CPR;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        roles = new ListOfRoles();
+        relations = new ListOfRelations();
+    }
+
+    
     public String getCPR() {
         return CPR;
     }
@@ -78,7 +90,7 @@ public class User implements Comparable<User> {
         }
     }
 
-    //Creates user to the login-system with username and password.
+    //Creates user to the login-system with username and password. Includes some proof of concept ATM.
     public String createUser(User u) {
         if (getPermissions().contains("create user")) {
             File file = new File("src/Data/LoginData.txt");

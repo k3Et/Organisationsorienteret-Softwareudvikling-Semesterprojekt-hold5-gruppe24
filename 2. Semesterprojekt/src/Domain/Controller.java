@@ -84,4 +84,15 @@ public class Controller {
         }
     }
 
+    public static void createNewUser(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
+        User user = new User(name, password, username, CPR, phoneNumber, email, address);
+        ListOfUsers.addUser(user);
+    }
+
+    public static void createUserInDatabase(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
+        User user = new User(name, password, username, CPR, phoneNumber, email, address);
+        ListOfUsers.addUser(user);
+        DatabaseHandler.createUser(user);
+    }
+
 }
