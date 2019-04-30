@@ -4,8 +4,11 @@ import Domain.Diary;
 
 import Domain.DiaryNote;
 import Domain.ListOfResidents;
+import Domain.Medicine;
+import Domain.MedicineList;
 import Domain.User;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,8 +16,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -48,6 +56,17 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private Button homeBtn;
 
+    @FXML
+    private TableColumn<Medicine, String> MedicineCol;
+    @FXML
+    private TableColumn<TableGetterSetter, ChoiceBox> DosisCol;
+    @FXML
+    private TableView<TableGetterSetter> tableView;
+
+    private ObservableList<TableGetterSetter> data = FXCollections.observableArrayList();
+    private ObservableList<String> choiceList = FXCollections.observableArrayList();
+    private MedicineList medicineList = new MedicineList();
+
     // private String writtenNote = "";
     /**
      * Initializes the controller class.
@@ -70,6 +89,20 @@ public class DiaryFXMLController implements Initializable {
 
         ListOfDiaryNote.setEditable(false);
 
+        loadDosis();
+        for (int i = 0; i < medicineList.getMedicineList().size(); i++) {
+
+            ChoiceBox choose = new ChoiceBox();
+            choose.getItems().addAll(choiceList);
+            choose.getSelectionModel().selectFirst();
+            data.add(new TableGetterSetter(medicineList.getMedicineList().get(i).getName(), choose));
+        }
+
+        tableView.setItems(data);
+
+        MedicineCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
+        DosisCol.setCellValueFactory(new PropertyValueFactory<TableGetterSetter, ChoiceBox>("choiceBox"));
+
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
     }
 
@@ -86,6 +119,9 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
 
+        for (String s : getTableViewValues()) {
+            System.out.println(s);
+        }
         String writtenNote = WriteDiaryNote.getText();
         String user = LoginFXMLController.currentUserLoggedIn;
         String combines = writtenNote + "\n" + "skrevet af: " + user;
@@ -105,7 +141,23 @@ public class DiaryFXMLController implements Initializable {
                 readFiles();
             }
         }
+    }
 
+    private ArrayList<String> getTableViewValues() {
+        ArrayList<String> values = new ArrayList<>();
+        ObservableList<TableColumn<TableGetterSetter, ?>> columns = tableView.getColumns();
+
+        for (Object row : tableView.getItems()) {
+            for (TableColumn column : columns) {
+                if (column.getCellObservableValue(row).getValue() instanceof ChoiceBox) {
+                    ChoiceBox cb = (ChoiceBox)column.getCellObservableValue(row).getValue();
+                    values.add((String)cb.getSelectionModel().getSelectedItem());
+                } else {
+                    values.add((String) column.getCellObservableValue(row).getValue().toString());
+                }
+            }
+        }
+        return values;
     }
 
     private void readFiles() {
@@ -142,4 +194,23 @@ public class DiaryFXMLController implements Initializable {
         sh.setNewScene("/GUI/FXML/Menu.fxml");
     }
 
+    @FXML
+    private void handleMedicineButtonAction(ActionEvent event) {
+        sh.setNewScene("GUI/FXML/MedicinNote.fxml");
+    }
+
+    private void loadDosis() {
+        String[] dosis = {"5 mg", "10 mg"};
+        String a = "5 mg";
+        String b = "10 mg";
+        String c = "20 mg";
+        String d = "30 mg";
+        String e = "60 mg";
+        String f = "90 mg";
+        String g = "100 mg";
+        String h = "150 mg";
+        String i = "200 mg";
+        String j = "0 mg";
+        choiceList.addAll(j, a, b, c, d, e, f, g, h, i);
+    }
 }

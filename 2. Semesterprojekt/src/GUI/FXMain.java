@@ -27,7 +27,7 @@ public class FXMain extends Application {
         DatabaseHandler.loadAllUsers();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
-        sh.setNewScene("/GUI/FXML/MedicinNote.fxml");
+        sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
         stage.setTitle("NoTiBo - Noter til Dagbøger");
 
     }
