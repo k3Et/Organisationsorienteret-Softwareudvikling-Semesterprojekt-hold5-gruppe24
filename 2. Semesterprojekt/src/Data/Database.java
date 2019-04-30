@@ -114,7 +114,7 @@ public class Database {
 
     }
 
-    public void saveNote(User employee, User resident, DiaryNote note) {
+    public void saveNote(String employee, User resident, DiaryNote note) {
         //Setting up the driver.
         try {
             Class.forName("org.postgresql.Driver");
@@ -126,14 +126,14 @@ public class Database {
             con = DriverManager.getConnection(url, Username, Password);
 
             ps = con.prepareStatement("SELECT * FROM employeeNote WHERE employee = ? AND diaryNote = ?");
-            ps.setString(1, employee.toString());
+            ps.setString(1, employee);
             ps.setString(2, note.getNote());
             rs = ps.executeQuery();
 
             if (!rs.next()) {
                 ps = con.prepareStatement("INSERT INTO employeeNote(employee, diaryNote) VALUES (?, ?);");
 
-                ps.setString(1, employee.toString());
+                ps.setString(1, employee);
                 ps.setString(2, note.getNote());
 
                 ps.execute();
@@ -143,7 +143,7 @@ public class Database {
             ps.setString(1, resident.toString());
             ps.setString(2, note.getNote());
             rs2 = ps.executeQuery();
-         
+
             if (!rs2.next()) {
                 ps = con.prepareStatement("INSERT INTO residentNote(resident, diaryNote) VALUES (?, ?)");
                 ps.setString(1, resident.toString());

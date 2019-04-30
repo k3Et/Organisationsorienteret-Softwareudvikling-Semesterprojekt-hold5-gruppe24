@@ -1,5 +1,6 @@
 package Domain;
 
+import Data.Database;
 import Data.DiaryList;
 import Domain.DiaryNote;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Diary {
 
     //Denne klasse er udelukkende til for at hente og skrive data til DiaryList.
     DiaryList dList = new DiaryList();
+    Database database = new Database();
 
     public void saveDiaryNote(DiaryNote diary) {
         System.out.println("DOMAIN " + diary);
@@ -46,5 +48,9 @@ public class Diary {
 
     public List getFileName() {
         return dList.getFileName();
+    }
+
+    public void saveNoteInDatabase(String employee, User resident, DiaryNote note) {
+        database.saveNote(employee, resident, note); 
     }
 }
