@@ -50,7 +50,6 @@ public class User implements Comparable<User> {
         relations = new ListOfRelations();
     }
 
-    
     public String getCPR() {
         return CPR;
     }

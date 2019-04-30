@@ -2,12 +2,17 @@ package Data;
 
 import Domain.Controller;
 import Domain.Role;
+import Domain.Roles.Admin;
+import Domain.Roles.Employee;
+import Domain.Roles.Leader;
+import Domain.Roles.Resident;
 import Domain.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -112,6 +117,7 @@ public class Database {
 
     }
 
+    //This is meant to delete a user and it's roles based on the username.
     public void deleteUser(String username) {
         try {
             Class.forName("org.postgresql.Driver");
@@ -137,6 +143,15 @@ public class Database {
                 ps.execute();
 
                 System.out.println("User deleted.");
+
+                ps = con.prepareStatement("DELETE FROM Role WHERE username = ?");
+
+                ps.setString(1, username);
+
+                ps.execute();
+
+                System.out.println("Roles deleted.");
+
             } else {
                 System.out.println("User doesn't exist, and can't be deleted.");
             }
@@ -171,7 +186,7 @@ public class Database {
             rs = ps.executeQuery();
 
             if (!rs.next()) {
-                ps = con.prepareStatement("INSERT INTO Role VALUES(username LIKE ?, ?)");
+                ps = con.prepareStatement("INSERT INTO Role VALUES(?, ?)");
 
                 ps.setString(1, u.getUsername());
                 ps.setString(2, r.getName());
@@ -234,7 +249,9 @@ public class Database {
         }
     }
 
-    public void fillUserList() {
+    //This method is meant to create all users from the database in java, so
+    //they can be added to lists and edited.
+    public void loadAllUsers() {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
@@ -260,6 +277,54 @@ public class Database {
                 System.out.println(ex);
             }
         }
+    }
+
+    //This method is meant to check the roles of the specific user and return them in an ArrayList.
+    public ArrayList getDataPermissions(User u) {
+
+        Connection roleCon = null;
+        PreparedStatement preps = null;
+        ResultSet rSet = null;
+
+        ArrayList roles = new ArrayList();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+
+            roleCon = DriverManager.getConnection(url, Username, Password);
+
+            preps = roleCon.prepareStatement("SELECT * FROM Role WHERE username = ?");
+
+            preps.setString(1, u.getUsername());
+
+            rSet = preps.executeQuery();
+
+            while (rSet.next()) {
+                if (rSet.getString("role").equals("Leader")) {
+                    roles.add(new Leader());
+                } else if (rSet.getString("role").equals("Employee")) {
+                    roles.add(new Employee());
+                } else if (rSet.getString("role").equals("Resident")) {
+                    roles.add(new Resident());
+                } else if (rSet.getString("role").equals("Admin")) {
+                    roles.add(new Admin());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                roleCon.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return roles;
     }
 
 }

@@ -1,6 +1,7 @@
 package GUI;
 
 import Domain.Controller;
+import Domain.DatabaseHandler;
 
 import Domain.Role;
 import Domain.User;
@@ -74,7 +75,6 @@ public class AssignRoleController implements Initializable {
         userList.addAll(Controller.getStockUsers());
         roleList.addAll(Controller.getStockRoleList());
         //showUsers();
-
     }
 
     public void showUsers() {
@@ -93,6 +93,10 @@ public class AssignRoleController implements Initializable {
 
         if (selectedRole != null) {
             Controller.addRoleToUser(selectedUser, selectedRole);
+            DatabaseHandler.addRole(selectedUser, selectedRole);
+
+            selectedUser.getRoles().clear();
+            selectedUser.getRoles().addAll(DatabaseHandler.getDataPermissions(selectedUser));
         }
         updateListViews();
     }
@@ -120,8 +124,12 @@ public class AssignRoleController implements Initializable {
         selectedRole = chooseRoleList.getSelectionModel().getSelectedItem();
         Controller.removeRoleFromUser(selectedUser, selectedRole);
 
-        updateListViews();
+        DatabaseHandler.deleteRole(selectedUser, selectedRole);
 
+        selectedUser.getRoles().clear();
+        selectedUser.getRoles().addAll(DatabaseHandler.getDataPermissions(selectedUser));
+
+        updateListViews();
     }
 
     @FXML

@@ -15,6 +15,7 @@ public class DatabaseTest {
 
         Database ds = new Database();
         //ds.deleteUser("");
+        //ds.deleteUser("testing");
     }
 
 }

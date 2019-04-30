@@ -23,7 +23,7 @@ public class FXMain extends Application {
     public void start(Stage stage) {
 
         Controller.setStockRoleList();
-        Controller.setStockUsers();
+        //Controller.setStockUsers();
         DatabaseHandler.loadAllUsers();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);

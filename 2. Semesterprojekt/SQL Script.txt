@@ -1,0 +1,35 @@
+CREATE TABLE Users(
+name VARCHAR,
+username VARCHAR,
+password VARCHAR,
+CPR VARCHAR,
+phoneNumber VARCHAR,
+eMail VARCHAR,
+address VARCHAR
+);
+
+CREATE TABLE Role(
+username VARCHAR,
+role VARCHAR
+);
+
+//Java Methods:
+verifyLogin:
+SELECT *
+FROM Users
+WHERE username = ? and password = ?
+
+createUser:
+INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)
+
+addRole:
+INSERT INTO Role VALUES(?, ?)
+
+deleteRole:
+DELETE FROM Role WHERE username = ? and role = ?
+
+loadAllUsers:
+SELECT * FROM Users
+
+getDataPermissions:
+SELECT * FROM Role WHERE username = ?
