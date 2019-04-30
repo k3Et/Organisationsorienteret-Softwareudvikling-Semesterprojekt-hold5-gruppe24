@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Domain.DiaryNote;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Database {
     private Connection con = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
+    private ResultSet rs2 = null;
 
     private final String url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid";
     private final String Username = "qtbrqkid";
@@ -100,6 +102,56 @@ public class Database {
             } else {
                 System.out.println("User already exists.");
             }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+
+    }
+
+    public void saveNote(User employee, User resident, DiaryNote note) {
+        //Setting up the driver.
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            con = DriverManager.getConnection(url, Username, Password);
+
+            ps = con.prepareStatement("SELECT * FROM employeeNote WHERE employee = ? AND diaryNote = ?");
+            ps.setString(1, employee.toString());
+            ps.setString(2, note.getNote());
+            rs = ps.executeQuery();
+
+            if (!rs.next()) {
+                ps = con.prepareStatement("INSERT INTO employeeNote(employee, diaryNote) VALUES (?, ?);");
+
+                ps.setString(1, employee.toString());
+                ps.setString(2, note.getNote());
+
+                ps.execute();
+            }
+
+            ps = con.prepareStatement("SELECT * FROM residentNote WHERE resident = ? AND diaryNote = ?");
+            ps.setString(1, resident.toString());
+            ps.setString(2, note.getNote());
+            rs2 = ps.executeQuery();
+         
+            if (!rs2.next()) {
+                ps = con.prepareStatement("INSERT INTO residentNote(resident, diaryNote) VALUES (?, ?)");
+                ps.setString(1, resident.toString());
+                ps.setString(2, note.getNote());
+                ps.execute();
+            }
+            //If the query is succesful the method will return true.
+            //Meaning that the logininformation exists and is correct.
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
