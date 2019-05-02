@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
             <children>
                 <ImageView fx:id="NoTiBoImage" fitHeight="75.0" fitWidth="75.0" layoutX="18.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Pictures/NoTiBoImage.png" />
+                        <Image url="@../../Pictures/NoTiBoImage.png" />
                     </image>
                 </ImageView>
             </children>
@@ -34,10 +35,11 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <PasswordField fx:id="passWordField" layoutX="8.0" layoutY="84.0" onAction="#handlePassWordFIeldAction" prefHeight="26.0" prefWidth="243.0" style="-fx-background-color: white;" />
+                <PasswordField fx:id="passWordField" layoutX="8.0" layoutY="84.0" onAction="#handlePassWordFIeldAction" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: white;" />
                 <Button fx:id="loginButton" layoutX="7.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="36.0" prefWidth="88.0" style="-fx-font-family: Karla; -fx-background-color: CD5360; -fx-border-color: CD5360; -fx-font-size: 17px;" text="Login" />
                 <Label fx:id="resultLabel" layoutX="72.0" layoutY="124.0" prefHeight="18.0" prefWidth="0.0" />
             </children>
         </Pane>
+        <ComboBox fx:id="comboBox" layoutX="165.0" layoutY="88.0" prefHeight="26.0" prefWidth="246.0" promptText="Vælg Bolig" />
     </children>
 </AnchorPane>

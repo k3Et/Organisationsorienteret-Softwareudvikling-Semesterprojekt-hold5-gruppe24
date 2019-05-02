@@ -69,6 +69,50 @@ public class Database {
         return false;
     }
 
+    //UPDATE DATABASE WITH LOCATION TABLE!!!
+    //This method is meant to verify that the user is at the selected location at login.
+    public boolean verifyLocation(String username, String location) {
+
+        Connection locCon = null;
+        PreparedStatement locPs = null;
+        ResultSet locRs = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+
+            locCon = DriverManager.getConnection(url, Username, Password);
+
+            locPs = locCon.prepareStatement("SELECT * FROM Locations WHERE username = ? and location = ?");
+
+            locPs.setString(1, username);
+            locPs.setString(2, location);
+
+            locRs = locPs.executeQuery();
+
+            if (locRs.next()) {
+                System.out.println("Location Query Accepted.");
+                return true;
+            } else {
+                System.out.println("Location Query Failed");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                locCon.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return false;
+    }
+
     //This method is meant to create a new entry/user in the database from the GUI.
     public void createUser(User u) {
 
@@ -327,4 +371,52 @@ public class Database {
         return roles;
     }
 
+    //implement get locations from database
+    public ArrayList getLocations(User u) {
+
+        Connection locaCon = null;
+        PreparedStatement locaPs = null;
+        ResultSet locaRs = null;
+
+        ArrayList locations = new ArrayList();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+
+            locaCon = DriverManager.getConnection(url, Username, Password);
+
+            locaPs = locaCon.prepareStatement("SELECT * FROM Locations WHERE username = ?");
+
+            locaPs.setString(1, u.getUsername());
+
+            locaRs = locaPs.executeQuery();
+
+            //CONTINUE HERE!!!!
+            while (locaRs.next()) {
+                if (locaRs.getString("location").equals("Leader")) {
+                    locations.add(new Leader());
+                } else if (locaRs.getString("role").equals("Employee")) {
+                    locations.add(new Employee());
+                } else if (locaRs.getString("role").equals("Resident")) {
+                    locations.add(new Resident());
+                } else if (locaRs.getString("role").equals("Admin")) {
+                    locations.add(new Admin());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                locaCon.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return locations;
+    }
 }

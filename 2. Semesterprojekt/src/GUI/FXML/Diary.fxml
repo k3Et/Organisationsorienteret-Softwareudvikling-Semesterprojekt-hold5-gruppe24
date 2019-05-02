@@ -21,7 +21,7 @@
             <children>
                 <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Pictures/NoTiBoImage.png" />
+                        <Image url="@../../Pictures/NoTiBoImage.png" />
                     </image>
                 </ImageView>
                 <Button fx:id="homeBtn" layoutY="-5.0" mnemonicParsing="false" onAction="#HomeBtnHandler" opacity="0.0" prefHeight="79.0" prefWidth="74.0" text="Button" />

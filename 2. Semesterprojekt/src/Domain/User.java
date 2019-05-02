@@ -21,22 +21,10 @@ public class User implements Comparable<User> {
     private String email;
     private String address;
     private ListOfRoles roles;
+    
+    private Locations location;
 
     private ListOfRelations relations;
-
-    //Overvej at fjerne role i constructor, da brugere ikke bliver added til deres lister, hvis de allerede har en rolle.
-    public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address, Role r) {
-        this.name = name;
-        this.password = password;
-        this.username = username;
-        this.CPR = CPR;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-
-        roles = new ListOfRoles(r);
-        relations = new ListOfRelations();
-    }
 
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
         this.name = name;
@@ -46,8 +34,10 @@ public class User implements Comparable<User> {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        
         roles = new ListOfRoles();
         relations = new ListOfRelations();
+        location = new Locations();
     }
 
     public String getCPR() {
