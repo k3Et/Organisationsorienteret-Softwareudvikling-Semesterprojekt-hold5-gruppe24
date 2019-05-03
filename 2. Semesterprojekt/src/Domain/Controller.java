@@ -39,7 +39,6 @@ public class Controller {
         ListOfResidents.addResident(u2);
         ListOfResidents.addResident(u5);
         ListOfResidents.addResident(test);
-
     }
 
     public static List<User> getStockUsers() {

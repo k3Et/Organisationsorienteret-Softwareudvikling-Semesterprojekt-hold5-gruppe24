@@ -42,8 +42,6 @@ public class NewUserController implements Initializable {
 
     @FXML
     private void saveBtnHandler(ActionEvent event) {
-//        Controller.createNewUser(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
-
         Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText(), currentLocation);
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
