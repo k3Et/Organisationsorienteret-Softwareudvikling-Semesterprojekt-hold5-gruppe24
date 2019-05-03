@@ -9,6 +9,7 @@ import Domain.MedicineList;
 import Domain.User;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,6 +91,7 @@ public class DiaryFXMLController implements Initializable {
         ListOfDiaryNote.setEditable(false);
 
         loadDosis();
+        System.out.println(medicineList.getMedicineList().size());
         for (int i = 0; i < medicineList.getMedicineList().size(); i++) {
 
             ChoiceBox choose = new ChoiceBox();
@@ -118,13 +120,10 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
-
-        for (String s : getTableViewValues()) {
-            System.out.println(s);
-        }
-        String writtenNote = WriteDiaryNote.getText();
+        String writtenNote = formatMedicine(getTableViewValues());
+        writtenNote += WriteDiaryNote.getText();
         String user = LoginFXMLController.currentUserLoggedIn;
-        String combines = writtenNote + "\n" + "skrevet af: " + user;
+        String combines = writtenNote + "\n" + "Skrevet af: " + user;
         // d.setResidentName(selectedUser);
         if (!writtenNote.equals("")) {
             if (selectedUser == null) {
@@ -143,21 +142,39 @@ public class DiaryFXMLController implements Initializable {
         }
     }
 
-    private ArrayList<String> getTableViewValues() {
+    //Returns array where all unequal indexes contain medicine names and equal indexes contain dosis. Medicine will not get added if they are equal to 0 mg.
+    private List<String> getTableViewValues() {
         ArrayList<String> values = new ArrayList<>();
         ObservableList<TableColumn<TableGetterSetter, ?>> columns = tableView.getColumns();
 
         for (Object row : tableView.getItems()) {
             for (TableColumn column : columns) {
                 if (column.getCellObservableValue(row).getValue() instanceof ChoiceBox) {
-                    ChoiceBox cb = (ChoiceBox)column.getCellObservableValue(row).getValue();
-                    values.add((String)cb.getSelectionModel().getSelectedItem());
+                    ChoiceBox cb = (ChoiceBox) column.getCellObservableValue(row).getValue();
+                    if (cb.getSelectionModel().getSelectedItem().equals("0 mg")) {
+                        values.remove(values.size() - 1);
+                    } else {
+                        values.add((String) cb.getSelectionModel().getSelectedItem());
+                    }
                 } else {
                     values.add((String) column.getCellObservableValue(row).getValue().toString());
                 }
             }
         }
         return values;
+    }
+
+    private String formatMedicine(List<String> tempList) {
+        String medString = "";
+        if (!tempList.isEmpty()) {
+            medString = "Medicin givet til beboer:\n";
+            for (int i = 0; i < tempList.size(); i += 2) {
+                medString += tempList.get(i) + ":\t" + tempList.get(i + 1) + "\n";
+            }
+            medString += "\n";
+        }
+        cleanChoiceBox();
+        return medString;
     }
 
     private void readFiles() {
@@ -173,6 +190,12 @@ public class DiaryFXMLController implements Initializable {
                 note.setStyle("-fx-background-color: lightblue;");
                 obList.add(note);
             }
+        }
+    }
+
+    private void cleanChoiceBox() {
+        for (TableGetterSetter tgs : data) {
+            tgs.getChoiceBox().getSelectionModel().selectFirst();
         }
     }
 
@@ -200,17 +223,7 @@ public class DiaryFXMLController implements Initializable {
     }
 
     private void loadDosis() {
-        String[] dosis = {"5 mg", "10 mg"};
-        String a = "5 mg";
-        String b = "10 mg";
-        String c = "20 mg";
-        String d = "30 mg";
-        String e = "60 mg";
-        String f = "90 mg";
-        String g = "100 mg";
-        String h = "150 mg";
-        String i = "200 mg";
-        String j = "0 mg";
-        choiceList.addAll(j, a, b, c, d, e, f, g, h, i);
+        String[] dosis = {"0 mg", "5 mg", "10 mg", "20 mg", "30 mg", "60 mg", "90 mg", "100 mg", "150 mg", "200 mg"};
+        choiceList.addAll(dosis);
     }
 }
