@@ -15,7 +15,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -25,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -63,6 +67,8 @@ public class DiaryFXMLController implements Initializable {
     private TableColumn<TableGetterSetter, ChoiceBox> DosisCol;
     @FXML
     private TableView<TableGetterSetter> tableView;
+    
+    private User lastUser;
 
     private ObservableList<TableGetterSetter> data = FXCollections.observableArrayList();
     private ObservableList<String> choiceList = FXCollections.observableArrayList();
@@ -201,8 +207,30 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void onResidentClickedHandler(MouseEvent event) {
+        if(selectedUser != null){
+        lastUser = selectedUser;
+        }
         selectedUser = residentListView.getSelectionModel().getSelectedItem(); //finds the selected item  
-
+        if(lastUser != null && lastUser.equals(selectedUser)){
+            try{
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(DiaryFXMLController.class.getResource("/GUI/FXML/ResidentInformation.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Borger");
+                stage.setScene(new Scene(root));
+                stage.show();
+                
+                ResidentInformationController controller = loader.getController();
+                controller.setNameField(selectedUser.getName());
+                controller.setCprField(selectedUser.getCPR());
+                controller.setPhoneField(selectedUser.getPhoneNumber());
+                controller.setEmailField(selectedUser.getEmail());
+                controller.setAdresseField(selectedUser.getAddress());
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
         diary.setResidentName(selectedUser);
         if (selectedUser != null) {
             ListOfDiaryNote.scrollTo(obList.size());
@@ -226,4 +254,5 @@ public class DiaryFXMLController implements Initializable {
         String[] dosis = {"0 mg", "5 mg", "10 mg", "20 mg", "30 mg", "60 mg", "90 mg", "100 mg", "150 mg", "200 mg"};
         choiceList.addAll(dosis);
     }
+    
 }
