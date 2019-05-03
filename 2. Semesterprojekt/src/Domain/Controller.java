@@ -86,13 +86,14 @@ public class Controller {
     public static void createNewUser(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
         User user = new User(name, password, username, CPR, phoneNumber, email, address);
         user.getRoles().addAll(DatabaseHandler.getDataPermissions(user));
+        //user.getLocations().addAll(DatabaseHandler.getLocations(user));
         ListOfUsers.addUser(user);
     }
 
-    public static void createUserInDatabase(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
+    public static void createUserInDatabase(String name, String password, String username, String CPR, String phoneNumber, String email, String address, String location) {
         User user = new User(name, password, username, CPR, phoneNumber, email, address);
         ListOfUsers.addUser(user);
-        DatabaseHandler.createUser(user);
+        DatabaseHandler.createUser(user, location);
     }
 
 }

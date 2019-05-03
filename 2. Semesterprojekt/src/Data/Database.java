@@ -7,6 +7,7 @@ import Domain.Roles.Employee;
 import Domain.Roles.Leader;
 import Domain.Roles.Resident;
 import Domain.User;
+import static GUI.LoginFXMLController.currentLocation;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,7 +30,7 @@ public class Database {
     private final String Password = "ju1tuAMRQjWkEU-_Pe-5gHMzyNQfm7qa";
 
     //This method is meant to verify the users given logininformation.
-    public boolean verifyLogin(String username, String password) {
+    public boolean verifyLogin(String username, String password, String location) {
 
         //Setting up the driver.
         try {
@@ -50,7 +51,7 @@ public class Database {
 
             //If the query is succesful the method will return true.
             //Meaning that the logininformation exists and is correct.
-            if (rs.next()) {
+            if (rs.next() && verifyLocation(username, location)) {
                 System.out.println("Query Accepeted");
                 return true;
             } else {
@@ -114,7 +115,7 @@ public class Database {
     }
 
     //This method is meant to create a new entry/user in the database from the GUI.
-    public void createUser(User u) {
+    public void createUser(User u, String location) {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -132,7 +133,7 @@ public class Database {
             rs = ps.executeQuery();
 
             //If the information isn't already in the database the user will be created.
-            if (!rs.next()) {
+            if (!rs.next() && createLocation(u, location)) {
                 ps = con.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)");
 
                 ps.setString(1, u.getName());
@@ -145,7 +146,7 @@ public class Database {
 
                 ps.execute();
 
-                System.out.println("Row Added");
+                System.out.println("User Row Added");
             } else {
                 System.out.println("User already exists.");
             }
@@ -252,7 +253,7 @@ public class Database {
 
     }
 
-    //This method is meant to delete a role. It doesn't work yet.
+    //This method is meant to delete a role.
     public void deleteRole(User u, Role r) {
 
         try {
@@ -371,6 +372,106 @@ public class Database {
         return roles;
     }
 
+    //Create location when user is created.
+    public boolean createLocation(User u, String location) {
+
+        Connection locaCon = null;
+        PreparedStatement locaPs = null;
+        ResultSet locaRs = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            locaCon = DriverManager.getConnection(url, Username, Password);
+
+            locaPs = locaCon.prepareStatement("SELECT * FROM Locations WHERE username = ? and location = ?");
+
+            locaPs.setString(1, u.getUsername());
+            locaPs.setString(2, location);
+
+            locaRs = locaPs.executeQuery();
+
+            //If the information isn't already in the database the userlocation will be created.
+            if (!locaRs.next()) {
+                locaPs = locaCon.prepareStatement("INSERT INTO Users VALUES(?, ?)");
+
+                locaPs.setString(1, u.getUsername());
+                locaPs.setString(2, location);
+
+                locaPs.execute();
+
+                System.out.println("Location Row Added");
+                return true;
+            } else {
+                System.out.println("User already at this location.");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                locaCon.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return false;
+    }
+
+    //Deleting the current users location, when a user is deleted
+    //without deleting all user locations.
+    public boolean deleteLocation(String username) {
+
+        Connection locaCon = null;
+        PreparedStatement locaPs = null;
+        ResultSet locaRs = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            locaCon = DriverManager.getConnection(url, Username, Password);
+
+            locaPs = locaCon.prepareStatement("SELECT * FROM Locations WHERE username = ? and location = ?");
+
+            locaPs.setString(1, username);
+            locaPs.setString(2, currentLocation);
+
+            locaRs = locaPs.executeQuery();
+
+            //If the location exists in the database it will be deleted.
+            //NEEDS CHECK FOR ONE OR MORE ROWS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (locaRs.next() && locaRs.) {
+                locaPs = locaCon.prepareStatement("INSERT INTO Users VALUES(?, ?)");
+
+                locaPs.setString(1, username);
+                locaPs.setString(2, currentLocation);
+
+                locaPs.execute();
+
+                System.out.println("Location Row Added");
+                return true;
+            } else {
+                System.out.println("User already at this location.");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                locaCon.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return false;
+    }
+
     //implement get locations from database
     public ArrayList getLocations(User u) {
 
@@ -396,17 +497,8 @@ public class Database {
 
             locaRs = locaPs.executeQuery();
 
-            //CONTINUE HERE!!!!
             while (locaRs.next()) {
-                if (locaRs.getString("location").equals("Leader")) {
-                    locations.add(new Leader());
-                } else if (locaRs.getString("role").equals("Employee")) {
-                    locations.add(new Employee());
-                } else if (locaRs.getString("role").equals("Resident")) {
-                    locations.add(new Resident());
-                } else if (locaRs.getString("role").equals("Admin")) {
-                    locations.add(new Admin());
-                }
+                locations.add(locaRs.getString("location"));
             }
         } catch (SQLException ex) {
             System.out.println(ex);

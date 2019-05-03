@@ -21,7 +21,7 @@ public class User implements Comparable<User> {
     private String email;
     private String address;
     private ListOfRoles roles;
-    
+
     private Locations location;
 
     private ListOfRelations relations;
@@ -34,7 +34,7 @@ public class User implements Comparable<User> {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        
+
         roles = new ListOfRoles();
         relations = new ListOfRelations();
         location = new Locations();
@@ -113,6 +113,14 @@ public class User implements Comparable<User> {
     public ListOfRoles getRoleList() {
 
         return roles;
+    }
+    
+    public List<Locations> getLocations() {
+        return location.getLocationList();
+    }
+
+    public Locations getLocation() {
+        return location;
     }
 
     @Override

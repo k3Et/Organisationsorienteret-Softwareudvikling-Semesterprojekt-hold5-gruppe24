@@ -1,8 +1,6 @@
 package GUI;
 
 import Domain.DatabaseHandler;
-import static GUI.SceneHandler.currentScene;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -23,7 +21,7 @@ import javafx.scene.image.ImageView;
  * @author Victor
  */
 public class LoginFXMLController implements Initializable {
-    
+
     private ImageView loginImageView;
     @FXML
     private ImageView NoTiBoImage;
@@ -41,12 +39,14 @@ public class LoginFXMLController implements Initializable {
     private Button loginButton;
     @FXML
     private ComboBox<String> comboBox;
-    
+
     private ObservableList<String> locations = FXCollections.observableArrayList();
-    
+
     private SceneHandler sh = new SceneHandler();
-    
+
     public static String currentUserLoggedIn;
+
+    public static String currentLocation;
 
     /**
      * Initializes the controller class.
@@ -60,37 +60,31 @@ public class LoginFXMLController implements Initializable {
         comboBox.setItems(locations);
         //comboBox.getSelectionModel().getSelectedItem();
     }
-    
+
     @FXML
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
             currentUserLoggedIn = userNameField.getText();
+            currentLocation = comboBox.getSelectionModel().getSelectedItem();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
-//            String css = MenuFXMLController.class.getResource("Menu.css").toExternalForm();
-//            currentScene.getStylesheets().add(css);
-//            System.out.println("css");
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
     }
-    
+
     @FXML
-    private void handleLoginButtonAction(ActionEvent event) throws IOException {
+    private void handleLoginButtonAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText())) {
+        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
             currentUserLoggedIn = userNameField.getText();
+            currentLocation = comboBox.getSelectionModel().getSelectedItem();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
-            
-            String css = MenuFXMLController.class.getResource("Menu.css").toExternalForm();
-            currentScene.getStylesheets().add(css);
-            System.out.println("css");
-            
         } else {
             resultLabel.setText("Brugernavn eller\nPassword forkert..");
         }
     }
-    
+
 }

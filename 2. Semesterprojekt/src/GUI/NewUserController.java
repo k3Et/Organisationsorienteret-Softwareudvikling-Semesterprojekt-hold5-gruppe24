@@ -1,7 +1,7 @@
 package GUI;
 
 import Domain.Controller;
-import Domain.DatabaseHandler;
+import static GUI.LoginFXMLController.currentLocation;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -44,7 +44,7 @@ public class NewUserController implements Initializable {
     private void saveBtnHandler(ActionEvent event) {
 //        Controller.createNewUser(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
 
-        Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText());
+        Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText(), currentLocation);
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 

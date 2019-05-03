@@ -30,7 +30,7 @@ public class ListOfRoles {
         lRoles.remove(r);
     }
 
-//Returns list where each index contains a string that is equal to a permission
+    //Returns list where each index contains a string that is equal to a permission
     public List<String> getPermissions() {
 
         String permissions = "";

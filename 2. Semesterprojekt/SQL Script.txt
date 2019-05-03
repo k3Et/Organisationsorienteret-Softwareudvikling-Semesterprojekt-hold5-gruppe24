@@ -13,6 +13,11 @@ username VARCHAR,
 role VARCHAR
 );
 
+CREATE TABLE Locations(
+username VARCHAR,
+location VARCHAR
+);
+
 //Java Methods:
 verifyLogin:
 SELECT *
