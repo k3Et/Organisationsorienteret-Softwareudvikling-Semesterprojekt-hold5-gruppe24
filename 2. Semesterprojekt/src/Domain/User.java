@@ -115,9 +115,9 @@ public class User implements Comparable<User> {
         return roles;
     }
     
-    public List<Locations> getLocations() {
-        return location.getLocationList();
-    }
+    //public List<Locations> getLocations() {
+        //return location.getLocationList();
+    //}
 
     public Locations getLocation() {
         return location;

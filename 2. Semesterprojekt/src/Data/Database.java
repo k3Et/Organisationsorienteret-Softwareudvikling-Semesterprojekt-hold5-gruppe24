@@ -51,6 +51,7 @@ public class Database {
 
             //If the query is succesful the method will return true.
             //Meaning that the logininformation exists and is correct.
+            //And that the input location is correct.
             if (rs.next() && verifyLocation(username, location)) {
                 System.out.println("Query Accepeted");
                 return true;
@@ -70,7 +71,6 @@ public class Database {
         return false;
     }
 
-    //UPDATE DATABASE WITH LOCATION TABLE!!!
     //This method is meant to verify that the user is at the selected location at login.
     public boolean verifyLocation(String username, String location) {
 
@@ -133,6 +133,7 @@ public class Database {
             rs = ps.executeQuery();
 
             //If the information isn't already in the database the user will be created.
+            //
             if (!rs.next() && createLocation(u, location)) {
                 ps = con.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)");
 
@@ -181,22 +182,23 @@ public class Database {
 
             if (rs.next()) {
 
-                ps = con.prepareStatement("DELETE FROM Users WHERE username = ?");
+                if (deleteLocation("username") == 1) {
+                    ps = con.prepareStatement("DELETE FROM Users WHERE username = ?");
 
-                ps.setString(1, username);
+                    ps.setString(1, username);
 
-                ps.execute();
+                    ps.execute();
 
-                System.out.println("User deleted.");
+                    System.out.println("User deleted.");
 
-                ps = con.prepareStatement("DELETE FROM Role WHERE username = ?");
+                    ps = con.prepareStatement("DELETE FROM Role WHERE username = ?");
 
-                ps.setString(1, username);
+                    ps.setString(1, username);
 
-                ps.execute();
+                    ps.execute();
 
-                System.out.println("Roles deleted.");
-
+                    System.out.println("Roles deleted.");
+                }
             } else {
                 System.out.println("User doesn't exist, and can't be deleted.");
             }
@@ -310,7 +312,8 @@ public class Database {
 
             rs = ps.executeQuery();
 
-            while (rs.next()) {
+            //Checks if the user is at the logged in/currentLocation.
+            while (rs.next() && verifyLocation(rs.getString("username"), currentLocation)) {
                 Controller.createNewUser(rs.getString("name"), rs.getString("password"), rs.getString("username"), rs.getString("cpr"), rs.getString("phonenumber"), rs.getString("email"), rs.getString("address"));
             }
         } catch (SQLException ex) {
@@ -423,7 +426,7 @@ public class Database {
 
     //Deleting the current users location, when a user is deleted
     //without deleting all user locations.
-    public boolean deleteLocation(String username) {
+    public int deleteLocation(String username) {
 
         Connection locaCon = null;
         PreparedStatement locaPs = null;
@@ -438,27 +441,38 @@ public class Database {
         try {
             locaCon = DriverManager.getConnection(url, Username, Password);
 
-            locaPs = locaCon.prepareStatement("SELECT * FROM Locations WHERE username = ? and location = ?");
+            locaPs = locaCon.prepareStatement("SELECT * FROM Locations WHERE username = ?", locaRs.TYPE_SCROLL_INSENSITIVE, locaRs.CONCUR_UPDATABLE);
 
             locaPs.setString(1, username);
-            locaPs.setString(2, currentLocation);
 
             locaRs = locaPs.executeQuery();
 
-            //If the location exists in the database it will be deleted.
-            //NEEDS CHECK FOR ONE OR MORE ROWS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (locaRs.next() && locaRs.) {
-                locaPs = locaCon.prepareStatement("INSERT INTO Users VALUES(?, ?)");
+            //If there is more than one location saved at the user, only the currentLocation will be deleted.
+            //If there is one row the method will return one. If there are more it will return the rownumber.
+            locaRs.last();
+            if (locaRs.getRow() == 1) {
+
+                locaPs = locaCon.prepareStatement("DELETE FROM Locations WHERE username = ?");
+
+                locaPs.setString(1, username);
+
+                locaPs.execute();
+
+                System.out.println("Final Location Deleted.");
+                return 1;
+            } else if (locaRs.getRow() > 1) {
+
+                int returner = locaRs.getRow();
+
+                locaPs = locaCon.prepareStatement("DELETE FROM Locations WHERE username = ? and location = ?");
 
                 locaPs.setString(1, username);
                 locaPs.setString(2, currentLocation);
 
                 locaPs.execute();
 
-                System.out.println("Location Row Added");
-                return true;
-            } else {
-                System.out.println("User already at this location.");
+                System.out.println("This Location Deleted.");
+                return returner;
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -469,10 +483,12 @@ public class Database {
                 System.out.println(ex);
             }
         }
-        return false;
+        return 0;
     }
 
-    //implement get locations from database
+    //This method is meant to download all the locations for the users and return them
+    //in an ArrayList. The method is used when a userobject is created at login.
+    //STILL NOT IMPLEMENTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public ArrayList getLocations(User u) {
 
         Connection locaCon = null;
