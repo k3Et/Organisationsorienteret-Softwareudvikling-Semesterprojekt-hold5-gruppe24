@@ -211,6 +211,39 @@ public class DiaryFXMLController implements Initializable {
         lastUser = selectedUser;
         }
         selectedUser = residentListView.getSelectionModel().getSelectedItem(); //finds the selected item  
+        openInfo();
+        diary.setResidentName(selectedUser);
+        if (selectedUser != null) {
+            ListOfDiaryNote.scrollTo(obList.size());
+            readFiles();
+        }
+        //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
+        //loadUserNotes()
+    }
+
+    @FXML
+    private void HomeBtnHandler(ActionEvent event) {
+        sh.setNewScene("/GUI/FXML/Menu.fxml");
+    }
+
+    private void handleMedicineButtonAction(ActionEvent event) {
+        sh.setNewScene("GUI/FXML/MedicinNote.fxml");
+    }
+
+    private void loadDosis() {
+        String[] dosis = {"0 mg", "5 mg", "10 mg", "20 mg", "30 mg", "60 mg", "90 mg", "100 mg", "150 mg", "200 mg"};
+        choiceList.addAll(dosis);
+    }
+
+    @FXML
+    private void infoOnResident(ActionEvent event) {
+        if (selectedUser != null) {
+        lastUser = selectedUser;    
+        openInfo();
+        }
+    }
+    
+    private void openInfo(){
         if(lastUser != null && lastUser.equals(selectedUser)){
             try{
                 FXMLLoader loader = new FXMLLoader();
@@ -231,28 +264,6 @@ public class DiaryFXMLController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        diary.setResidentName(selectedUser);
-        if (selectedUser != null) {
-            ListOfDiaryNote.scrollTo(obList.size());
-            readFiles();
-        }
-        //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
-        //loadUserNotes()
-    }
-
-    @FXML
-    private void HomeBtnHandler(ActionEvent event) {
-        sh.setNewScene("/GUI/FXML/Menu.fxml");
-    }
-
-    @FXML
-    private void handleMedicineButtonAction(ActionEvent event) {
-        sh.setNewScene("GUI/FXML/MedicinNote.fxml");
-    }
-
-    private void loadDosis() {
-        String[] dosis = {"0 mg", "5 mg", "10 mg", "20 mg", "30 mg", "60 mg", "90 mg", "100 mg", "150 mg", "200 mg"};
-        choiceList.addAll(dosis);
     }
     
 }
