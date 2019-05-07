@@ -79,8 +79,8 @@ public class Controller {
         }
         return null;
     }
-    
-    public static void saveNote(String user, User selectedUser, String note){
+
+    public static void saveNote(String user, User selectedUser, String note) {
         DatabaseHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(note));
     }
 
