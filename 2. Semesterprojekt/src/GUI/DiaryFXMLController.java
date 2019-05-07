@@ -1,5 +1,6 @@
 package GUI;
 
+import Domain.Controller;
 import Domain.DatabaseHandler;
 import Domain.Diary;
 
@@ -125,7 +126,7 @@ public class DiaryFXMLController implements Initializable {
                 obList.add(warning);
             } else {
 
-                dataHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(combines));
+                Controller.saveNote(user, selectedUser, combines);
 
                 WriteDiaryNote.setText("");
             }

@@ -32,7 +32,7 @@ public class DatabaseHandler {
         database.fillUserList();
     }
 
-    public void saveNoteInDatabase(String employee, User resident, DiaryNote note) {
+    public static void saveNoteInDatabase(String employee, User resident, DiaryNote note) {
         database.saveNote(employee, resident, note);
     }
 
