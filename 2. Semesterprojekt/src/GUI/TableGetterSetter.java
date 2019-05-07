@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 
 /**

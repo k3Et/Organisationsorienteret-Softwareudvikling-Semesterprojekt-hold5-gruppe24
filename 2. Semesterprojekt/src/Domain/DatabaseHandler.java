@@ -1,7 +1,6 @@
 package Domain;
 
 import Data.Database;
-import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

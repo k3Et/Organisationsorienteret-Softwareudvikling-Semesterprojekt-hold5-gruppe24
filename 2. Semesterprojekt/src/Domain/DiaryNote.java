@@ -1,7 +1,5 @@
 package Domain;
 
-import java.util.Date;
-
 /**
  *
  * @author Benjamin
