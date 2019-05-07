@@ -170,7 +170,7 @@ public class Database {
     public List<String> getNote(String employee, String date) {
 
         List<String> listOfNotes = new ArrayList<>();
-
+        rs = null;
         //Setting up the driver.
         try {
             Class.forName("org.postgresql.Driver");
@@ -178,19 +178,20 @@ public class Database {
             System.out.println(ex);
         }
         try {
+
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = 'Tempest'");
+            ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ? ");
             //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
-          //  ps.setString(1, employee);
-            // ps.setString(2, "%"+date+"%");
+            ps.setString(1, employee);
+            ps.setString(2, "%" + date + "%");
             // System.out.println("%" +date +"%");
 
             rs = ps.executeQuery();
-            System.out.println(rs.getString("note"));
+            // System.out.println(rs.getString("note"));
 
             System.out.println("Note selected from DB");
             while (rs.next()) {
-                System.out.println("ting");
+                System.out.println(rs.getString("note"));
                 listOfNotes.add(rs.getString("note"));
             }
 
