@@ -56,7 +56,7 @@ public class DatabaseHandler {
     //Til at gemme datoen som String
     public static String convertDate() {
         date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy HH:mm:ss");
         String dateTime = dateFormat.format(date);
         return dateTime;
     }
