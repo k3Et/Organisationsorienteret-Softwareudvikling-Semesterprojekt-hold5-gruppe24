@@ -1,8 +1,8 @@
 package GUI;
 
+import Domain.Controller;
+import Domain.DatabaseHandler;
 import Domain.Diary;
-
-import Domain.DiaryNote;
 import Domain.ListOfResidents;
 import Domain.User;
 import java.net.URL;
@@ -69,8 +69,9 @@ public class DiaryFXMLController implements Initializable {
         obResidents.addAll(ListOfResidents.getResidentList());
 
         ListOfDiaryNote.setEditable(false);
-
+        readEmployeNoteFromDatabase();
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
+
     }
 
     @FXML
@@ -86,10 +87,34 @@ public class DiaryFXMLController implements Initializable {
     @FXML
     private void SaveNoteBtnHandler(ActionEvent event) {
 
+//        String writtenNote = WriteDiaryNote.getText();
+//        String user = LoginFXMLController.currentUserLoggedIn;
+//        String combines = writtenNote + "\n" + "skrevet af: " + user;
+//        // d.setResidentName(selectedUser);
+//        if (!writtenNote.equals("")) {
+//            if (selectedUser == null) {
+//                TextArea warning = new TextArea("Vælg venligst en beboer");
+//                warning.setStyle("-fx-background-color: red;");
+//                warning.setStyle("-fx-font-style: Bold");
+//                obList.add(warning);
+//            } else {
+//
+//                diary.saveDiaryNote(new DiaryNote(combines));
+//                diary.convertDate();
+//
+//                WriteDiaryNote.setText("");
+//                readFiles();
+//            }
+//        }
+        saveNoteInDatabase();
+    }
+
+    private void saveNoteInDatabase() {
         String writtenNote = WriteDiaryNote.getText();
         User user = LoginFXMLController.currentUserLoggedIn;
-        String combines = writtenNote + "\n" + "skrevet af: " + user.getName();
+        String combines = writtenNote + "\n" + "skrevet af: " + user.getName() + "\n" + DatabaseHandler.convertDate();
         // d.setResidentName(selectedUser);
+
         if (!writtenNote.equals("")) {
             if (selectedUser == null) {
                 TextArea warning = new TextArea("Vælg venligst en beboer");
@@ -98,14 +123,11 @@ public class DiaryFXMLController implements Initializable {
                 obList.add(warning);
             } else {
 
-                diary.saveDiaryNote(new DiaryNote(combines));
-                diary.convertDate();
+                Controller.saveNote(user.getName(), selectedUser, combines);
 
                 WriteDiaryNote.setText("");
-                readFiles();
             }
         }
-
     }
 
     private void readFiles() {
@@ -124,6 +146,36 @@ public class DiaryFXMLController implements Initializable {
         }
     }
 
+    private void readEmployeNoteFromDatabase() {
+        obList.clear();
+        String fullDate = DatabaseHandler.convertDate();
+        String date = fullDate.substring(0, 2);
+        User user = LoginFXMLController.currentUserLoggedIn;
+        for (String s : DatabaseHandler.getEmployeeNote(user.getName(), date)) {
+            TextArea note = new TextArea(s);
+            note.setEditable(false);
+            note.setStyle("-fx-background-color: lightblue;");
+            obList.add(note);
+            System.out.println("yolo");
+        }
+
+    }
+
+    private void readResidentNoteFromDatabase() {
+        obList.clear();
+        String fullDate = DatabaseHandler.convertDate();
+        String date = fullDate.substring(0, 2);
+        String user = selectedUser.getName();
+        for (String s : DatabaseHandler.getResidentNote(user, date)) {
+            TextArea note = new TextArea(s);
+            note.setEditable(false);
+            note.setStyle("-fx-background-color: lightblue;");
+            obList.add(note);
+            System.out.println("yolo");
+        }
+
+    }
+
     @FXML
     private void onResidentClickedHandler(MouseEvent event) {
         selectedUser = residentListView.getSelectionModel().getSelectedItem(); //finds the selected item  
@@ -131,7 +183,8 @@ public class DiaryFXMLController implements Initializable {
         diary.setResidentName(selectedUser);
         if (selectedUser != null) {
             ListOfDiaryNote.scrollTo(obList.size());
-            readFiles();
+            //readFiles();
+            readResidentNoteFromDatabase();
         }
         //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
         //loadUserNotes()

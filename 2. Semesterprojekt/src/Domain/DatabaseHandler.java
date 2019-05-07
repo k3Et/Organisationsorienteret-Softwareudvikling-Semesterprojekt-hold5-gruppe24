@@ -2,12 +2,19 @@ package Domain;
 
 import Data.Database;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Victor
  */
 public class DatabaseHandler {
+
+    private static Date date;
 
     private static Database database = new Database();
 
@@ -42,4 +49,23 @@ public class DatabaseHandler {
         return database.getDataPermissions(u);
     }
 
+    public static void saveNoteInDatabase(String employee, User resident, DiaryNote note) {
+        database.saveNote(employee, resident, note);
+    }
+
+    //Til at gemme datoen som String
+    public static String convertDate() {
+        date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
+        String dateTime = dateFormat.format(date);
+        return dateTime;
+    }
+
+    public static List<String> getEmployeeNote(String employee, String date) {
+        return database.getEmployeeNote(employee, date);
+    }
+
+    public static List<String> getResidentNote(String resident, String date) {
+        return database.getResidentNote(resident, date);
+    }
 }
