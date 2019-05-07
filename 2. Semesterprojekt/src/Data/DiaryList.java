@@ -46,9 +46,6 @@ public class DiaryList {
     }
 
     public void saveDiaryNote(DiaryNote diaryNote) {
-       
-        
-
 
 //i stedet for notes skal der stå residentens navn så man kan finde notet tilhørende en person
         aFolderName = "notes/" + resident + "/";
