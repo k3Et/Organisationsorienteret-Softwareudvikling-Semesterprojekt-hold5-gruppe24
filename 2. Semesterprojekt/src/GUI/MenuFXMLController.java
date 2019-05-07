@@ -54,23 +54,24 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private void diaryBtnHandler(ActionEvent event) {
         if (currentUserLoggedIn.getPermissions().contains("create note")) {
-        sh.setNewScene("/GUI/FXML/Diary.fxml");
+            sh.setNewScene("/GUI/FXML/Diary.fxml");
         } else {
-            
+
         }
-            
+
     }
 
     @FXML
     private void relationBtnHandler(ActionEvent event) {
-        if (currentUserLoggedIn.getPermissions().contains("create relation")) {
-        sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+        if (currentUserLoggedIn.getPermissions().contains("ansatte relation")) {
+            sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
         }
     }
 
     @FXML
     private void employeeRoleBtnHandler(ActionEvent event) {
-        sh.setNewScene("/GUI/FXML/AssignRole.fxml");
+        if (currentUserLoggedIn.getPermissions().contains("borger relation")) {
+            sh.setNewScene("/GUI/FXML/AssignRole.fxml");
+        }
     }
-
 }
