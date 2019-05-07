@@ -64,8 +64,7 @@ public class Controller {
         for(Role r : user.getRoles()){
             if(r instanceof Resident){
                 ListOfResidents.addResident(user);
-            }
-            if(r instanceof Employee){
+            } else if(r instanceof Employee){
                 ListOfEmployees.addEmployee(user);
             }
         }
