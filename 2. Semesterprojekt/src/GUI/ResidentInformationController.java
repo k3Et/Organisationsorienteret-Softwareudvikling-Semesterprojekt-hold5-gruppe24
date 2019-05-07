@@ -37,6 +37,11 @@ public class ResidentInformationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        nameField.setEditable(false);
+        cprField.setEditable(false);
+        phoneField.setEditable(false);
+        emailField.setEditable(false);
+        adresseField.setEditable(false);
     }    
     
     public void setNameField(String s){
