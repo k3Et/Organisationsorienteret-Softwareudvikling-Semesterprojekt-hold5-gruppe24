@@ -44,8 +44,11 @@ public class DatabaseHandler {
         return dateTime;
     }
 
-    public List<String> getNote(String employee, String date) {
-         System.out.println("foark");
-        return database.getNote(employee, date);
+    public List<String> getEmployeeNote(String employee, String date) {
+        return database.getEmployeeNote(employee, date);
+    }
+    
+    public List<String> getResidentNote(String resident, String date){
+        return database.getResidentNote(resident, date);
     }
 }

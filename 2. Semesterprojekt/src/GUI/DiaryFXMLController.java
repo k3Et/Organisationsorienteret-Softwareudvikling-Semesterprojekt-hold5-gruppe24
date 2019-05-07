@@ -73,7 +73,7 @@ public class DiaryFXMLController implements Initializable {
         obResidents.addAll(ListOfResidents.getResidentList());
 
         ListOfDiaryNote.setEditable(false);
-        readNoteFromDatabase();
+        readEmployeNoteFromDatabase();
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
 
     }
@@ -149,13 +149,12 @@ public class DiaryFXMLController implements Initializable {
         }
     }
 
-    private void readNoteFromDatabase() {
+    private void readEmployeNoteFromDatabase() {
         obList.clear();
         String fullDate = dataHandler.convertDate();
         String date = fullDate.substring(0, 2);
         String user = LoginFXMLController.currentUserLoggedIn;
-        System.out.println(dataHandler.getNote(user, date).size());
-        for(String s : dataHandler.getNote(user, date)){
+        for(String s : dataHandler.getEmployeeNote(user, date)){
             TextArea note = new TextArea(s);
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
@@ -163,12 +162,20 @@ public class DiaryFXMLController implements Initializable {
             System.out.println("yolo");
         }
         
-//        for (int i = 0; i < dataHandler.getNote(user, date).size(); i++) {
-//            TextArea note = new TextArea(String.valueOf(dataHandler.getNote(user, date).get(i)));
-//            note.setEditable(false);
-//            note.setStyle("-fx-background-color: lightblue;");
-//            obList.add(note);
-//        }
+    }
+        private void readResidentNoteFromDatabase() {
+        obList.clear();
+        String fullDate = dataHandler.convertDate();
+        String date = fullDate.substring(0, 2);
+        String user = selectedUser.getName();
+        for(String s : dataHandler.getResidentNote(user, date)){
+            TextArea note = new TextArea(s);
+            note.setEditable(false);
+            note.setStyle("-fx-background-color: lightblue;");
+            obList.add(note);
+            System.out.println("yolo");
+        }
+        
     }
 
     @FXML
@@ -179,7 +186,7 @@ public class DiaryFXMLController implements Initializable {
         if (selectedUser != null) {
             ListOfDiaryNote.scrollTo(obList.size());
             //readFiles();
-            readNoteFromDatabase();
+           readResidentNoteFromDatabase();
         }
         //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
         //loadUserNotes()

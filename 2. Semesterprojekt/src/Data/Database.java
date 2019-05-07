@@ -12,6 +12,8 @@ import Domain.DiaryNote;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -167,7 +169,7 @@ public class Database {
 
     }
 
-    public List<String> getNote(String employee, String date) {
+    public List<String> getEmployeeNote(String employee, String date) {
 
         List<String> listOfNotes = new ArrayList<>();
         rs = null;
@@ -183,6 +185,68 @@ public class Database {
             ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ? ");
             //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
             ps.setString(1, employee);
+            ps.setString(2, "%" + date + "%");
+            // System.out.println("%" +date +"%");
+
+            rs = ps.executeQuery();
+            // System.out.println(rs.getString("note"));
+
+            System.out.println("Note selected from DB");
+            while (rs.next()) {
+                System.out.println(rs.getString("note"));
+                listOfNotes.add(rs.getString("note"));
+            }
+
+            System.out.println("Note added to listOfNote from DB");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return listOfNotes;
+    }
+
+    public void deleteNote(String note) {
+        rs = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        try {
+            con = DriverManager.getConnection(url, Username, Password);
+            ps = con.prepareStatement("DELETE FROM residentNote, employeeNote WHERE note LIKE ? ");
+            ps.setString(1, note);
+
+            if (note != null) {
+                ps.execute();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public List<String> getResidentNote(String resident, String date) {
+
+        List<String> listOfNotes = new ArrayList<>();
+        rs = null;
+        //Setting up the driver.
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        try {
+
+            con = DriverManager.getConnection(url, Username, Password);
+            ps = con.prepareStatement("SELECT note FROM residentNote WHERE resident = ? AND note LIKE ? ");
+            //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
+            ps.setString(1, resident);
             ps.setString(2, "%" + date + "%");
             // System.out.println("%" +date +"%");
 
