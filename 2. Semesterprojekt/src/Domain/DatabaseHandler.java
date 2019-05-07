@@ -42,7 +42,4 @@ public class DatabaseHandler {
         return database.getDataPermissions(u);
     }
 
-    public static ArrayList getLocations(User u) {
-        return database.getLocations(u);
-    }
 }

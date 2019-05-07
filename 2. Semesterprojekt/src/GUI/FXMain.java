@@ -24,7 +24,6 @@ public class FXMain extends Application {
 
         Controller.setStockRoleList();
         //Controller.setStockUsers();
-        DatabaseHandler.loadAllUsers();
         primaryStage = stage;
         sh.setCurrentStage(primaryStage);
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");

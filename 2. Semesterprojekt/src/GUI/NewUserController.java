@@ -1,6 +1,7 @@
 package GUI;
 
 import Domain.Controller;
+import Domain.DatabaseHandler;
 import static GUI.LoginFXMLController.currentLocation;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +45,8 @@ public class NewUserController implements Initializable {
     private void saveBtnHandler(ActionEvent event) {
         Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText(), currentLocation);
         ((Node) event.getSource()).getScene().getWindow().hide();
+        
+        DatabaseHandler.loadAllUsers();
     }
 
     @FXML

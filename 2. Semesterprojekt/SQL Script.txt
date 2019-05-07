@@ -24,14 +24,30 @@ SELECT *
 FROM Users
 WHERE username = ? and password = ?
 
+verifyLocation:
+SELECT * 
+FROM Locations 
+WHERE username = ? and location = ?
+
 createUser:
 INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)
+
+deleteUser:
+DELETE FROM Users WHERE username = ?
 
 addRole:
 INSERT INTO Role VALUES(?, ?)
 
 deleteRole:
 DELETE FROM Role WHERE username = ? and role = ?
+
+createLocation:
+INSERT INTO Locations VALUES(?, ?)
+
+deleteLocation:
+DELETE FROM Locations WHERE username = ?
+or
+DELETE FROM Locations WHERE username = ? and location = ?
 
 loadAllUsers:
 SELECT * FROM Users

@@ -17,8 +17,6 @@ public class Controller {
 //    static Admin admin = new Admin();
 //    static Leader leader = new Leader();
 //    static Resident resident = new Resident();
-   
-
     public static List<User> getStockUsers() {
         return users.getList();
     }
@@ -63,7 +61,6 @@ public class Controller {
     public static void createNewUser(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
         User user = new User(name, password, username, CPR, phoneNumber, email, address);
         user.getRoles().addAll(DatabaseHandler.getDataPermissions(user));
-        //user.getLocations().addAll(DatabaseHandler.getLocations(user));
         ListOfUsers.addUser(user);
     }
 

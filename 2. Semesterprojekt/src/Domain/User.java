@@ -22,8 +22,6 @@ public class User implements Comparable<User> {
     private String address;
     private ListOfRoles roles;
 
-    private Locations location;
-
     private ListOfRelations relations;
 
     public User(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
@@ -37,7 +35,6 @@ public class User implements Comparable<User> {
 
         roles = new ListOfRoles();
         relations = new ListOfRelations();
-        location = new Locations();
     }
 
     public String getCPR() {
@@ -114,15 +111,10 @@ public class User implements Comparable<User> {
 
         return roles;
     }
-    
+
     //public List<Locations> getLocations() {
-        //return location.getLocationList();
+    //return location.getLocationList();
     //}
-
-    public Locations getLocation() {
-        return location;
-    }
-
     @Override
     public String toString() {
         return name;

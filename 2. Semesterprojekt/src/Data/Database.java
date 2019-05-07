@@ -1,6 +1,7 @@
 package Data;
 
 import Domain.Controller;
+import Domain.ListOfUsers;
 import Domain.Role;
 import Domain.Roles.Admin;
 import Domain.Roles.Employee;
@@ -95,11 +96,12 @@ public class Database {
 
             locRs = locPs.executeQuery();
 
+            //If the query returns a row, the user exists at the location, and the method will return True.
             if (locRs.next()) {
-                System.out.println("Location Query Accepted.");
+                System.out.println("Verify Location Query Accepted.");
                 return true;
             } else {
-                System.out.println("Location Query Failed");
+                System.out.println("Verify Location Query Failed");
             }
 
         } catch (SQLException ex) {
@@ -133,7 +135,7 @@ public class Database {
             rs = ps.executeQuery();
 
             //If the information isn't already in the database the user will be created.
-            //
+            //If the User doesn't already have the currentLocation, it will be created.
             if (!rs.next() && createLocation(u, location)) {
                 ps = con.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?, ?)");
 
@@ -148,8 +150,15 @@ public class Database {
                 ps.execute();
 
                 System.out.println("User Row Added");
+                //If the user exists, and is at the currentLocation, nothing will be created.
+            }
+            if (verifyLocation(u.getUsername(), location)) {
+                System.out.println("User already exists, and is at the currentLocation.");
+
+                //If the user exists, and isn't at the current location, the location will be created.
             } else {
-                System.out.println("User already exists.");
+                createLocation(u, location);
+                System.out.println("Username already exists. Location added to User.");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -160,11 +169,11 @@ public class Database {
                 System.out.println(ex);
             }
         }
-
     }
 
     //This is meant to delete a user and it's roles based on the username.
     public void deleteUser(String username) {
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
@@ -180,8 +189,14 @@ public class Database {
 
             rs = ps.executeQuery();
 
+            //If the query returns a row, the user exists at the location, and it will be deleted.
             if (rs.next()) {
 
+                //If deleteLocation returns 1, the user only exists at one location
+                //and both the user and the location will be deleted.
+                //If the deleteLocation doesn't return 1, the user exists at more
+                //than one location, and only the location will be deleted,
+                //so the user still can be loaded at the other locations.
                 if (deleteLocation("username") == 1) {
                     ps = con.prepareStatement("DELETE FROM Users WHERE username = ?");
 
@@ -191,6 +206,7 @@ public class Database {
 
                     System.out.println("User deleted.");
 
+                    //When the user is deleted, it's roles has to be deleted too.
                     ps = con.prepareStatement("DELETE FROM Role WHERE username = ?");
 
                     ps.setString(1, username);
@@ -232,6 +248,8 @@ public class Database {
 
             rs = ps.executeQuery();
 
+            //If the query doesn't return a row, the role doesn't exist
+            //and will be created.
             if (!rs.next()) {
                 ps = con.prepareStatement("INSERT INTO Role VALUES(?, ?)");
 
@@ -274,6 +292,7 @@ public class Database {
 
             rs = ps.executeQuery();
 
+            //If the query returns a row, the role exists and can and will be deleted.
             if (rs.next()) {
                 ps = con.prepareStatement("DELETE FROM Role WHERE username = ? and role = ?");
 
@@ -312,9 +331,15 @@ public class Database {
 
             rs = ps.executeQuery();
 
-            //Checks if the user is at the logged in/currentLocation.
-            while (rs.next() && verifyLocation(rs.getString("username"), currentLocation)) {
-                Controller.createNewUser(rs.getString("name"), rs.getString("password"), rs.getString("username"), rs.getString("cpr"), rs.getString("phonenumber"), rs.getString("email"), rs.getString("address"));
+            //Clearing list so there won't be duplicates.
+            ListOfUsers.clear();
+
+            while (rs.next()) {
+                //Checks if the user is at the logged in/currentLocation
+                //so that only the users at the currentLocation will be loaded.
+                if (verifyLocation(rs.getString("username"), currentLocation)) {
+                    Controller.createNewUser(rs.getString("name"), rs.getString("password"), rs.getString("username"), rs.getString("cpr"), rs.getString("phonenumber"), rs.getString("email"), rs.getString("address"));
+                }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -352,6 +377,8 @@ public class Database {
 
             rSet = preps.executeQuery();
 
+            //Checks for roles in the database. If the strings match, the matching
+            //role will be created.
             while (rSet.next()) {
                 if (rSet.getString("role").equals("Leader")) {
                     roles.add(new Leader());
@@ -400,7 +427,7 @@ public class Database {
 
             //If the information isn't already in the database the userlocation will be created.
             if (!locaRs.next()) {
-                locaPs = locaCon.prepareStatement("INSERT INTO Users VALUES(?, ?)");
+                locaPs = locaCon.prepareStatement("INSERT INTO Locations VALUES(?, ?)");
 
                 locaPs.setString(1, u.getUsername());
                 locaPs.setString(2, location);

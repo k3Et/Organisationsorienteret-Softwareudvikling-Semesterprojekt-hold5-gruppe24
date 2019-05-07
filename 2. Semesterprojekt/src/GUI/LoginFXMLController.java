@@ -57,6 +57,7 @@ public class LoginFXMLController implements Initializable {
         locations.add("Odense Boligø");
         locations.add("Odense Misbrugercenter");
         locations.add("København Boligcentral");
+        locations.add("SDU");
         comboBox.setItems(locations);
         //comboBox.getSelectionModel().getSelectedItem();
     }
@@ -67,6 +68,7 @@ public class LoginFXMLController implements Initializable {
         if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
             currentUserLoggedIn = userNameField.getText();
             currentLocation = comboBox.getSelectionModel().getSelectedItem();
+            DatabaseHandler.loadAllUsers();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
         } else {
@@ -80,6 +82,7 @@ public class LoginFXMLController implements Initializable {
         if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
             currentUserLoggedIn = userNameField.getText();
             currentLocation = comboBox.getSelectionModel().getSelectedItem();
+            DatabaseHandler.loadAllUsers();
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
         } else {
