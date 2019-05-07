@@ -45,7 +45,7 @@ public class DatabaseHandler {
         database.deleteRole(u, r);
     }
 
-    public static ArrayList getDataPermissions(User u) {
+    public static List<Role> getDataPermissions(User u) {
         return database.getDataPermissions(u);
     }
 

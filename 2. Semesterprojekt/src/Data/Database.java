@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Domain.DiaryNote;
+import Domain.ListOfEmployees;
+import Domain.ListOfResidents;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -358,13 +360,13 @@ public class Database {
     }
 
     //This method is meant to check the roles of the specific user and return them in an ArrayList.
-    public ArrayList getDataPermissions(User u) {
+    public List<Role> getDataPermissions(User u) {
 
         Connection roleCon = null;
         PreparedStatement preps = null;
         ResultSet rSet = null;
 
-        ArrayList roles = new ArrayList();
+        List<Role> roles = new ArrayList<>();
 
         try {
             Class.forName("org.postgresql.Driver");

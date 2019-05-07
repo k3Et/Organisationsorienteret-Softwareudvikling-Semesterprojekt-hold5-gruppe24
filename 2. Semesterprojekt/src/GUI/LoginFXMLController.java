@@ -2,6 +2,10 @@ package GUI;
 
 import Domain.Controller;
 import Domain.DatabaseHandler;
+import Domain.ListOfEmployees;
+import Domain.ListOfResidents;
+import Domain.ListOfUsers;
+import Domain.Role;
 import Domain.User;
 import java.net.URL;
 import java.util.ResourceBundle;

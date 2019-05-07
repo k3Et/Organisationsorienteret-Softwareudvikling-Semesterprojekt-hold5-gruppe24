@@ -136,7 +136,7 @@ public class DiaryFXMLController implements Initializable {
         String writtenNote = formatMedicine(getTableViewValues());
         writtenNote += WriteDiaryNote.getText();
         User user = LoginFXMLController.currentUserLoggedIn;
-        String combines = writtenNote + "\n" + "Skrevet af: " + user.getName();
+        String combines = writtenNote + "\n" + "Skrevet af: " + user.getName()+"\n"+DatabaseHandler.convertDate();
 
         // d.setResidentName(selectedUser);
         if (!writtenNote.equals("")) {
