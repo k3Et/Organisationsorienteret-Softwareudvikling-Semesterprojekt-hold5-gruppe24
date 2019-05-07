@@ -47,8 +47,8 @@ public class DatabaseHandler {
     public List<String> getEmployeeNote(String employee, String date) {
         return database.getEmployeeNote(employee, date);
     }
-    
-    public List<String> getResidentNote(String resident, String date){
+
+    public List<String> getResidentNote(String resident, String date) {
         return database.getResidentNote(resident, date);
     }
 }

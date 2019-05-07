@@ -154,28 +154,29 @@ public class DiaryFXMLController implements Initializable {
         String fullDate = dataHandler.convertDate();
         String date = fullDate.substring(0, 2);
         String user = LoginFXMLController.currentUserLoggedIn;
-        for(String s : dataHandler.getEmployeeNote(user, date)){
+        for (String s : dataHandler.getEmployeeNote(user, date)) {
             TextArea note = new TextArea(s);
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
             obList.add(note);
             System.out.println("yolo");
         }
-        
+
     }
-        private void readResidentNoteFromDatabase() {
+
+    private void readResidentNoteFromDatabase() {
         obList.clear();
         String fullDate = dataHandler.convertDate();
         String date = fullDate.substring(0, 2);
         String user = selectedUser.getName();
-        for(String s : dataHandler.getResidentNote(user, date)){
+        for (String s : dataHandler.getResidentNote(user, date)) {
             TextArea note = new TextArea(s);
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
             obList.add(note);
             System.out.println("yolo");
         }
-        
+
     }
 
     @FXML
@@ -186,7 +187,7 @@ public class DiaryFXMLController implements Initializable {
         if (selectedUser != null) {
             ListOfDiaryNote.scrollTo(obList.size());
             //readFiles();
-           readResidentNoteFromDatabase();
+            readResidentNoteFromDatabase();
         }
         //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
         //loadUserNotes()

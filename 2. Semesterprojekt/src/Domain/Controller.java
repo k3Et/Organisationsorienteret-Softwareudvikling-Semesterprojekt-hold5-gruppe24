@@ -94,8 +94,8 @@ public class Controller {
         ListOfUsers.addUser(user);
         DatabaseHandler.createUser(user);
     }
-    
-    public static void saveNote(String user, User selectedUser, String note){
+
+    public static void saveNote(String user, User selectedUser, String note) {
         DatabaseHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(note));
     }
 

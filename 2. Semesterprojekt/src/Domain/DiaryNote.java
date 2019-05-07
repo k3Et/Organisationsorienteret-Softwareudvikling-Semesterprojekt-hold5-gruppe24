@@ -43,7 +43,6 @@ public class DiaryNote {
 //    public Medicine getMedicine() {
 //        return medicine;
 //    }
-
     public void setNote(String note) {
         this.note = note;
     }
