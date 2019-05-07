@@ -1,0 +1,4 @@
+Medicin givet til beboer:
+Hovedpine:	30 mg
+
+skrevet af: test

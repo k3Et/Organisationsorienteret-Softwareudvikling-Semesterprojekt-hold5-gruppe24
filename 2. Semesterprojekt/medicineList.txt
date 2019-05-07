@@ -1,1 +1,5 @@
-Hovedpine:20.0
+Panodil:20.0
+Utrivin:0.0
+Bricanyl:2.0
+Furix:2.0
+Imurel:0.0
