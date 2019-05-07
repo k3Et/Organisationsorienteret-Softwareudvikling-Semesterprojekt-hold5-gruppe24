@@ -9,6 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Domain.DiaryNote;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -125,33 +128,33 @@ public class Database {
         try {
             con = DriverManager.getConnection(url, Username, Password);
 
-            ps = con.prepareStatement("SELECT * FROM employeeNote WHERE employee = ? AND diaryNote = ?");
+            ps = con.prepareStatement("SELECT * FROM employeeNote WHERE employee = ? AND note = ?");
             ps.setString(1, employee);
             ps.setString(2, note.getNote());
             rs = ps.executeQuery();
 
             if (!rs.next()) {
-                ps = con.prepareStatement("INSERT INTO employeeNote(employee, diaryNote) VALUES (?, ?);");
+                ps = con.prepareStatement("INSERT INTO employeeNote VALUES (?, ?)");
 
                 ps.setString(1, employee);
                 ps.setString(2, note.getNote());
 
                 ps.execute();
+                System.out.println("SQL 1DONE");
             }
 
-            ps = con.prepareStatement("SELECT * FROM residentNote WHERE resident = ? AND diaryNote = ?");
+            ps = con.prepareStatement("SELECT * FROM residentNote WHERE resident = ? AND note = ?");
             ps.setString(1, resident.toString());
             ps.setString(2, note.getNote());
             rs2 = ps.executeQuery();
 
             if (!rs2.next()) {
-                ps = con.prepareStatement("INSERT INTO residentNote(resident, diaryNote) VALUES (?, ?)");
+                ps = con.prepareStatement("INSERT INTO residentNote VALUES (?, ?)");
                 ps.setString(1, resident.toString());
                 ps.setString(2, note.getNote());
                 ps.execute();
+                System.out.println("SQL 2DONE");
             }
-            //If the query is succesful the method will return true.
-            //Meaning that the logininformation exists and is correct.
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
@@ -162,6 +165,46 @@ public class Database {
             }
         }
 
+    }
+
+    public List<String> getNote(String employee, String date) {
+
+        List<String> listOfNotes = new ArrayList<>();
+
+        //Setting up the driver.
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        try {
+            con = DriverManager.getConnection(url, Username, Password);
+            ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = 'Tempest'");
+            //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
+          //  ps.setString(1, employee);
+            // ps.setString(2, "%"+date+"%");
+            // System.out.println("%" +date +"%");
+
+            rs = ps.executeQuery();
+            System.out.println(rs.getString("note"));
+
+            System.out.println("Note selected from DB");
+            while (rs.next()) {
+                System.out.println("ting");
+                listOfNotes.add(rs.getString("note"));
+            }
+
+            System.out.println("Note added to listOfNote from DB");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return listOfNotes;
     }
 
     public void deleteUser(String username) {

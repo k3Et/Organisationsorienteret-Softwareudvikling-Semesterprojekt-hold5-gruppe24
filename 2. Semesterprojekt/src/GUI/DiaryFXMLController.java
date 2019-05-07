@@ -1,5 +1,6 @@
 package GUI;
 
+import Domain.DatabaseHandler;
 import Domain.Diary;
 
 import Domain.DiaryNote;
@@ -44,6 +45,8 @@ public class DiaryFXMLController implements Initializable {
 
     private Diary diary;
 
+    private DatabaseHandler dataHandler = new DatabaseHandler();
+
     private SceneHandler sh = new SceneHandler();
     @FXML
     private Button homeBtn;
@@ -69,8 +72,9 @@ public class DiaryFXMLController implements Initializable {
         obResidents.addAll(ListOfResidents.getResidentList());
 
         ListOfDiaryNote.setEditable(false);
-
+        readNoteFromDatabase();
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
+
     }
 
     @FXML
@@ -111,7 +115,7 @@ public class DiaryFXMLController implements Initializable {
     private void saveNoteInDatabase() {
         String writtenNote = WriteDiaryNote.getText();
         String user = LoginFXMLController.currentUserLoggedIn;
-        String combines = writtenNote + "\n" + "skrevet af: " + user;
+        String combines = writtenNote + "\n" + "skrevet af: " + user + "\n" + dataHandler.convertDate();
 
         if (!writtenNote.equals("")) {
             if (selectedUser == null) {
@@ -120,8 +124,9 @@ public class DiaryFXMLController implements Initializable {
                 warning.setStyle("-fx-font-style: Bold");
                 obList.add(warning);
             } else {
-                diary.saveNoteInDatabase(user, selectedUser, new DiaryNote(combines));
-                diary.convertDate();
+
+                dataHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(combines));
+
                 WriteDiaryNote.setText("");
             }
         }
@@ -143,6 +148,28 @@ public class DiaryFXMLController implements Initializable {
         }
     }
 
+    private void readNoteFromDatabase() {
+        obList.clear();
+        String fullDate = dataHandler.convertDate();
+        String date = fullDate.substring(0, 2);
+        String user = LoginFXMLController.currentUserLoggedIn;
+        System.out.println(dataHandler.getNote(user, date).size());
+        for(String s : dataHandler.getNote(user, date)){
+            TextArea note = new TextArea(s);
+            note.setEditable(false);
+            note.setStyle("-fx-background-color: lightblue;");
+            obList.add(note);
+            System.out.println("yolo");
+        }
+        
+//        for (int i = 0; i < dataHandler.getNote(user, date).size(); i++) {
+//            TextArea note = new TextArea(String.valueOf(dataHandler.getNote(user, date).get(i)));
+//            note.setEditable(false);
+//            note.setStyle("-fx-background-color: lightblue;");
+//            obList.add(note);
+//        }
+    }
+
     @FXML
     private void onResidentClickedHandler(MouseEvent event) {
         selectedUser = residentListView.getSelectionModel().getSelectedItem(); //finds the selected item  
@@ -150,7 +177,8 @@ public class DiaryFXMLController implements Initializable {
         diary.setResidentName(selectedUser);
         if (selectedUser != null) {
             ListOfDiaryNote.scrollTo(obList.size());
-            readFiles();
+            //readFiles();
+            readNoteFromDatabase();
         }
         //tag en string, RESIDENT NAME og brug den i en metode i diarys argument
         //loadUserNotes()

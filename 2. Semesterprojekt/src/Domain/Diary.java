@@ -50,7 +50,5 @@ public class Diary {
         return dList.getFileName();
     }
 
-    public void saveNoteInDatabase(String employee, User resident, DiaryNote note) {
-        database.saveNote(employee, resident, note); 
-    }
+ 
 }
