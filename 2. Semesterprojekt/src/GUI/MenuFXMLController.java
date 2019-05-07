@@ -1,5 +1,6 @@
 package GUI;
 
+import static GUI.LoginFXMLController.currentUserLoggedIn;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -52,12 +53,19 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void diaryBtnHandler(ActionEvent event) {
+        if (currentUserLoggedIn.getPermissions().contains("create note")) {
         sh.setNewScene("/GUI/FXML/Diary.fxml");
+        } else {
+            
+        }
+            
     }
 
     @FXML
     private void relationBtnHandler(ActionEvent event) {
+        if (currentUserLoggedIn.getPermissions().contains("create relation")) {
         sh.setNewScene("/GUI/FXML/RelationFXML.fxml");
+        }
     }
 
     @FXML

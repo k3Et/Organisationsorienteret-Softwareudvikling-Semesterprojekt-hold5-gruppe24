@@ -30,7 +30,7 @@ public class ListOfUsers {
         }
     }
 
-    public static List getList() {
+    public static List<User> getList() {
         return lUsers;
     }
 

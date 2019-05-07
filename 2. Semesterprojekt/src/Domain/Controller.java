@@ -70,4 +70,14 @@ public class Controller {
         DatabaseHandler.createUser(user, location);
     }
 
+    public static User findLoggedUser(String username) {
+
+        for (User u : ListOfUsers.getList()) {
+            if (u.getUsername().equals(username)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
 }

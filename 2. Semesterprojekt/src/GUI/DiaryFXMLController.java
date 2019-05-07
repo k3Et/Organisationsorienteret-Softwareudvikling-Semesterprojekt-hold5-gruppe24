@@ -87,8 +87,8 @@ public class DiaryFXMLController implements Initializable {
     private void SaveNoteBtnHandler(ActionEvent event) {
 
         String writtenNote = WriteDiaryNote.getText();
-        String user = LoginFXMLController.currentUserLoggedIn;
-        String combines = writtenNote + "\n" + "skrevet af: " + user;
+        User user = LoginFXMLController.currentUserLoggedIn;
+        String combines = writtenNote + "\n" + "skrevet af: " + user.getName();
         // d.setResidentName(selectedUser);
         if (!writtenNote.equals("")) {
             if (selectedUser == null) {
