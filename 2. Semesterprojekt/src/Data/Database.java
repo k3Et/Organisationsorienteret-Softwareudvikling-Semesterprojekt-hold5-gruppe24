@@ -340,6 +340,8 @@ public class Database {
 
             //Clearing list so there won't be duplicates.
             ListOfUsers.clear();
+            ListOfEmployees.getEmployeesList().clear();
+            ListOfResidents.getResidentList().clear();
 
             while (rs.next()) {
                 //Checks if the user is at the logged in/currentLocation
