@@ -228,7 +228,17 @@ public class DiaryFXMLController implements Initializable {
         String user = selectedUser.getName();
         for (String s : DatabaseHandler.getResidentNote(user, date)) {
             TextArea note = new TextArea(s);
-            
+
+            note.setOnMouseClicked((e) -> {
+                System.out.println("TextArea clicked");
+                System.out.println(note.getText());
+
+                String selectedNote = note.getText();
+                System.out.println("note:" + selectedNote);
+                String selectedNoteDate = selectedNote.substring(selectedNote.length() - 20);
+                System.out.println("Date: " + selectedNoteDate);
+            });
+
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
             obList.add(note);
@@ -314,6 +324,4 @@ public class DiaryFXMLController implements Initializable {
         System.out.println("Date: " + date);
     }
 
-
-  
 }
