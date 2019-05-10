@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,6 +54,8 @@ public class DiaryFXMLController implements Initializable {
     private ObservableList<User> obResidents;
 
     private User selectedUser;
+
+    private TextArea selectedNote;
 
     private Diary diary;
 
@@ -135,7 +138,7 @@ public class DiaryFXMLController implements Initializable {
         String writtenNote = formatMedicine(getTableViewValues());
         writtenNote += WriteDiaryNote.getText();
         User user = LoginFXMLController.currentUserLoggedIn;
-        String combines = writtenNote + "\n" + "Skrevet af: " + user.getName()+"\n"+DatabaseHandler.convertDate();
+        String combines = writtenNote + "\n" + "Skrevet af: " + user.getName() + "\n" + DatabaseHandler.convertDate();
 
         // d.setResidentName(selectedUser);
         if (!writtenNote.equals("")) {
@@ -146,7 +149,7 @@ public class DiaryFXMLController implements Initializable {
                 obList.add(warning);
             } else {
 
-                Controller.saveNote(user.getName(), selectedUser, combines);
+                Controller.saveNote(user.getName(), selectedUser, combines, DatabaseHandler.convertDate());
 
                 WriteDiaryNote.setText("");
             }
@@ -188,22 +191,21 @@ public class DiaryFXMLController implements Initializable {
         return medString;
     }
 
-    private void readFiles() {
-        obList.clear();
-        if (diary.getFiles().isEmpty()) {
-            TextArea note = new TextArea("Indeholder ingen noter");
-            obList.add(note);
-        } else {
-
-            for (int i = 0; i < diary.getFiles().size(); i++) {
-                TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName().get(i));
-                note.setEditable(false);
-                note.setStyle("-fx-background-color: lightblue;");
-                obList.add(note);
-            }
-        }
-    }
-
+//    private void readFiles() {
+//        obList.clear();
+//        if (diary.getFiles().isEmpty()) {
+//            TextArea note = new TextArea("Indeholder ingen noter");
+//            obList.add(note);
+//        } else {
+//
+//            for (int i = 0; i < diary.getFiles().size(); i++) {
+//                TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName().get(i));
+//                note.setEditable(false);
+//                note.setStyle("-fx-background-color: lightblue;");
+//                obList.add(note);
+//            }
+//        }
+//    }
     private void readEmployeNoteFromDatabase() {
         obList.clear();
         String fullDate = DatabaseHandler.convertDate();
@@ -226,6 +228,7 @@ public class DiaryFXMLController implements Initializable {
         String user = selectedUser.getName();
         for (String s : DatabaseHandler.getResidentNote(user, date)) {
             TextArea note = new TextArea(s);
+            
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
             obList.add(note);
@@ -300,4 +303,17 @@ public class DiaryFXMLController implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void noteClickedHandler(ListView.EditEvent<TextArea> event) {
+        selectedNote = ListOfDiaryNote.getSelectionModel().getSelectedItem();
+
+        String note = selectedNote.getText();
+        System.out.println("note:" + note);
+        String date = note.substring(note.length() - 20);
+        System.out.println("Date: " + date);
+    }
+
+
+  
 }

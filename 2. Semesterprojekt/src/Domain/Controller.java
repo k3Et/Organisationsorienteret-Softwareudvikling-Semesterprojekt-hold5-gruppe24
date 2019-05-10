@@ -61,10 +61,10 @@ public class Controller {
     public static void createNewUser(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
         User user = new User(name, password, username, CPR, phoneNumber, email, address);
         user.getRoles().addAll(DatabaseHandler.getDataPermissions(user));
-        for(Role r : user.getRoles()){
-            if(r instanceof Resident){
+        for (Role r : user.getRoles()) {
+            if (r instanceof Resident) {
                 ListOfResidents.addResident(user);
-            }else if(r instanceof Employee){
+            } else if (r instanceof Employee) {
                 ListOfEmployees.addEmployee(user);
             }
         }
@@ -87,8 +87,8 @@ public class Controller {
         return null;
     }
 
-    public static void saveNote(String user, User selectedUser, String note) {
-        DatabaseHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(note));
+    public static void saveNote(String user, User selectedUser, String note, String date) {
+        DatabaseHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(note), date);
     }
 
 }

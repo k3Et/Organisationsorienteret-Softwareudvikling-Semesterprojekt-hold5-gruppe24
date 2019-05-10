@@ -48,8 +48,8 @@ public class DatabaseHandler {
         return database.getDataPermissions(u);
     }
 
-    public static void saveNoteInDatabase(String employee, User resident, DiaryNote note) {
-        database.saveNote(employee, resident, note);
+    public static void saveNoteInDatabase(String employee, User resident, DiaryNote note, String date) {
+        database.saveNote(employee, resident, date, note);
     }
 
     //Til at gemme datoen som String

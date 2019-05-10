@@ -564,7 +564,7 @@ public class Database {
         return locations;
     }
 
-    public void saveNote(String employee, User resident, DiaryNote note) {
+    public void saveNote(String employee, User resident, String date, DiaryNote note) {
         //Setting up the driver.
         try {
             Class.forName("org.postgresql.Driver");
@@ -576,15 +576,15 @@ public class Database {
             con = DriverManager.getConnection(url, Username, Password);
 
             ps = con.prepareStatement("SELECT * FROM employeeNote WHERE employee = ? AND note = ?");
-            ps.setString(2, employee);
-            ps.setString(1, note.getNote());
+            ps.setString(1, employee);
+            ps.setString(2, note.getNote());
             rs = ps.executeQuery();
 
             if (!rs.next()) {
-                ps = con.prepareStatement("INSERT INTO employeeNote VALUES (?, ?)");
-
-                ps.setString(2, employee);
-                ps.setString(1, note.getNote());
+                ps = con.prepareStatement("INSERT INTO employeeNote VALUES (?, ?, ?)");
+                ps.setString(3, date);
+                ps.setString(1, employee);
+                ps.setString(2, note.getNote());
 
                 ps.execute();
                 System.out.println("SQL 1DONE");
@@ -596,7 +596,8 @@ public class Database {
             rs2 = ps.executeQuery();
 
             if (!rs2.next()) {
-                ps = con.prepareStatement("INSERT INTO residentNote VALUES (?, ?)");
+                ps = con.prepareStatement("INSERT INTO residentNote VALUES (?, ?, ?)");
+                ps.setString(3, date);
                 ps.setString(2, resident.toString());
                 ps.setString(1, note.getNote());
                 ps.execute();
@@ -627,10 +628,11 @@ public class Database {
         try {
 
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ? ");
+            ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = ? ORDER BY date");
             //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
-            ps.setString(2, employee);
-            ps.setString(1, "%" + date + "%");
+            ps.setString(1, employee);
+            //ps.setString(2, note.getNote());
+            ps.setString(2, date);
             // System.out.println("%" +date +"%");
 
             rs = ps.executeQuery();
@@ -689,10 +691,10 @@ public class Database {
         try {
 
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("SELECT note FROM residentNote WHERE resident = ? AND note LIKE ? ");
+            ps = con.prepareStatement("SELECT note FROM residentNote WHERE resident = ? ORDER BY date ");
             //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
             ps.setString(1, resident);
-            ps.setString(2, "%" + date + "%");
+            //ps.setString(2, date);
             // System.out.println("%" +date +"%");
 
             rs = ps.executeQuery();
@@ -716,7 +718,8 @@ public class Database {
         }
         return listOfNotes;
     }
-    public void deleteNOTES(String note) {
+
+    public void deleteNOTES(String date) {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -727,21 +730,20 @@ public class Database {
         try {
             con = DriverManager.getConnection(url, Username, Password);
 
-            ps = con.prepareStatement("SELECT * FROM residentnote WHERE note = ?");
+            ps = con.prepareStatement("SELECT * FROM residentnote WHERE date = ?");
 
-            ps.setString(1, note);
+            ps.setString(1, date);
 
             rs = ps.executeQuery();
 
             //If the query returns a row, the role exists and can and will be deleted.
             if (rs.next()) {
-                ps = con.prepareStatement("DELETE FROM residentnote WHERE note = ?");
-                
-                ps.setString(1, note);
-                
+                ps = con.prepareStatement("DELETE FROM residentnote WHERE date = ?");
+
+                ps.setString(1, date);
+
                 ps.execute();
-                
-                
+
                 System.out.println("note deleted.");
             } else {
                 System.out.println("The user doesn't have that note.");

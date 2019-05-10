@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DiaryFXMLController">
     <children>
         <TextArea fx:id="WriteDiaryNote" layoutX="231.0" layoutY="332.0" prefHeight="94.0" prefWidth="426.0" style="-fx-background-color: transparent; -fx-border-color: #286DA8; -fx-border-radius: 3;" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="293.0" />
         <Pane layoutX="-10.0" prefHeight="79.0" prefWidth="830.0" style="-fx-background-color: #286DA8;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
@@ -18,7 +18,7 @@
               <Button fx:id="logOutButton" layoutX="839.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="42.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100; -fx-font-weight: bold;" text="Log ud" />
          </children></Pane>
         <Button fx:id="SaveNoteBtn" layoutX="860.0" layoutY="424.0" mnemonicParsing="false" onAction="#SaveNoteBtnHandler" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Gem" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0" />
-        <ListView fx:id="ListOfDiaryNote" layoutX="231.0" layoutY="95.0" prefHeight="214.0" prefWidth="426.0" style="-fx-background-color: #efefef; -fx-border-color: #286DA8; -fx-border-radius: 3;" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="293.0" AnchorPane.topAnchor="95.0" />
+        <ListView fx:id="ListOfDiaryNote" layoutX="231.0" layoutY="95.0" onEditStart="#noteClickedHandler" prefHeight="214.0" prefWidth="426.0" style="-fx-background-color: #efefef; -fx-border-color: #286DA8; -fx-border-radius: 3;" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="293.0" AnchorPane.topAnchor="95.0" />
         <ListView fx:id="residentListView" layoutX="6.0" layoutY="95.0" onMouseClicked="#onResidentClickedHandler" prefHeight="331.0" prefWidth="212.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="91.0" />
         <Button fx:id="backButton" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="42.0" prefWidth="95.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100; -fx-font-weight: bold;" text="Menu" />
         <Pane layoutX="10.0" layoutY="3.0" prefHeight="72.0" prefWidth="74.0" style="-fx-background-color: white; -fx-background-radius: 360;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="3.0">
