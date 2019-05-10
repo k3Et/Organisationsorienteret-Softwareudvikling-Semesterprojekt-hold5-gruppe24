@@ -55,7 +55,7 @@ public class DatabaseHandler {
     //Til at gemme datoen som String
     public static String convertDate() {
         date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:sss");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String dateTime = dateFormat.format(date);
         return dateTime;
     }
@@ -66,5 +66,9 @@ public class DatabaseHandler {
 
     public static List<String> getResidentNote(String resident, String date) {
         return database.getResidentNote(resident, date);
+    }
+    
+    public static void deleteNote(String date){
+        database.deleteNote(date);
     }
 }

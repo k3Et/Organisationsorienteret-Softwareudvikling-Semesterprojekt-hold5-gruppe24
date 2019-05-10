@@ -640,7 +640,7 @@ public class Database {
 
             System.out.println("Note selected from DB");
             while (rs.next()) {
-                System.out.println(rs.getString("note"));
+
                 listOfNotes.add(rs.getString("note"));
             }
 
@@ -657,7 +657,7 @@ public class Database {
         return listOfNotes;
     }
 
-    public void deleteNote(String note) {
+    public void deleteNote(String date) {
         rs = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -666,12 +666,22 @@ public class Database {
         }
         try {
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("DELETE FROM residentNote, employeeNote WHERE note LIKE ? ");
-            ps.setString(1, note);
+            ps = con.prepareStatement("DELETE FROM residentNote where date = ? ");
+            ps.setString(1, date);
 
-            if (note != null) {
+            if (date != null) {
                 ps.execute();
+                System.out.println("Note Deleted");
             }
+
+            ps = con.prepareStatement("DELETE FROM employeeNote where date = ? ");
+            ps.setString(1, date);
+
+            if (date != null) {
+                ps.execute();
+                System.out.println("Note Deleted");
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -702,7 +712,7 @@ public class Database {
 
             System.out.println("Note selected from DB");
             while (rs.next()) {
-                System.out.println(rs.getString("note"));
+
                 listOfNotes.add(rs.getString("note"));
             }
 
@@ -717,46 +727,6 @@ public class Database {
             }
         }
         return listOfNotes;
-    }
-
-    public void deleteNOTES(String date) {
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-
-        try {
-            con = DriverManager.getConnection(url, Username, Password);
-
-            ps = con.prepareStatement("SELECT * FROM residentnote WHERE date = ?");
-
-            ps.setString(1, date);
-
-            rs = ps.executeQuery();
-
-            //If the query returns a row, the role exists and can and will be deleted.
-            if (rs.next()) {
-                ps = con.prepareStatement("DELETE FROM residentnote WHERE date = ?");
-
-                ps.setString(1, date);
-
-                ps.execute();
-
-                System.out.println("note deleted.");
-            } else {
-                System.out.println("The user doesn't have that note.");
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
     }
 
 }

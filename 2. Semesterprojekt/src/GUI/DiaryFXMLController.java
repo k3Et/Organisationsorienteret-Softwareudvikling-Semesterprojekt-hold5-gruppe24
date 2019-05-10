@@ -27,13 +27,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Sebastian
+ * @author Sebastian, Rami, Benjamin, Patrick
  */
 public class DiaryFXMLController implements Initializable {
 
@@ -75,6 +77,14 @@ public class DiaryFXMLController implements Initializable {
     private ObservableList<TableGetterSetter> data = FXCollections.observableArrayList();
     private ObservableList<String> choiceList = FXCollections.observableArrayList();
     private MedicineList medicineList = new MedicineList();
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button deleteBtn;
+
+    private String selectedNoteDate;
+    
+    private TextArea  textAreaNote;
 
     // private String writtenNote = "";
     /**
@@ -97,6 +107,9 @@ public class DiaryFXMLController implements Initializable {
         obResidents.addAll(ListOfResidents.getResidentList());
 
         ListOfDiaryNote.setEditable(false);
+
+        editBtn.setVisible(false);
+        deleteBtn.setVisible(false);
 
         readEmployeNoteFromDatabase();
 
@@ -152,6 +165,8 @@ public class DiaryFXMLController implements Initializable {
                 Controller.saveNote(user.getName(), selectedUser, combines, DatabaseHandler.convertDate());
 
                 WriteDiaryNote.setText("");
+                readResidentNoteFromDatabase();
+
             }
         }
     }
@@ -216,8 +231,9 @@ public class DiaryFXMLController implements Initializable {
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
             obList.add(note);
-            System.out.println("yolo");
+
         }
+        ListOfDiaryNote.scrollTo(obList.size());
 
     }
 
@@ -227,22 +243,29 @@ public class DiaryFXMLController implements Initializable {
         String date = fullDate.substring(0, 2);
         String user = selectedUser.getName();
         for (String s : DatabaseHandler.getResidentNote(user, date)) {
-            TextArea note = new TextArea(s);
+              textAreaNote = new TextArea(s);
 
-            note.setOnMouseClicked((e) -> {
+            textAreaNote.setOnMouseClicked((e) -> {
+
+                editBtn.setVisible(true);
+                deleteBtn.setVisible(true);
+
                 System.out.println("TextArea clicked");
-                System.out.println(note.getText());
 
-                String selectedNote = note.getText();
-                System.out.println("note:" + selectedNote);
-                String selectedNoteDate = selectedNote.substring(selectedNote.length() - 20);
-                System.out.println("Date: " + selectedNoteDate);
+                String selectedNote = textAreaNote.getText();
+                textAreaNote.setStyle("-fx-control-inner-background: #000000;");
+                textAreaNote.setStyle("-fx-highlight-text-fill: #000000;");
+                selectedNoteDate = selectedNote.substring(selectedNote.length() - 20);
+
+                readResidentNoteFromDatabase();
+
             });
 
-            note.setEditable(false);
-            note.setStyle("-fx-background-color: lightblue;");
-            obList.add(note);
-            System.out.println("yolo");
+            textAreaNote.setEditable(false);
+            textAreaNote.setStyle("-fx-background-color: lightblue;");
+            obList.add(textAreaNote);
+            ListOfDiaryNote.scrollTo(obList.size());
+
         }
     }
 
@@ -313,15 +336,28 @@ public class DiaryFXMLController implements Initializable {
             }
         }
     }
+    
+ 
 
     @FXML
-    private void noteClickedHandler(ListView.EditEvent<TextArea> event) {
-        selectedNote = ListOfDiaryNote.getSelectionModel().getSelectedItem();
-
-        String note = selectedNote.getText();
-        System.out.println("note:" + note);
-        String date = note.substring(note.length() - 20);
-        System.out.println("Date: " + date);
+    private void editBtnHandler(ActionEvent event) {
+        textAreaNote.setEditable(true);
+        
+        
+     
+        deleteBtn.setVisible(false);
+        editBtn.setVisible(false);
     }
+
+    @FXML
+    private void deleteBtnHandler(ActionEvent event) {
+
+        DatabaseHandler.deleteNote(selectedNoteDate);
+        readResidentNoteFromDatabase();
+        deleteBtn.setVisible(false);
+        editBtn.setVisible(false);
+    }
+
+  
 
 }
