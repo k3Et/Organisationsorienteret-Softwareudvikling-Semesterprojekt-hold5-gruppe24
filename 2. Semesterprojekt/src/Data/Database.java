@@ -195,7 +195,6 @@ public class Database {
             ps.setString(1, username);
 
             rs = ps.executeQuery();
-
             //If the query returns a row, the user exists at the location, and it will be deleted.
             if (rs.next()) {
 
@@ -204,7 +203,7 @@ public class Database {
                 //If the deleteLocation doesn't return 1, the user exists at more
                 //than one location, and only the location will be deleted,
                 //so the user still can be loaded at the other locations.
-                if (deleteLocation("username") == 1) {
+                if (deleteLocation(username) == 1) {
                     ps = con.prepareStatement("DELETE FROM Users WHERE username = ?");
 
                     ps.setString(1, username);

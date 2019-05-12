@@ -8,9 +8,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="737.0" style="-fx-background-color: #286DA8;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AssignRoleController">
+<AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="737.0" style="-fx-background-color: #286DA8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AssignRoleController">
     <children>
-        <Pane layoutY="49.0" prefHeight="505.0" prefWidth="738.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0" />
+        <Pane layoutY="49.0" prefHeight="505.0" prefWidth="738.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
+            <children>
+                <Button fx:id="deleteUserBtn" layoutX="194.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleDeleteUserBtnAction" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: transparent; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-font-size: 15px; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-weight: Bold; -fx-border-radius: 100;" text="Slet bruger">
+                    <font>
+                        <Font name="Karla" size="12.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </Pane>
         <Label layoutX="400.0" layoutY="320.0" prefHeight="26.0" prefWidth="139.0" style="-fx-text-fill: black; -fx-font-family: Karla; -fx-font-size: 17px;" text="Den valgte bruger" AnchorPane.bottomAnchor="207.6" AnchorPane.rightAnchor="197.8">
             <font>
                 <Font name="Karla" size="12.0" />

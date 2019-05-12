@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import java.net.URL;
@@ -42,9 +37,9 @@ public class ResidentInformationController implements Initializable {
         phoneField.setEditable(false);
         emailField.setEditable(false);
         adresseField.setEditable(false);
-    }    
-    
-    public void setNameField(String s){
+    }
+
+    public void setNameField(String s) {
         nameField.setText(s);
     }
 
@@ -63,11 +58,10 @@ public class ResidentInformationController implements Initializable {
     public void setAdresseField(String s) {
         adresseField.setText(s);
     }
-    
-    
+
     @FXML
     private void CloseHandler(ActionEvent event) {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
-    
+
 }

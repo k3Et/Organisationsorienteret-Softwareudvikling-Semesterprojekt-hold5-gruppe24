@@ -56,6 +56,8 @@ public class AssignRoleController implements Initializable {
     private Role selectedRole;
 
     SceneHandler sh = new SceneHandler();
+    @FXML
+    private Button deleteUserBtn;
 
     /**
      * Initializes the controller class.
@@ -160,6 +162,17 @@ public class AssignRoleController implements Initializable {
     @FXML
     private void handlerBtnBack(ActionEvent event) {
         sh.setNewScene("/GUI/FXML/Menu.fxml");
+    }
+
+    @FXML
+    private void handleDeleteUserBtnAction(ActionEvent event) {
+        selectedUser = chooseUserList.getSelectionModel().getSelectedItem(); //finds the selected item 
+
+        if (selectedUser != null) {
+            DatabaseHandler.deleteUser(selectedUser.getUsername());
+        }
+        DatabaseHandler.loadAllUsers();
+        updateListViews();
     }
 
 }

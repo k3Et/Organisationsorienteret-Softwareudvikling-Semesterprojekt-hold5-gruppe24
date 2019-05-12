@@ -22,6 +22,7 @@ public class DatabaseTest {
         User u = new User("Victor", "data", "Tempest", "211098-1234", "54452615", "ve@gmail.com", "Adressevej 47");
         User p = new User("Jesus", "test", "Jesus", "241200-1235", "00000000", "jesus@gmail.com", "Jerusalem et sted");
         //ds.createUser(u, "København Boligcentral");
+        //ds.deleteUser("SletBrugerTester");
     }
 
 }

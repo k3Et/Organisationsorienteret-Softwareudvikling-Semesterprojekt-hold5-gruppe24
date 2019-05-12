@@ -19,7 +19,6 @@ public class SceneHandler {
     private static String currentSceneString;
 
     public SceneHandler() {
-
     }
 
     public void setNewScene(String fxml) {

@@ -7,17 +7,17 @@
 
 
 <AnchorPane id="AnchorPane" prefHeight="214.0" prefWidth="234.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="GUI.ResidentInformationController">
-   <children>
-      <TextField fx:id="nameField" layoutX="61.0" layoutY="15.0" />
-      <TextField fx:id="cprField" layoutX="61.0" layoutY="45.0" />
-      <TextField fx:id="phoneField" layoutX="61.0" layoutY="75.0" />
-      <TextField fx:id="emailField" layoutX="61.0" layoutY="105.0" />
-      <TextField fx:id="adresseField" layoutX="61.0" layoutY="135.0" />
-      <Label layoutX="16.0" layoutY="20.0" text="Navn:" />
-      <Label layoutX="14.0" layoutY="50.0" text="CPR:" />
-      <Label layoutX="14.0" layoutY="80.0" text="Telefon:" />
-      <Label layoutX="14.0" layoutY="110.0" text="E-mail" />
-      <Label layoutX="14.0" layoutY="140.0" text="Adresse:" />
-      <Button layoutX="175.0" layoutY="172.0" mnemonicParsing="false" onAction="#CloseHandler" text="Luk" />
-   </children>
+    <children>
+        <TextField fx:id="nameField" layoutX="61.0" layoutY="15.0" />
+        <TextField fx:id="cprField" layoutX="61.0" layoutY="45.0" />
+        <TextField fx:id="phoneField" layoutX="61.0" layoutY="75.0" />
+        <TextField fx:id="emailField" layoutX="61.0" layoutY="105.0" />
+        <TextField fx:id="adresseField" layoutX="61.0" layoutY="135.0" />
+        <Label layoutX="16.0" layoutY="20.0" text="Navn:" />
+        <Label layoutX="14.0" layoutY="50.0" text="CPR:" />
+        <Label layoutX="14.0" layoutY="80.0" text="Telefon:" />
+        <Label layoutX="14.0" layoutY="110.0" text="E-mail" />
+        <Label layoutX="14.0" layoutY="140.0" text="Adresse:" />
+        <Button layoutX="175.0" layoutY="172.0" mnemonicParsing="false" onAction="#CloseHandler" text="Luk" />
+    </children>
 </AnchorPane>

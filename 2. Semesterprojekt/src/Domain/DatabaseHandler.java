@@ -67,8 +67,8 @@ public class DatabaseHandler {
     public static List<String> getResidentNote(String resident, String date) {
         return database.getResidentNote(resident, date);
     }
-    
-    public static void deleteNote(String date){
+
+    public static void deleteNote(String date) {
         database.deleteNote(date);
     }
 }

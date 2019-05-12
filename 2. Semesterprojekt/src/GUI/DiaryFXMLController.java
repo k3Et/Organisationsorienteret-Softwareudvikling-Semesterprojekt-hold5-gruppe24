@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,8 +26,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -83,8 +80,8 @@ public class DiaryFXMLController implements Initializable {
     private Button deleteBtn;
 
     private String selectedNoteDate;
-    
-    private TextArea  textAreaNote;
+
+    private TextArea textAreaNote;
 
     // private String writtenNote = "";
     /**
@@ -243,7 +240,7 @@ public class DiaryFXMLController implements Initializable {
         String date = fullDate.substring(0, 2);
         String user = selectedUser.getName();
         for (String s : DatabaseHandler.getResidentNote(user, date)) {
-              textAreaNote = new TextArea(s);
+            textAreaNote = new TextArea(s);
 
             textAreaNote.setOnMouseClicked((e) -> {
 
@@ -336,15 +333,11 @@ public class DiaryFXMLController implements Initializable {
             }
         }
     }
-    
- 
 
     @FXML
     private void editBtnHandler(ActionEvent event) {
         textAreaNote.setEditable(true);
-        
-        
-     
+
         deleteBtn.setVisible(false);
         editBtn.setVisible(false);
     }
@@ -357,7 +350,5 @@ public class DiaryFXMLController implements Initializable {
         deleteBtn.setVisible(false);
         editBtn.setVisible(false);
     }
-
-  
 
 }

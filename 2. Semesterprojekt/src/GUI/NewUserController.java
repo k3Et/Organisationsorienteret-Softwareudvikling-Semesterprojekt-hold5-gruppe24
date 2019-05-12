@@ -46,7 +46,7 @@ public class NewUserController implements Initializable {
         Controller.createUserInDatabase(nameTextField.getText(), passwordTextField.getText(), usernameTextField.getText(), cprTextField.getText(), mobilTextField.getText(), emailTextField.getText(), adresseTextField.getText(), currentLocation);
 
         ((Node) event.getSource()).getScene().getWindow().hide();
-        
+
         DatabaseHandler.loadAllUsers();
     }
 

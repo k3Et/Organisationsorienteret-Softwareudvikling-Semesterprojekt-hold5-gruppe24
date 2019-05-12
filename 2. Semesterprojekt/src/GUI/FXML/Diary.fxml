@@ -16,9 +16,10 @@
     <children>
         <TextArea fx:id="WriteDiaryNote" layoutX="231.0" layoutY="332.0" prefHeight="94.0" prefWidth="426.0" style="-fx-background-color: transparent; -fx-border-color: #286DA8; -fx-border-radius: 3;" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="293.0" />
         <Pane layoutX="-10.0" prefHeight="79.0" prefWidth="830.0" style="-fx-background-color: #286DA8;" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
-         <children>
-              <Button fx:id="logOutButton" layoutX="839.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="42.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100; -fx-font-weight: bold;" text="Log ud" />
-         </children></Pane>
+            <children>
+                <Button fx:id="logOutButton" layoutX="839.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="42.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100; -fx-font-weight: bold;" text="Log ud" />
+            </children>
+        </Pane>
         <Button fx:id="SaveNoteBtn" layoutX="860.0" layoutY="424.0" mnemonicParsing="false" onAction="#SaveNoteBtnHandler" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Gem" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0" />
         <ListView fx:id="ListOfDiaryNote" layoutX="231.0" layoutY="95.0" prefHeight="214.0" prefWidth="426.0" style="-fx-background-color: #efefef; -fx-border-color: #286DA8; -fx-border-radius: 3;" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="293.0" AnchorPane.topAnchor="95.0" />
         <ListView fx:id="residentListView" layoutX="6.0" layoutY="95.0" onMouseClicked="#onResidentClickedHandler" prefHeight="331.0" prefWidth="212.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="91.0" />
@@ -33,23 +34,23 @@
                 <Button fx:id="homeBtn" layoutY="-5.0" mnemonicParsing="false" onAction="#HomeBtnHandler" opacity="0.0" prefHeight="79.0" prefWidth="74.0" text="Button" />
             </children>
         </Pane>
-      <TableView fx:id="tableView" layoutX="670.0" layoutY="95.0" prefHeight="331.0" prefWidth="274.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="670.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="95.0">
-         <columns>
-            <TableColumn fx:id="MedicineCol" prefWidth="168.0" text="Medicin" />
-            <TableColumn fx:id="DosisCol" prefWidth="105.0" text="Dosis" />
-         </columns>
-      </TableView>
-      <Button layoutX="14.0" layoutY="424.0" mnemonicParsing="false" onAction="#infoOnResident" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Info" />
-      <Button fx:id="editBtn" layoutX="231.0" layoutY="424.0" mnemonicParsing="false" onAction="#editBtnHandler" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 15px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Redigér">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="deleteBtn" layoutX="341.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 15px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Slet">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <DatePicker layoutX="483.0" layoutY="435.0" />
+        <TableView fx:id="tableView" layoutX="670.0" layoutY="95.0" prefHeight="331.0" prefWidth="274.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="670.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="95.0">
+            <columns>
+                <TableColumn fx:id="MedicineCol" prefWidth="168.0" text="Medicin" />
+                <TableColumn fx:id="DosisCol" prefWidth="105.0" text="Dosis" />
+            </columns>
+        </TableView>
+        <Button layoutX="14.0" layoutY="424.0" mnemonicParsing="false" onAction="#infoOnResident" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 20px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Info" />
+        <Button fx:id="editBtn" layoutX="231.0" layoutY="424.0" mnemonicParsing="false" onAction="#editBtnHandler" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 15px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Redigér">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="deleteBtn" layoutX="341.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="33.0" prefWidth="103.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 15px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Slet">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <DatePicker layoutX="483.0" layoutY="435.0" />
     </children>
 </AnchorPane>
