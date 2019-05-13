@@ -31,7 +31,6 @@ public class Database {
     private Connection con = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    private ResultSet rs2 = null;
 
     private final String url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid";
     private final String Username = "qtbrqkid";
@@ -564,6 +563,7 @@ public class Database {
     }
 
     public void saveNote(String employee, User resident, String date, DiaryNote note) {
+
         //Setting up the driver.
         try {
             Class.forName("org.postgresql.Driver");
@@ -572,35 +572,50 @@ public class Database {
         }
 
         try {
+
             con = DriverManager.getConnection(url, Username, Password);
 
             ps = con.prepareStatement("SELECT * FROM employeeNote WHERE employee = ? AND note = ?");
+
             ps.setString(1, employee);
             ps.setString(2, note.getNote());
+
             rs = ps.executeQuery();
 
+            //If the note doesn't exist in the employeeNote table it will be created.
             if (!rs.next()) {
-                ps = con.prepareStatement("INSERT INTO employeeNote VALUES (?, ?, ?)");
-                ps.setString(3, date);
+
+                ps = con.prepareStatement("INSERT INTO employeeNote VALUES(?, ?, ?)");
+
                 ps.setString(1, employee);
                 ps.setString(2, note.getNote());
+                ps.setString(3, date);
 
                 ps.execute();
-                System.out.println("SQL 1DONE");
+
+                System.out.println("Note inserted in employeeNote.");
             }
 
+            //Same check for residentNote.
             ps = con.prepareStatement("SELECT * FROM residentNote WHERE resident = ? AND note = ?");
+
             ps.setString(1, resident.toString());
             ps.setString(2, note.getNote());
-            rs2 = ps.executeQuery();
 
-            if (!rs2.next()) {
-                ps = con.prepareStatement("INSERT INTO residentNote VALUES (?, ?, ?)");
-                ps.setString(3, date);
-                ps.setString(2, resident.toString());
+            rs = ps.executeQuery();
+
+            //If the note doesn't exist in the residentNote table it will be created.
+            if (!rs.next()) {
+
+                ps = con.prepareStatement("INSERT INTO residentNote VALUES(?, ?, ?)");
+
                 ps.setString(1, note.getNote());
+                ps.setString(2, resident.toString());
+                ps.setString(3, date);
+
                 ps.execute();
-                System.out.println("SQL 2DONE");
+
+                System.out.println("Note inserted in residentNote.");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -617,17 +632,20 @@ public class Database {
     public List<String> getEmployeeNote(String employee, String date) {
 
         List<String> listOfNotes = new ArrayList<>();
-        rs = null;
+
         //Setting up the driver.
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
+
         try {
 
             con = DriverManager.getConnection(url, Username, Password);
+
             ps = con.prepareStatement("SELECT note FROM employeeNote WHERE employee = ? ORDER BY date");
+
             //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
             ps.setString(1, employee);
             //ps.setString(2, note.getNote());
@@ -638,12 +656,13 @@ public class Database {
             // System.out.println(rs.getString("note"));
 
             System.out.println("Note selected from DB");
-            while (rs.next()) {
 
+            while (rs.next()) {
                 listOfNotes.add(rs.getString("note"));
             }
 
             System.out.println("Note added to listOfNote from DB");
+
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
@@ -657,24 +676,31 @@ public class Database {
     }
 
     public void deleteNote(String date) {
-        rs = null;
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
+
         try {
+            //MANGLER AT LAVE TJEK FOR OM NOTEN EKSISTERER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("DELETE FROM residentNote WHERE date LIKE ? ");
-            ps.setString(1,"%"+date+"%");
-            System.out.println("IN DATABASE: "+'%'+date+'%');
+
+            ps = con.prepareStatement("DELETE FROM residentNote WHERE date LIKE ?");
+
+            ps.setString(1, "%" + date + "%");
+
+            System.out.println("IN DATABASE: " + '%' + date + '%');
+
             if (date != null) {
                 ps.execute();
                 System.out.println("Note Deleted in resident table");
             }
 
-            ps = con.prepareStatement("DELETE FROM employeeNote WHERE date LIKE ? ");
-            ps.setString(1, "%"+date+"%");
+            ps = con.prepareStatement("DELETE FROM employeeNote WHERE date LIKE ?");
+
+            ps.setString(1, "%" + date + "%");
 
             if (date != null) {
                 ps.execute();
@@ -682,13 +708,12 @@ public class Database {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
+            System.out.println(ex);
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
         }
 
@@ -697,17 +722,20 @@ public class Database {
     public List<String> getResidentNote(String resident, String date) {
 
         List<String> listOfNotes = new ArrayList<>();
-        rs = null;
+
         //Setting up the driver.
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
+
         try {
 
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("SELECT note FROM residentNote WHERE resident = ? ORDER BY date ");
+
+            ps = con.prepareStatement("SELECT note FROM residentNote WHERE resident = ? ORDER BY date");
+
             //SELECT note FROM employeeNote WHERE employee = ? AND note LIKE ?
             ps.setString(1, resident);
             //ps.setString(2, date);
@@ -717,12 +745,13 @@ public class Database {
             // System.out.println(rs.getString("note"));
 
             System.out.println("Note selected from DB");
-            while (rs.next()) {
 
+            while (rs.next()) {
                 listOfNotes.add(rs.getString("note"));
             }
 
             System.out.println("Note added to listOfNote from DB");
+
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
@@ -733,6 +762,39 @@ public class Database {
             }
         }
         return listOfNotes;
+    }
+
+    public void editNote(String employee, User resident, String date, DiaryNote note) {
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+
+            con = DriverManager.getConnection(url, Username, Password);
+
+            ps = con.prepareStatement("UPDATE employeeNote SET note = ? WHERE note = ?");
+
+            ps.setString(1, //new note);
+            ps.setString(2, //old note);
+
+            ps.execute();
+
+            System.out.println("Diary Note Updated.");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+
     }
 
 }

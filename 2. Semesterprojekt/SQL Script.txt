@@ -18,6 +18,13 @@ username VARCHAR,
 location VARCHAR
 );
 
+CREATE TABLE employeeNote(
+
+
+
+CREATE TABLE residentNote(
+
+
 //Java Methods:
 verifyLogin:
 SELECT *
@@ -54,3 +61,22 @@ SELECT * FROM Users
 
 getDataPermissions:
 SELECT * FROM Role WHERE username = ?
+
+saveNote:
+INSERT INTO employeeNote VALUES(?, ?, ?)
+&&
+INSERT INTO residentNote VALUES(?, ?, ?)
+
+getEmployeeNote:
+SELECT note FROM employeeNote WHERE employee = ? ORDER BY date
+
+getResidentNote:
+SELECT note FROM residentNote WHERE resident = ? ORDER BY date
+
+deleteNote:
+DELETE FROM employeeNote WHERE date LIKE ?
+&&
+DELETE FROM residentNote WHERE date LIKE ?
+
+editNote:
+UPDATE employeeNote SET note = ? WHERE note = ?
