@@ -227,6 +227,7 @@ public class DiaryFXMLController implements Initializable {
             TextArea note = new TextArea(s);
             note.setEditable(false);
             note.setStyle("-fx-background-color: lightblue;");
+            note.setWrapText(true);
             obList.add(note);
 
         }
@@ -241,23 +242,14 @@ public class DiaryFXMLController implements Initializable {
         String user = selectedUser.getName();
         for (String s : DatabaseHandler.getResidentNote(user, date)) {
             textAreaNote = new TextArea(s);
-
             textAreaNote.setOnMouseClicked((e) -> {
-
                 editBtn.setVisible(true);
                 deleteBtn.setVisible(true);
-
                 System.out.println("TextArea clicked");
-
                 String selectedNote = textAreaNote.getText();
-                textAreaNote.setStyle("-fx-control-inner-background: #000000;");
-                textAreaNote.setStyle("-fx-highlight-text-fill: #000000;");
-                selectedNoteDate = selectedNote.substring(selectedNote.length() - 20);
-
-                readResidentNoteFromDatabase();
-
+                selectedNoteDate = selectedNote.substring(selectedNote.length() - 19);
             });
-
+            textAreaNote.setWrapText(true);
             textAreaNote.setEditable(false);
             textAreaNote.setStyle("-fx-background-color: lightblue;");
             obList.add(textAreaNote);
@@ -344,11 +336,12 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void deleteBtnHandler(ActionEvent event) {
-
+        System.out.println("date: " + selectedNoteDate);
         DatabaseHandler.deleteNote(selectedNoteDate);
-        readResidentNoteFromDatabase();
         deleteBtn.setVisible(false);
         editBtn.setVisible(false);
+        readResidentNoteFromDatabase();
+    
     }
 
 }

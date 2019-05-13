@@ -665,24 +665,31 @@ public class Database {
         }
         try {
             con = DriverManager.getConnection(url, Username, Password);
-            ps = con.prepareStatement("DELETE FROM residentNote where date = ? ");
-            ps.setString(1, date);
-
+            ps = con.prepareStatement("DELETE FROM residentNote WHERE date LIKE ? ");
+            ps.setString(1,"%"+date+"%");
+            System.out.println("IN DATABASE: "+'%'+date+'%');
             if (date != null) {
                 ps.execute();
-                System.out.println("Note Deleted");
+                System.out.println("Note Deleted in resident table");
             }
 
-            ps = con.prepareStatement("DELETE FROM employeeNote where date = ? ");
-            ps.setString(1, date);
+            ps = con.prepareStatement("DELETE FROM employeeNote WHERE date LIKE ? ");
+            ps.setString(1, "%"+date+"%");
 
             if (date != null) {
                 ps.execute();
-                System.out.println("Note Deleted");
+                System.out.println("Note Deleted in employee table");
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
