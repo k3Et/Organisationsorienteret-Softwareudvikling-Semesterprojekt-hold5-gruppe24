@@ -1,14 +1,10 @@
 package GUI;
 
 import Domain.Controller;
-import Domain.DatabaseHandler;
-
 import Domain.Role;
 import Domain.User;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.net.URL;
@@ -95,10 +91,11 @@ public class AssignRoleController implements Initializable {
 
         if (selectedRole != null) {
             Controller.addRoleToUser(selectedUser, selectedRole);
-            DatabaseHandler.addRole(selectedUser, selectedRole);
+            //Adding role in database:
+            Controller.addRole(selectedUser, selectedRole);
 
             selectedUser.getRoles().clear();
-            selectedUser.getRoles().addAll(DatabaseHandler.getDataPermissions(selectedUser));
+            selectedUser.getRoles().addAll(Controller.getDataPermissions(selectedUser));
         }
         updateListViews();
     }
@@ -125,11 +122,11 @@ public class AssignRoleController implements Initializable {
         selectedUser = chooseUserList.getSelectionModel().getSelectedItem();
         selectedRole = chooseRoleList.getSelectionModel().getSelectedItem();
         Controller.removeRoleFromUser(selectedUser, selectedRole);
-
-        DatabaseHandler.deleteRole(selectedUser, selectedRole);
+        //Deleting role in database.
+        Controller.deleteRole(selectedUser, selectedRole);
 
         selectedUser.getRoles().clear();
-        selectedUser.getRoles().addAll(DatabaseHandler.getDataPermissions(selectedUser));
+        selectedUser.getRoles().addAll(Controller.getDataPermissions(selectedUser));
 
         updateListViews();
     }
@@ -143,7 +140,7 @@ public class AssignRoleController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(SceneHandler.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 
@@ -169,9 +166,9 @@ public class AssignRoleController implements Initializable {
         selectedUser = chooseUserList.getSelectionModel().getSelectedItem(); //finds the selected item 
 
         if (selectedUser != null) {
-            DatabaseHandler.deleteUser(selectedUser.getUsername());
+            Controller.deleteUser(selectedUser.getUsername());
         }
-        DatabaseHandler.loadAllUsers();
+        Controller.loadAllUsers();
         updateListViews();
     }
 

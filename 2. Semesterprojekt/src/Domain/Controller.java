@@ -60,7 +60,7 @@ public class Controller {
 
     public static void createNewUser(String name, String password, String username, String CPR, String phoneNumber, String email, String address) {
         User user = new User(name, password, username, CPR, phoneNumber, email, address);
-        user.getRoles().addAll(DatabaseHandler.getDataPermissions(user));
+        user.getRoles().addAll(Controller.getDataPermissions(user));
         for (Role r : user.getRoles()) {
             if (r instanceof Resident) {
                 ListOfResidents.addResident(user);
@@ -89,6 +89,38 @@ public class Controller {
 
     public static void saveNote(String user, User selectedUser, String note, String date) {
         DatabaseHandler.saveNoteInDatabase(user, selectedUser, new DiaryNote(note), date);
+    }
+
+    public static void editNote(String date, String newNote) {
+        DatabaseHandler.editNote(date, newNote);
+    }
+
+    //Database calls:
+    public static boolean verifyLogin(String username, String password, String location) {
+        if (DatabaseHandler.verifyLogin(username, password, location)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void deleteUser(String username) {
+        DatabaseHandler.deleteUser(username);
+    }
+
+    public static void loadAllUsers() {
+        DatabaseHandler.loadAllUsers();
+    }
+
+    public static void addRole(User u, Role r) {
+        DatabaseHandler.addRole(u, r);
+    }
+
+    public static void deleteRole(User u, Role r) {
+        DatabaseHandler.deleteRole(u, r);
+    }
+
+    public static List<Role> getDataPermissions(User u) {
+        return DatabaseHandler.getDataPermissions(u);
     }
 
 }

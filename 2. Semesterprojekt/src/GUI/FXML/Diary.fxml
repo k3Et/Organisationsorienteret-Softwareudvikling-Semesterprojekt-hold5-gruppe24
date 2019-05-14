@@ -59,5 +59,13 @@
          </padding>
         </Button>
         <DatePicker layoutX="483.0" layoutY="435.0" AnchorPane.bottomAnchor="21.4" AnchorPane.rightAnchor="292.6" />
+      <Button fx:id="saveEditing" layoutX="307.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleSaveEditAction" prefHeight="34.0" prefWidth="123.0" style="-fx-background-color: transparent; -fx-font-family: Karla; -fx-text-fill: CD5360; -fx-font-size: 15px; -fx-border-color: CD5360; -fx-border-width: 0px 2px 2px 2px; -fx-border-radius: 100;" text="Gem Redigering">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+      </Button>
     </children>
 </AnchorPane>

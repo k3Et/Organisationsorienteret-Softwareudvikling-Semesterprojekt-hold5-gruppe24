@@ -19,11 +19,16 @@ location VARCHAR
 );
 
 CREATE TABLE employeeNote(
-
-
+employee VARCHAR,
+note VARCHAR,
+date VARCHAR
+);
 
 CREATE TABLE residentNote(
-
+note VARCHAR,
+resident VARCHAR,
+date VARCHAR
+);
 
 //Java Methods:
 verifyLogin:
@@ -79,4 +84,6 @@ DELETE FROM employeeNote WHERE date LIKE ?
 DELETE FROM residentNote WHERE date LIKE ?
 
 editNote:
-UPDATE employeeNote SET note = ? WHERE note = ?
+UPDATE employeeNote SET note = ? WHERE date = ?
+&&
+UPDATE residentNote SET note = ? WHERE date = ?

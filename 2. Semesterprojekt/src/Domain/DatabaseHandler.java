@@ -1,6 +1,7 @@
 package Domain;
 
 import Data.Database;
+import static GUI.LoginFXMLController.currentLocation;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,11 +30,11 @@ public class DatabaseHandler {
     }
 
     public static void deleteUser(String username) {
-        database.deleteUser(username);
+        database.deleteUser(username, currentLocation);
     }
 
     public static void loadAllUsers() {
-        database.loadAllUsers();
+        database.loadAllUsers(currentLocation);
     }
 
     public static void addRole(User u, Role r) {
@@ -70,5 +71,9 @@ public class DatabaseHandler {
 
     public static void deleteNote(String date) {
         database.deleteNote(date);
+    }
+
+    public static void editNote(String date, String newNote) {
+        database.editNote(date, newNote);
     }
 }

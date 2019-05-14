@@ -8,7 +8,6 @@ import Domain.Roles.Employee;
 import Domain.Roles.Leader;
 import Domain.Roles.Resident;
 import Domain.User;
-import static GUI.LoginFXMLController.currentLocation;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,8 +18,6 @@ import Domain.ListOfEmployees;
 import Domain.ListOfResidents;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -178,7 +175,7 @@ public class Database {
     }
 
     //This is meant to delete a user and it's roles based on the username.
-    public void deleteUser(String username) {
+    public void deleteUser(String username, String location) {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -202,7 +199,7 @@ public class Database {
                 //If the deleteLocation doesn't return 1, the user exists at more
                 //than one location, and only the location will be deleted,
                 //so the user still can be loaded at the other locations.
-                if (deleteLocation(username) == 1) {
+                if (deleteLocation(username, location) == 1) {
                     ps = con.prepareStatement("DELETE FROM Users WHERE username = ?");
 
                     ps.setString(1, username);
@@ -322,7 +319,7 @@ public class Database {
 
     //This method is meant to create all users from the database in java, so
     //they can be added to lists and edited.
-    public void loadAllUsers() {
+    public void loadAllUsers(String location) {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
@@ -344,7 +341,7 @@ public class Database {
             while (rs.next()) {
                 //Checks if the user is at the logged in/currentLocation
                 //so that only the users at the currentLocation will be loaded.
-                if (verifyLocation(rs.getString("username"), currentLocation)) {
+                if (verifyLocation(rs.getString("username"), location)) {
                     Controller.createNewUser(rs.getString("name"), rs.getString("password"), rs.getString("username"), rs.getString("cpr"), rs.getString("phonenumber"), rs.getString("email"), rs.getString("address"));
                 }
             }
@@ -460,7 +457,7 @@ public class Database {
 
     //Deleting the current users location, when a user is deleted
     //without deleting all user locations.
-    public int deleteLocation(String username) {
+    public int deleteLocation(String username, String location) {
 
         Connection locaCon = null;
         PreparedStatement locaPs = null;
@@ -501,7 +498,7 @@ public class Database {
                 locaPs = locaCon.prepareStatement("DELETE FROM Locations WHERE username = ? and location = ?");
 
                 locaPs.setString(1, username);
-                locaPs.setString(2, currentLocation);
+                locaPs.setString(2, location);
 
                 locaPs.execute();
 
@@ -518,48 +515,6 @@ public class Database {
             }
         }
         return 0;
-    }
-
-    //This method is meant to download all the locations for the users and return them
-    //in an ArrayList. The method is used when a userobject is created at login.
-    //STILL NOT IMPLEMENTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public ArrayList getLocations(User u) {
-
-        Connection locaCon = null;
-        PreparedStatement locaPs = null;
-        ResultSet locaRs = null;
-
-        ArrayList locations = new ArrayList();
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-
-        try {
-
-            locaCon = DriverManager.getConnection(url, Username, Password);
-
-            locaPs = locaCon.prepareStatement("SELECT * FROM Locations WHERE username = ?");
-
-            locaPs.setString(1, u.getUsername());
-
-            locaRs = locaPs.executeQuery();
-
-            while (locaRs.next()) {
-                locations.add(locaRs.getString("location"));
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } finally {
-            try {
-                locaCon.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
-        return locations;
     }
 
     public void saveNote(String employee, User resident, String date, DiaryNote note) {
@@ -764,7 +719,7 @@ public class Database {
         return listOfNotes;
     }
 
-    public void editNote(String employee, User resident, String date, DiaryNote note) {
+    public void editNote(String date, String newNote) {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -772,29 +727,44 @@ public class Database {
             System.out.println(ex);
         }
 
+        Connection con2 = null;
+        PreparedStatement ps2 = null;
+
         try {
 
+            //First updating the first table.
             con = DriverManager.getConnection(url, Username, Password);
 
-            ps = con.prepareStatement("UPDATE employeeNote SET note = ? WHERE note = ?");
+            ps = con.prepareStatement("UPDATE employeeNote SET note = ? WHERE date = ?");
 
-            ps.setString(1, //new note);
-            ps.setString(2, //old note);
+            ps.setString(1, newNote);
+            ps.setString(2, date);
 
             ps.execute();
 
-            System.out.println("Diary Note Updated.");
+            System.out.println("employeeNote Note Updated/Edited.");
+
+            //Updating second table.
+            con2 = DriverManager.getConnection(url, Username, Password);
+
+            ps2 = con.prepareStatement("UPDATE residentNote SET note = ? WHERE date = ?");
+
+            ps2.setString(1, newNote);
+            ps2.setString(2, date);
+
+            ps2.execute();
+
+            System.out.println("residentNote Note Updated/Edited.");
 
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
             try {
                 con.close();
+                con2.close();
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
         }
-
     }
-
 }

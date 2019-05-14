@@ -48,6 +48,20 @@ public class DiaryFXMLController implements Initializable {
     private ListView<TextArea> ListOfDiaryNote;
     @FXML
     private ListView<User> residentListView;
+    @FXML
+    private Button homeBtn;
+    @FXML
+    private TableColumn<Medicine, String> MedicineCol;
+    @FXML
+    private TableColumn<TableGetterSetter, ChoiceBox> DosisCol;
+    @FXML
+    private TableView<TableGetterSetter> tableView;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button deleteBtn;
+    @FXML
+    private Button saveEditing;
 
     private ObservableList<TextArea> obList;
     private ObservableList<User> obResidents;
@@ -59,29 +73,18 @@ public class DiaryFXMLController implements Initializable {
     private Diary diary;
 
     private SceneHandler sh = new SceneHandler();
-    @FXML
-    private Button homeBtn;
-
-    @FXML
-    private TableColumn<Medicine, String> MedicineCol;
-    @FXML
-    private TableColumn<TableGetterSetter, ChoiceBox> DosisCol;
-    @FXML
-    private TableView<TableGetterSetter> tableView;
 
     private User lastUser;
 
     private ObservableList<TableGetterSetter> data = FXCollections.observableArrayList();
     private ObservableList<String> choiceList = FXCollections.observableArrayList();
     private MedicineList medicineList = new MedicineList();
-    @FXML
-    private Button editBtn;
-    @FXML
-    private Button deleteBtn;
 
     private String selectedNoteDate;
 
     private TextArea textAreaNote;
+
+    private String noteHolder;
 
     // private String writtenNote = "";
     /**
@@ -126,6 +129,8 @@ public class DiaryFXMLController implements Initializable {
         DosisCol.setCellValueFactory(new PropertyValueFactory<TableGetterSetter, ChoiceBox>("choiceBox"));
         //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
 
+        //Making saveEdit invisible until edit occurs.
+        saveEditing.setVisible(false);
     }
 
     @FXML
@@ -229,7 +234,6 @@ public class DiaryFXMLController implements Initializable {
             note.setStyle("-fx-background-color: lightblue;");
             note.setWrapText(true);
             obList.add(note);
-
         }
         ListOfDiaryNote.scrollTo(obList.size());
 
@@ -248,6 +252,7 @@ public class DiaryFXMLController implements Initializable {
                 System.out.println("TextArea clicked");
                 String selectedNote = textAreaNote.getText();
                 selectedNoteDate = selectedNote.substring(selectedNote.length() - 19);
+                noteHolder = selectedNote;
             });
             textAreaNote.setWrapText(true);
             textAreaNote.setEditable(false);
@@ -328,8 +333,12 @@ public class DiaryFXMLController implements Initializable {
 
     @FXML
     private void editBtnHandler(ActionEvent event) {
-        textAreaNote.setEditable(true);
 
+        saveEditing.setVisible(true);
+        //Setting text in the writingfield so that it can be rewritten/edited.
+        WriteDiaryNote.setText(noteHolder);
+
+        //These buttons aren't supposed to be used at this time.
         deleteBtn.setVisible(false);
         editBtn.setVisible(false);
     }
@@ -341,7 +350,23 @@ public class DiaryFXMLController implements Initializable {
         deleteBtn.setVisible(false);
         editBtn.setVisible(false);
         readResidentNoteFromDatabase();
-    
+    }
+
+    @FXML
+    private void handleSaveEditAction(ActionEvent event) {
+
+        //Can't be used at this time.
+        saveEditing.setVisible(false);
+
+        //Editing the note in the database. 
+        Controller.editNote(selectedNoteDate, WriteDiaryNote.getText());
+
+        readResidentNoteFromDatabase();
+
+        WriteDiaryNote.clear();
+
+        deleteBtn.setVisible(true);
+        editBtn.setVisible(true);
     }
 
 }

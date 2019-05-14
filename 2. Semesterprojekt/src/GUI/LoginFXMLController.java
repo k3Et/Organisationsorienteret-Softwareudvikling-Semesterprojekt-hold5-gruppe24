@@ -1,7 +1,6 @@
 package GUI;
 
 import Domain.Controller;
-import Domain.DatabaseHandler;
 import Domain.User;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,9 +66,9 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handlePassWordFIeldAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
+        if (Controller.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
             currentLocation = comboBox.getSelectionModel().getSelectedItem();
-            DatabaseHandler.loadAllUsers();
+            Controller.loadAllUsers();
             currentUserLoggedIn = Controller.findLoggedUser(userNameField.getText());
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
@@ -81,9 +80,9 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         //Create verification with SQL database here:
-        if (DatabaseHandler.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
+        if (Controller.verifyLogin(userNameField.getText(), passWordField.getText(), comboBox.getSelectionModel().getSelectedItem())) {
             currentLocation = comboBox.getSelectionModel().getSelectedItem();
-            DatabaseHandler.loadAllUsers();
+            Controller.loadAllUsers();
             currentUserLoggedIn = Controller.findLoggedUser(userNameField.getText());
             resultLabel.setText("Logger ind...");
             sh.setNewScene("/GUI/FXML/Menu.fxml");
