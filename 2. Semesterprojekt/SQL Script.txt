@@ -1,3 +1,9 @@
+//ElephantSQL Database Information:
+url = "jdbc:postgresql://balarama.db.elephantsql.com:5432/qtbrqkid"
+Username = "qtbrqkid"
+Password = "ju1tuAMRQjWkEU-_Pe-5gHMzyNQfm7qa"
+
+//Tables:
 CREATE TABLE Users(
 name VARCHAR,
 username VARCHAR,
