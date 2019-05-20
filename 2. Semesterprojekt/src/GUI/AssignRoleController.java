@@ -4,7 +4,6 @@ import Domain.Controller;
 import Domain.Role;
 import Domain.User;
 import java.io.IOException;
-import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.net.URL;
@@ -15,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import javafx.scene.input.MouseEvent;
