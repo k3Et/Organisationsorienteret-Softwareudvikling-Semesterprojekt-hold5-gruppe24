@@ -1,8 +1,7 @@
 package GUI;
 
 import Domain.Controller;
-import Domain.DatabaseHandler;
-import Domain.Diary;
+import Data.DatabaseHandler;
 import Domain.ListOfResidents;
 import Domain.Medicine;
 import Domain.MedicineList;
@@ -37,19 +36,11 @@ import javafx.stage.Stage;
 public class DiaryFXMLController implements Initializable {
 
     @FXML
-    private Button backButton;
-    @FXML
-    private Button logOutButton;
-    @FXML
-    private Button SaveNoteBtn;
-    @FXML
     private TextArea WriteDiaryNote;
     @FXML
     private ListView<TextArea> ListOfDiaryNote;
     @FXML
     private ListView<User> residentListView;
-    @FXML
-    private Button homeBtn;
     @FXML
     private TableColumn<Medicine, String> MedicineCol;
     @FXML
@@ -68,10 +59,6 @@ public class DiaryFXMLController implements Initializable {
 
     private User selectedUser;
 
-    private TextArea selectedNote;
-
-    private Diary diary;
-
     private SceneHandler sh = new SceneHandler();
 
     private User lastUser;
@@ -86,21 +73,13 @@ public class DiaryFXMLController implements Initializable {
 
     private String noteHolder;
 
-    // private String writtenNote = "";
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //   c.setStockUsers();
-        diary = new Diary();
         obList = FXCollections.observableArrayList();
         ListOfDiaryNote.setItems(obList);
-
-//        for(int i = 0; i < ListOfResidents.list.size(); i++){  //addAll virkede ikke!
-//              obResidents.add(ListOfResidents.list.get(i));
-//       }
-//     
         obResidents = FXCollections.observableArrayList();
         residentListView.setItems(obResidents);
 
@@ -127,7 +106,6 @@ public class DiaryFXMLController implements Initializable {
 
         MedicineCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
         DosisCol.setCellValueFactory(new PropertyValueFactory<TableGetterSetter, ChoiceBox>("choiceBox"));
-        //ListOfDiaryNote.setStyle("-fx-opacity: 100;");
 
         //Making saveEdit invisible until edit occurs.
         saveEditing.setVisible(false);
@@ -155,7 +133,6 @@ public class DiaryFXMLController implements Initializable {
         User user = LoginFXMLController.currentUserLoggedIn;
         String combines = writtenNote + "\n" + "Skrevet af: " + user.getName() + "\n" + DatabaseHandler.convertDate();
 
-        // d.setResidentName(selectedUser);
         if (!writtenNote.equals("")) {
             if (selectedUser == null) {
                 TextArea warning = new TextArea("Vælg venligst en beboer");
@@ -163,12 +140,9 @@ public class DiaryFXMLController implements Initializable {
                 warning.setStyle("-fx-font-style: Bold");
                 obList.add(warning);
             } else {
-
                 Controller.saveNote(user.getName(), selectedUser, combines, DatabaseHandler.convertDate());
-
                 WriteDiaryNote.setText("");
                 readResidentNoteFromDatabase();
-
             }
         }
     }
@@ -208,21 +182,6 @@ public class DiaryFXMLController implements Initializable {
         return medString;
     }
 
-//    private void readFiles() {
-//        obList.clear();
-//        if (diary.getFiles().isEmpty()) {
-//            TextArea note = new TextArea("Indeholder ingen noter");
-//            obList.add(note);
-//        } else {
-//
-//            for (int i = 0; i < diary.getFiles().size(); i++) {
-//                TextArea note = new TextArea(String.valueOf(diary.getFiles().get(i)) + " " + diary.getFileName().get(i));
-//                note.setEditable(false);
-//                note.setStyle("-fx-background-color: lightblue;");
-//                obList.add(note);
-//            }
-//        }
-//    }
     private void readEmployeNoteFromDatabase() {
         obList.clear();
         String fullDate = DatabaseHandler.convertDate();
@@ -259,7 +218,6 @@ public class DiaryFXMLController implements Initializable {
             textAreaNote.setStyle("-fx-background-color: lightblue;");
             obList.add(textAreaNote);
             ListOfDiaryNote.scrollTo(obList.size());
-
         }
     }
 
@@ -276,10 +234,8 @@ public class DiaryFXMLController implements Initializable {
         }
         selectedUser = residentListView.getSelectionModel().getSelectedItem(); //finds the selected item  
         openInfo();
-        diary.setResidentName(selectedUser);
         if (selectedUser != null) {
             ListOfDiaryNote.scrollTo(obList.size());
-            //readFiles();
             readResidentNoteFromDatabase();
         }
         //tag en string, RESIDENT NAME og brug den i en metode i diarys argument

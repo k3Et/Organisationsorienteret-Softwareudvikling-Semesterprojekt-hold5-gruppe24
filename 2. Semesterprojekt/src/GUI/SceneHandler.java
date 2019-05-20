@@ -16,7 +16,6 @@ public class SceneHandler {
 
     public static Stage currentStage;
     public static Scene currentScene;
-    private static String currentSceneString;
 
     public SceneHandler() {
     }
@@ -34,7 +33,6 @@ public class SceneHandler {
             currentStage.show();
 
             matchCSSWithFXML(fxml);
-            //currentSceneString = fxml;
         } catch (IOException ex) {
             Logger.getLogger(SceneHandler.class.getName()).log(Level.SEVERE, null, ex);
         }

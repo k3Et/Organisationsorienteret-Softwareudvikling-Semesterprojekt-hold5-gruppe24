@@ -8,8 +8,8 @@ and open the template in the editor.
     Author     : ramiy
 */
 .root{
-   
-   -fx-background-color: linear-gradient(to bottom right, lightblue, black);
+
+    -fx-background-color: linear-gradient(to bottom right, lightblue, black);
 }
 .button{
     -fx-font-weight: bold;
@@ -22,10 +22,10 @@ and open the template in the editor.
 }
 
 #menuListView{
-    
-    
+
+
 }
 #homeButton{
-     -fx-cursor: hand; 
+    -fx-cursor: hand; 
 }
 

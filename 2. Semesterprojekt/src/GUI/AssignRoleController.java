@@ -35,15 +35,10 @@ public class AssignRoleController implements Initializable {
     private ListView<Role> chooseRoleList;
     @FXML
     private ListView<String> userInfoListView;
-    @FXML
-    private Button acceptBtn;
 
     private ObservableList<User> userList;
     private ObservableList<Role> roleList;
     private ObservableList<String> userInfoList;
-    //ListOfUsers lou ;
-
-    private Scanner s;
 
     private String stringHolder;
 
@@ -52,8 +47,6 @@ public class AssignRoleController implements Initializable {
     private Role selectedRole;
 
     SceneHandler sh = new SceneHandler();
-    @FXML
-    private Button deleteUserBtn;
 
     /**
      * Initializes the controller class.
@@ -73,12 +66,6 @@ public class AssignRoleController implements Initializable {
         userList.addAll(Controller.getStockUsers());
         roleList.addAll(Controller.getStockRoleList());
         //showUsers();
-    }
-
-    public void showUsers() {
-        //  System.out.println(lou.users);
-        //userList.addAll(lou.users);
-
     }
 
     @FXML

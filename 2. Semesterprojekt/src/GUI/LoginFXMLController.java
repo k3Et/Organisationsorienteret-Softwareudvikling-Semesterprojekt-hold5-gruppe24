@@ -23,21 +23,12 @@ import javafx.scene.image.ImageView;
  */
 public class LoginFXMLController implements Initializable {
 
-    private ImageView loginImageView;
-    @FXML
-    private ImageView NoTiBoImage;
     @FXML
     private PasswordField passWordField;
-    @FXML
-    private Label passWordLabel;
-    @FXML
-    private Label userNameLabel;
     @FXML
     private Label resultLabel;
     @FXML
     private TextField userNameField;
-    @FXML
-    private Button loginButton;
     @FXML
     private ComboBox<String> comboBox;
 

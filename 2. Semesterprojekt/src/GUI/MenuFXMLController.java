@@ -7,9 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -18,19 +15,6 @@ import javafx.scene.input.MouseEvent;
  * @author Victor
  */
 public class MenuFXMLController implements Initializable {
-
-    @FXML
-    private Button logOutButton;
-    @FXML
-    private ImageView NoTiBoImage;
-    @FXML
-    private Button homeButton;
-
-    private String selectedMenu;
-
-    private ObservableList<String> OListDairyNote;
-
-    private ListView<String> menuListView;
 
     private SceneHandler sh = new SceneHandler();
 
@@ -47,18 +31,11 @@ public class MenuFXMLController implements Initializable {
         sh.setNewScene("/GUI/FXML/LoginFXML.fxml");
     }
 
-    private void handlerOpenMenu(MouseEvent event) {
-
-    }
-
     @FXML
     private void diaryBtnHandler(ActionEvent event) {
         if (currentUserLoggedIn.getPermissions().contains("create note")) {
             sh.setNewScene("/GUI/FXML/Diary.fxml");
-        } else {
-
         }
-
     }
 
     @FXML

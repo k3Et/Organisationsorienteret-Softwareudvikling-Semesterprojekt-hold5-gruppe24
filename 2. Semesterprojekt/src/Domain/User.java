@@ -57,9 +57,6 @@ public class User implements Comparable<User> {
         return name;
     }
 
-//    public User(Role r){
-//        roles = new ListOfRoles(r);
-//    }
     public String getPassword() {
         return password;
     }
@@ -112,9 +109,6 @@ public class User implements Comparable<User> {
         return roles;
     }
 
-    //public List<Locations> getLocations() {
-    //return location.getLocationList();
-    //}
     @Override
     public String toString() {
         return name;
@@ -137,7 +131,6 @@ public class User implements Comparable<User> {
     public List<User> getRelations() {
         for (Role r : getRoles()) {
             if (r instanceof Employee) {
-
                 return relations.getlRelations();
             }
         }
@@ -148,7 +141,6 @@ public class User implements Comparable<User> {
         for (Role r : getRoles()) {
             if (r instanceof Employee) {
                 return relations.getUnrelated();
-
             }
         }
         return null;

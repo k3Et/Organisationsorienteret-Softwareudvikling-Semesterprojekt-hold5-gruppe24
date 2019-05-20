@@ -1,6 +1,8 @@
-package Domain;
+package Data;
 
-import Data.Database;
+import Domain.DiaryNote;
+import Domain.Role;
+import Domain.User;
 import static GUI.LoginFXMLController.currentLocation;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,10 +21,7 @@ public class DatabaseHandler {
     private static Database database = new Database();
 
     public static boolean verifyLogin(String username, String password, String location) {
-        if (database.verifyLogin(username, password, location)) {
-            return true;
-        }
-        return false;
+        return database.verifyLogin(username, password, location);
     }
 
     public static void createUser(User u, String location) {

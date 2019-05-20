@@ -55,27 +55,22 @@ public class RelationFXMLController implements Initializable {
 
     @FXML
     private void addRelationBtn(ActionEvent event) {
-
         selectedResident = residentListView.getSelectionModel().getSelectedItem();
         if (selectedResident != null) {
             selectedEmployee.getRelations().add(selectedResident);
             updateListViews();
         }
-
     }
 
     @FXML
     private void removeRelationBtn(ActionEvent event) {
-
         selectedRelation = relationListViews.getSelectionModel().getSelectedItem();
         selectedEmployee.getRelations().remove(selectedRelation);
         updateListViews();
-
     }
 
     @FXML
     private void handleMouseOnEmployee(MouseEvent event) {
-
         obRelationList.clear();
         obResidentList.clear();
         selectedEmployee = employeeListView.getSelectionModel().getSelectedItem();

@@ -1,5 +1,6 @@
 package Domain;
 
+import Data.DatabaseHandler;
 import Domain.Roles.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,6 @@ public class Controller {
     static ListOfUsers users = new ListOfUsers();
     static List<Role> listOfRoles = new ArrayList<>();
 
-//    static Employee employee = new Employee();
-//    static Admin admin = new Admin();
-//    static Leader leader = new Leader();
-//    static Resident resident = new Resident();
     public static List<User> getStockUsers() {
         return users.getList();
     }
@@ -38,9 +35,7 @@ public class Controller {
             if (selectedRole instanceof Resident) {
                 ListOfResidents.addResident(selectedUser);
             } else if (selectedRole instanceof Employee) {
-
                 ListOfEmployees.addEmployee(selectedUser);
-
             }
         }
     }
@@ -49,11 +44,9 @@ public class Controller {
         if (selectedUser.getRoles().contains(selectedRole)) {
             selectedUser.getRoleList().removeRole(selectedRole);
             if (selectedRole instanceof Resident) {
-
                 ListOfResidents.removeResident(selectedUser);
             } else if (selectedRole instanceof Employee) {
                 ListOfEmployees.removeEmployee(selectedUser);
-
             }
         }
     }

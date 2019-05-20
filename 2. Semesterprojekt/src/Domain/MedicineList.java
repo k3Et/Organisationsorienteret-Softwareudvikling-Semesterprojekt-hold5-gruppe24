@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class MedicineList {
 
     private File medicineFile;
-    private Medicine medicine;
     private ArrayList<Medicine> arrayMedicine;
 
     public MedicineList() {

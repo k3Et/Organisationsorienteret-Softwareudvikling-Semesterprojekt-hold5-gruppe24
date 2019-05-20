@@ -10,9 +10,6 @@ public abstract class Role {
 
     private StringBuilder permissions;
 
-//    public Role(){
-//        permissions = new StringBuilder();
-//    }
     public Role(String roleName) {
         this.roleName = roleName;
         permissions = new StringBuilder();
