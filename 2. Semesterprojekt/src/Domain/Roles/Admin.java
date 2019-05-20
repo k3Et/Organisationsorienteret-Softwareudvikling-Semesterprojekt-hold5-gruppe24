@@ -8,7 +8,7 @@ import Domain.Role;
  */
 public class Admin extends Role {
 
-    private static String[] permissions = {};
+    private static String[] permissions = {"bruger rolle"};
 
     public Admin() {
         super("Admin");

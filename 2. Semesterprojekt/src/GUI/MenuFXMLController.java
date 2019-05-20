@@ -47,7 +47,7 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void employeeRoleBtnHandler(ActionEvent event) {
-        if (currentUserLoggedIn.getPermissions().contains("borger relation")) {
+        if (currentUserLoggedIn.getPermissions().contains("bruger rolle")) {
             sh.setNewScene("/GUI/FXML/AssignRole.fxml");
         }
     }
