@@ -83,7 +83,7 @@ public class DiaryFXMLController implements Initializable {
         obResidents = FXCollections.observableArrayList();
         residentListView.setItems(obResidents);
 
-        obResidents.addAll(ListOfResidents.getResidentList());
+        obResidents.addAll(LoginFXMLController.currentUserLoggedIn.getRelations());
 
         ListOfDiaryNote.setEditable(false);
 
